@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Student: Sign In"
+            android:text="Faculty: Sign In"
             android:textColor="@color/dark_orange"
             android:textSize="32dp"
             android:textStyle="bold" />
@@ -92,7 +92,7 @@
                     android:background="@drawable/login_box" />
 
                 <EditText
-                    android:id="@+id/registration_number"
+                    android:id="@+id/fac_registration_number"
                     android:layout_width="220dp"
                     android:layout_height="31dp"
                     android:layout_alignTop="@+id/id_box"
@@ -132,7 +132,7 @@
 
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/fac_password"
                     android:inputType="textPassword"
                     android:layout_width="220dp"
                     android:layout_height="31dp"
@@ -154,7 +154,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/student_signin"
+            android:id="@+id/b_faculty_signin"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/dark_orange"
@@ -164,7 +164,7 @@
             app:cornerRadius="8dp" />
 
         <TextView
-            android:id="@+id/forgot_password"
+            android:id="@+id/faculty_forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -173,11 +173,11 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/faculty_signin"
+            android:id="@+id/student_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Faculty Login"
+            android:text="Student Login"
             android:textColor="@color/gray"
             android:textSize="22dp"
             android:textStyle="bold" />
