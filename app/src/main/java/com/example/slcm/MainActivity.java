@@ -10,12 +10,14 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView faculty_login_page ;
+    TextView forgotp ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         faculty_login_page = findViewById(R.id.faculty_signin);
+         forgotp = findViewById(R.id.forgot_password);
 
         faculty_login_page.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        forgotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent marks = new Intent(MainActivity.this , Internal_marks.class);
+                startActivity(marks);
+            }
+
+        });
 
     }
 }

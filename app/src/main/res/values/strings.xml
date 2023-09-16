@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SLCM</string>
+    <string name="title">Subject code : MCA 4245 Data Analytics</string>
+    <string name="assessment_type">Assignment 1</string>
+    <string-array name="semesters">
+        <item>I  Semester</item>
+        <item>II Semester</item>
+        <item>III Semester</item>
+
+    </string-array>
 </resources>
