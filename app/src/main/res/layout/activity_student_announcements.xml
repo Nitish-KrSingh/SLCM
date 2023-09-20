@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Student.Student_Announcements">
+
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:id="@+id/relative1"-->
+<!--        android:background="@drawable/halfround_background">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnback"-->
+<!--            android:layout_width="90dp"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginLeft="200dp"-->
+<!--            android:background="@drawable/backarrow_foreground"-->
+<!--            android:layout_toLeftOf="@+id/txtFacultyAnnouncements"-->
+<!--            android:layout_marginRight="10dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtFacultyAnnouncements"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:fontFamily="sans-serif-condensed-medium"-->
+<!--            android:text="Announcements"-->
+<!--            android:textStyle="normal"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="25dp" />-->
+
+<!--    </RelativeLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtHigherEducation"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:text="HIGHER EDUCATION OPPORTUNITIES IN USA"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txtDate1"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtHigherEducation"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative3"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative2"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtTimeTable"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="TIME TABLE FOR M.TECH AND MCA"/>
+
+        <TextView
+            android:id="@+id/txtDate2"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtTimeTable"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative4"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative3"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtTechTatva"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="TECHTATVA"/>
+
+        <TextView
+            android:id="@+id/txtDate3"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtTechTatva"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative5"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative4"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtHoliday"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="HOLIDAY"/>
+
+        <TextView
+            android:id="@+id/txtDate4"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtHoliday"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative6"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative5"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtCybersecurityCourse"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="CYBERSECURITY COURSE"/>
+
+        <TextView
+            android:id="@+id/txtDate5"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtCybersecurityCourse"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relative7"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative6"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtFinalExam"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="FINAL EXAM"/>
+
+        <TextView
+            android:id="@+id/txtDate6"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtFinalExam"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

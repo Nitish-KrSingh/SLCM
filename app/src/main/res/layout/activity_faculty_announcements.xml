@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Faculty.Faculty_Announcements">
+
+
+
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtHigherEducation"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:text="HIGHER EDUCATION OPPORTUNITIES IN USA"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txtDate1"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtHigherEducation"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative3"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative2"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtTimeTable"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="TIME TABLE FOR M.TECH AND MCA"/>
+
+        <TextView
+            android:id="@+id/txtDate2"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtTimeTable"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative4"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative3"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtTechTatva"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="TECHTATVA"/>
+
+        <TextView
+            android:id="@+id/txtDate3"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtTechTatva"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+    </RelativeLayout>
+
+</RelativeLayout>

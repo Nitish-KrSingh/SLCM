@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Faculty.Faculty_Dashboard">
+
+
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_below="@+id/relative1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <Button
+            android:id="@+id/btnAnnouncement"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/rounded_button"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:stateListAnimator="@null"
+            android:text="Announcements"
+            android:textColor="#ffffff"
+            />
+
+        <Button
+            android:id="@+id/btnTimeTable"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/btnAnnouncement"
+            android:background="@drawable/rounded_button"
+            android:layout_alignParentEnd="true"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:stateListAnimator="@null"
+            android:text="Time Table"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnAttendance"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/btnAnnouncement"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_button"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:stateListAnimator="@null"
+            android:text="Attendance"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnMarks"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/btnTimeTable"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/btnAttendance"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/rounded_button"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:stateListAnimator="@null"
+            android:text="Marks"
+            android:textColor="#ffffff">
+
+
+        </Button>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/txtheading"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/relative2"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Announcements"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        />
+
+    <RelativeLayout
+        android:id="@+id/relative3"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/relative2"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+
+        <TextView
+            android:id="@+id/txtHigherEducation"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:text="HIGHER EDUCATION OPPORTUNITIES IN USA"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txtDate1"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtHigherEducation"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative4"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative3"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtTimeTable"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="TIME TABLE FOR M.TECH AND MCA"/>
+
+        <TextView
+            android:id="@+id/txtDate2"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtTimeTable"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative5"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/relative4"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_background"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/txtTechTatva"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:textColor="@color/black"
+            android:text="TECHTATVA"/>
+
+        <TextView
+            android:id="@+id/txtDate3"
+            android:layout_width="350dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/txtTechTatva"
+            android:text="Date : 12-09-2023"
+            android:textColor="#808080"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

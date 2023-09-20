@@ -1,4 +1,4 @@
-package com.example.slcm;
+package com.example.slcm.Student;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.slcm.R;
+import com.example.slcm.Student.Student;
 
 public class CustomStudentListAdapter extends BaseAdapter {
     private Context context;

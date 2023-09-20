@@ -1,4 +1,4 @@
-package com.example.slcm;
+package com.example.slcm.Student;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -19,10 +19,11 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.slcm.R;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GradeActivity extends AppCompatActivity {
-    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
