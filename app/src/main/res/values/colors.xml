@@ -7,4 +7,7 @@
     <color name="dark_orange">#E34626</color>
     <color name="gray">#686565</color>
     <color name="light_gray">#EAEAEA</color>
+    <color name="green">#CCFFE0</color>
+    <color name="red">#FFCFCC</color>
+    <color name="dark_green">#16902A</color>
 </resources>
