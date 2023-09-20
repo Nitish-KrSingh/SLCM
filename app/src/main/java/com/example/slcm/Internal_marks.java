@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,7 +31,8 @@ public class Internal_marks extends AppCompatActivity {
 
         Spinner dropdown = findViewById(R.id.semester_select_spinner);
         listView = findViewById(R.id.listView);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Internal Marks");
 
         MyAdapter myAdapter = new MyAdapter();
         listView.setAdapter(myAdapter);
@@ -87,6 +91,28 @@ public class Internal_marks extends AppCompatActivity {
 
             return myView;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_ham, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_item1) {
+            Toast.makeText(this, "Clicked on about ", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.menu_item2) {
+            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+
+
     }
 
 

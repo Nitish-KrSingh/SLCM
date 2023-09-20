@@ -17,9 +17,11 @@
             android:exported="false" />
         <activity
             android:name=".Faculty_login"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
