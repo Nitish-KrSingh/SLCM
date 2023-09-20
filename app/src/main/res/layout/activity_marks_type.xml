@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Faculty.MarksTypeActivity">
-<!--    <include layout="@layout/activity_toolbar" />-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,8 +13,8 @@
         android:orientation="vertical"
         android:padding="25dp"
         android:id="@+id/lay1"
-        android:layout_marginTop="65dp"
-        android:background="@color/green">
+
+        android:background="@color/light_gray">
 
         <RelativeLayout
 
@@ -26,8 +26,8 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-               android:layout_centerInParent="true"
+                android:textSize="20sp"
+            android:layout_alignParentStart="true"
                 android:textStyle="bold"
                 android:text="ASSESMENT TYPE" />
 
@@ -102,9 +102,8 @@ android:layout_below="@+id/lay1"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:layout_marginLeft="10dp"
-            android:hint="Enter max. marks"
+            android:hint="Enter marks"
             android:padding="10dp"
-            android:background="@color/green"
             android:layout_centerInParent="true"
             android:textStyle="bold"
             />
@@ -124,20 +123,21 @@ android:layout_below="@+id/lay1"
             android:layout_centerInParent="true"
             android:textStyle="bold"
             android:text="Date: " />
+
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:src="@drawable/baseline_calendar_month_24"
-            android:layout_marginLeft="10dp"
+            android:layout_width="26dp"
+            android:layout_height="27dp"
             android:layout_centerInParent="true"
-            android:textStyle="bold"
-            />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/baseline_calendar_month_24"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_centerInParent="true"
 
             android:text="19-06-2023 " />
@@ -150,11 +150,11 @@ android:layout_below="@+id/lay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="12dp"
+      android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
             android:text="Next"
             app:cornerRadius="8dp"
-            android:backgroundTint="@color/dark_orange"/>
+            android:backgroundTint="@color/maroon"/>
 
 
 

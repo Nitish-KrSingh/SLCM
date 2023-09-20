@@ -4,10 +4,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#241468</color>
     <color name="light_orange">#DFB2A8</color>
-    <color name="dark_orange">#E34626</color>
+    <color name="dark_orange">#C84B31</color>
     <color name="gray">#686565</color>
     <color name="light_gray">#EAEAEA</color>
     <color name="green">#CCFFE0</color>
     <color name="red">#FFCFCC</color>
     <color name="dark_green">#16902A</color>
+    <color name="maroon">#902020</color>
+    <color name="light_purple">#EECFFF</color>
+    <color name="purple">#766FB8</color>
+
 </resources>

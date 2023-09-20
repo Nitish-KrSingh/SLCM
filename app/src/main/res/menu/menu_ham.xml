@@ -10,10 +10,11 @@
         android:title="Profile" />
     <item
         android:id="@+id/menu_item2"
-        android:title="TimeTable" />
+        android:title="Announcements" />
     <item
         android:id="@+id/menu_item3"
-        android:title="Announcements" />
+        android:title="TimeTable" />
+
     <item
         android:id="@+id/menu_item4"
         android:title="Attendance" />
@@ -21,8 +22,9 @@
         android:id="@+id/menu_item5"
         android:title="Marks" />
     <item
-    android:id="@+id/fac_attendance"
-    android:title="Marks" />
+        android:id="@+id/menu_item6"
+        android:title="Fees" />
+
 
 
 </menu>
