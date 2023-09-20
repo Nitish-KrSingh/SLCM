@@ -1,34 +1,23 @@
-package com.example.slcm;
+package com.example.slcm.Faculty;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.slcm.R;
 
-public class MarksActivity extends AppCompatActivity {
-
-    private ListView listView;
+public class MarksTypeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_marks);
+        setContentView(R.layout.activity_marks_type);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Marks");
-        listView = findViewById(R.id.students);
+        getSupportActionBar().setTitle("Marks Input");
 
-        // Sample student data
-        Student[] students = {
-                new Student("John", "220970030"),
-                new Student("Alice", "220970031"),
-                new Student("Krish", "220970032")
-        };
-
-        CustomStudentListAdapter adapter = new CustomStudentListAdapter(this, students);
-        listView.setAdapter(adapter);
     }
 
     @Override

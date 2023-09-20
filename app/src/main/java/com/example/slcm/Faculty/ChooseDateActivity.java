@@ -1,4 +1,4 @@
-package com.example.slcm;
+package com.example.slcm.Faculty;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,17 +7,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MarksTypeActivity extends AppCompatActivity {
+import com.example.slcm.R;
+
+public class ChooseDateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_marks_type);
+        setContentView(R.layout.activity_choose_date);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Marks Input");
+        getSupportActionBar().setTitle("Select Date");
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_ham, menu);

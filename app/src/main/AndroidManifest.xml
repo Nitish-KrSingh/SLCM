@@ -13,30 +13,39 @@
         android:theme="@style/Theme.SLCM"
         tools:targetApi="31">
         <activity
-            android:name=".Student_Dashboard"
+            android:name=".Student.Student_Announcements"
             android:exported="false" />
         <activity
-            android:name=".ChooseDateActivity"
-            android:exported="false"
-            android:parentActivityName=".Internal_marks" />
+            android:name=".Faculty.Faculty_Announcements"
+            android:exported="false" />
         <activity
-            android:name=".MarksTypeActivity"
-            android:exported="false"
-            android:parentActivityName=".Internal_marks" />
+            android:name=".Faculty.Faculty_Dashboard"
+            android:exported="false" />
         <activity
-            android:name=".GradeActivity"
-            android:exported="false"
-            android:parentActivityName=".Internal_marks" />
+            android:name=".Student.Student_Dashboard"
+            android:exported="false" />
         <activity
-            android:name=".Internal_marks"
+            android:name=".Faculty.ChooseDateActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Student.Internal_marks" />
+        <activity
+            android:name=".Faculty.MarksTypeActivity"
+            android:exported="false"
+            android:parentActivityName=".Student.Internal_marks" />
+        <activity
+            android:name=".Student.GradeActivity"
+            android:exported="false"
+            android:parentActivityName=".Student.Internal_marks" />
+        <activity
+            android:name=".Student.Internal_marks"
+            android:exported="false"
+            android:parentActivityName=".Student_Login" />
         <activity
             android:name=".Faculty_login"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Student_Login"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity

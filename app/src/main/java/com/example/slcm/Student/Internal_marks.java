@@ -1,4 +1,4 @@
-package com.example.slcm;
+package com.example.slcm.Student;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.slcm.Faculty.AttendanceActivity;
+import com.example.slcm.Faculty.ChooseDateActivity;
+import com.example.slcm.Faculty.MarksActivity;
+import com.example.slcm.Faculty.MarksTypeActivity;
+import com.example.slcm.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -107,33 +113,6 @@ public class Internal_marks extends AppCompatActivity {
 
         if (id == R.id.profile) {
             Toast.makeText(this, "Clicked on about ", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.fac_attendance) {
-            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Internal_marks.this , AttendanceActivity.class );
-            startActivity(intent);
-
-        }
-        else if (id == R.id.choose_date) {
-            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Internal_marks.this , ChooseDateActivity.class );
-            startActivity(intent);
-
-        }
-        else if (id == R.id.marks_table) {
-            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Internal_marks.this , MarksActivity.class );
-            startActivity(intent);
-        }
-        else if (id == R.id.input_marks) {
-            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Internal_marks.this , MarksTypeActivity.class );
-            startActivity(intent);
-        }
-        else if (id == R.id.grade_sheet) {
-            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Internal_marks.this , GradeActivity.class );
-            startActivity(intent);
         }
 
 

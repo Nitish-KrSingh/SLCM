@@ -1,22 +1,38 @@
-package com.example.slcm;
+package com.example.slcm.Faculty;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class ChooseDateActivity extends AppCompatActivity {
+import com.example.slcm.R;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AttendanceActivity extends AppCompatActivity {
+
+    private ListView listView;
+    private CustomListAdapter adapter; // Use your custom adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_date);
+        setContentView(R.layout.activity_attendance);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Select Date");
+        getSupportActionBar().setTitle("Attendance");
 
+//        listView = findViewById(R.id.students);
+//
+//        // Sample list of roll numbers
+//        String[] rollNumbers = {"220970030", "220970031", "220970032"};
+//
+//        // Initialize the custom adapter
+//        adapter = new CustomListAdapter(this, rollNumbers);
+//        listView.setAdapter(adapter);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_ham, menu);

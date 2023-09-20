@@ -1,4 +1,4 @@
-package com.example.slcm;
+package com.example.slcm.Student;
 public class Student {
     private String name;
     private String rollNumber;

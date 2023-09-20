@@ -1,5 +1,4 @@
-package com.example.slcm;
-
+package com.example.slcm.Faculty;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,27 +6,32 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.slcm.Student.CustomStudentListAdapter;
+import com.example.slcm.R;
+import com.example.slcm.Student.Student;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AttendanceActivity extends AppCompatActivity {
+public class MarksActivity extends AppCompatActivity {
 
     private ListView listView;
-    private CustomListAdapter adapter; // Use your custom adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendance);
+        setContentView(R.layout.activity_marks);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Attendance");
-
+        getSupportActionBar().setTitle("Marks");
         listView = findViewById(R.id.students);
 
-        // Sample list of roll numbers
-        String[] rollNumbers = {"220970030", "220970031", "220970032"};
+        // Sample student data
+        Student[] students = {
+                new Student("John", "220970030"),
+                new Student("Alice", "220970031"),
+                new Student("Krish", "220970032")
+        };
 
-        // Initialize the custom adapter
-        adapter = new CustomListAdapter(this, rollNumbers);
+        CustomStudentListAdapter adapter = new CustomStudentListAdapter(this, students);
         listView.setAdapter(adapter);
     }
 
