@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Faculty.FacultyProfileActivity">
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/blue"
+        >
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:background="@mipmap/profile"
+            android:visibility="visible"
+            />
+
+
+        <TextView
+            android:id="@+id/txtabc"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imageView2"
+            android:text="Mr. XYZ"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relative2"
+        android:layout_below="@+id/relative1"
+        android:paddingLeft="30dp"
+        android:paddingTop="40dp">
+
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="150dp"
+            android:layout_height="42dp"
+            android:text="Username">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/username1"
+            android:layout_width="150dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@id/userName"
+            android:text=":                 228872937" />
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="150dp"
+            android:layout_height="42dp"
+            android:text="Date Of Joining"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/userName"/>
+
+        <TextView
+            android:id="@+id/date1"
+            android:layout_width="150dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="42dp"
+            android:layout_toRightOf="@id/date"
+            android:layout_below="@id/userName"
+            android:layout_marginTop="5dp"
+            android:text=":                 25/06/2019"/>
+
+
+
+        <TextView
+            android:id="@+id/dept"
+            android:layout_width="150dp"
+            android:layout_height="42dp"
+            android:text="Department"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/date"/>
+
+        <TextView
+            android:id="@+id/dept1"
+            android:layout_width="150dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="42dp"
+            android:layout_toRightOf="@id/date"
+            android:layout_below="@id/date1"
+            android:layout_marginTop="5dp"
+            android:text=":                 DSCA"/>
+
+
+
+        <TextView
+            android:id="@+id/dob"
+            android:layout_width="150dp"
+            android:layout_height="42dp"
+            android:text="Date Of Birth"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/dept"/>
+
+        <TextView
+            android:id="@+id/dob1"
+            android:layout_width="150dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="42dp"
+            android:layout_toRightOf="@id/dob"
+            android:layout_below="@id/dept1"
+            android:layout_marginTop="5dp"
+            android:text=":                 29/10/2001"/>
+
+
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="150dp"
+            android:layout_height="42dp"
+            android:layout_below="@id/dob"
+            android:layout_marginTop="5dp"
+            android:text="Gender"/>
+
+        <TextView
+            android:id="@+id/gender1"
+            android:layout_width="150dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="42dp"
+            android:layout_toRightOf="@id/gender"
+            android:layout_below="@id/dob1"
+            android:layout_marginTop="5dp"
+            android:text=":                 Female"/>
+
+
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="150dp"
+            android:layout_height="42dp"
+            android:layout_below="@id/gender"
+            android:layout_marginTop="5dp"
+            android:text="Phone Number"/>
+
+        <TextView
+            android:id="@+id/phone1"
+            android:layout_width="150dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="42dp"
+            android:layout_toRightOf="@id/phone"
+            android:layout_below="@id/gender1"
+            android:layout_marginTop="5dp"
+            android:text=":                 9188181911"/>
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="210dp"
+            android:layout_height="42dp"
+            android:layout_below="@id/phone"
+            android:layout_marginTop="5dp"
+            android:text="Email Id"/>
+
+        <TextView
+            android:id="@+id/email1"
+            android:layout_width="200dp"
+            android:layout_marginLeft="60dp"
+            android:layout_height="42dp"
+            android:layout_toRightOf="@id/phone"
+            android:layout_below="@id/phone"
+            android:layout_marginTop="5dp"
+            android:text=":                 xyz@gmail.com"/>
+
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -13,14 +13,68 @@
         android:theme="@style/Theme.SLCM"
         tools:targetApi="31">
         <activity
+            android:name=".StudentFeesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Student.StudentAttendanceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Student.StudentTimetableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Student.StudentPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Student.StudentProfileDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.ProfileDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.PasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.TimetableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.CreateAnnouncementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.MarksSubjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.MarksClassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.AttendanceSubjectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.AttendanceClassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.FacultyProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Student.StudentProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Student.Student_Announcements"
             android:exported="false" />
         <activity
             android:name=".Faculty.Faculty_Announcements"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Faculty.Faculty_Dashboard" />
         <activity
             android:name=".Faculty.Faculty_Dashboard"
             android:exported="false" />
+        <activity
+            android:name=".Faculty.MarksActivity"
+            android:exported="false"
+            android:parentActivityName=".Faculty.Faculty_Dashboard" />
+        <activity
+            android:name=".Faculty.AttendanceActivity"
+            android:exported="false"
+            android:parentActivityName=".Faculty.Faculty_Dashboard" />
         <activity
             android:name=".Student.Student_Dashboard"
             android:exported="false" />

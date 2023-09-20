@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Faculty: Sign In"
-            android:textColor="@color/dark_orange"
+            android:textColor="@color/maroon"
             android:textSize="32dp"
             android:textStyle="bold" />
 
@@ -68,7 +68,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <TextView
                     android:id="@+id/Resigtration_Number_text"
                     android:layout_width="wrap_content"
@@ -81,7 +80,6 @@
                     android:textColor="@color/gray"
                     android:textSize="20dp"
                     android:textStyle="bold" />
-
                 <View
                     android:id="@+id/id_box"
                     android:layout_width="match_parent"
@@ -90,7 +88,6 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/login_box" />
-
                 <EditText
                     android:id="@+id/fac_registration_number"
                     android:layout_width="220dp"
@@ -104,10 +101,9 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/light_gray"
-                    android:text="222434535"
+                    android:text="220970031"
                     android:textColor="@color/gray"
                     android:textSize="20dp" />
-
                 <TextView
                     android:id="@+id/Password_text"
                     android:layout_width="wrap_content"
@@ -121,16 +117,12 @@
                     android:textColor="@color/gray"
                     android:textSize="20dp"
                     android:textStyle="bold" />
-
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_below="@+id/Password_text"
                     android:layout_gravity="center"
                     android:background="@drawable/login_box" />
-
-
                 <EditText
                     android:id="@+id/fac_password"
                     android:inputType="textPassword"
@@ -147,10 +139,7 @@
                     android:text="222434535"
                     android:textColor="@color/gray"
                     android:textSize="20dp" />
-
             </RelativeLayout>
-
-
         </LinearLayout>
 
         <Button
@@ -169,8 +158,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="Forgot password ? "
-            android:textColor="@color/dark_orange"
-            android:textSize="20dp" />
+            android:textColor="@color/maroon"
+            android:textStyle="italic"
+            android:textSize="17dp" />
 
         <TextView
             android:id="@+id/student_signin"
@@ -178,11 +168,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Student Login"
-            android:textColor="@color/gray"
+            android:textColor="@color/blue"
             android:textSize="22dp"
             android:textStyle="bold" />
-
-
     </LinearLayout>
 
 
