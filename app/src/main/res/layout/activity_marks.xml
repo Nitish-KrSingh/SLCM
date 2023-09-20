@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <!-- Custom Toolbar -->
-    <include layout="@layout/activity_toolbar" />
+<!--    <include layout="@layout/activity_toolbar" />-->
 
 
     <Button

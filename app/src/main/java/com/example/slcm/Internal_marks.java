@@ -1,6 +1,7 @@
 package com.example.slcm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.transition.AutoTransition;
@@ -96,7 +97,7 @@ public class Internal_marks extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_ham, menu);
+        getMenuInflater().inflate(R.menu.fac_menu, menu);
         return true;
     }
 
@@ -104,11 +105,37 @@ public class Internal_marks extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.menu_item1) {
+        if (id == R.id.profile) {
             Toast.makeText(this, "Clicked on about ", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.menu_item2) {
+
+        } else if (id == R.id.fac_attendance) {
             Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Internal_marks.this , AttendanceActivity.class );
+            startActivity(intent);
+
         }
+        else if (id == R.id.choose_date) {
+            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Internal_marks.this , ChooseDateActivity.class );
+            startActivity(intent);
+
+        }
+        else if (id == R.id.marks_table) {
+            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Internal_marks.this , MarksActivity.class );
+            startActivity(intent);
+        }
+        else if (id == R.id.input_marks) {
+            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Internal_marks.this , MarksTypeActivity.class );
+            startActivity(intent);
+        }
+        else if (id == R.id.grade_sheet) {
+            Toast.makeText(this, "Clicked on setting ", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Internal_marks.this , GradeActivity.class );
+            startActivity(intent);
+        }
+
 
 
         return super.onOptionsItemSelected(item);
