@@ -29,6 +29,7 @@ public class Internal_marks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_internal_marks);
 
+
         Spinner dropdown = findViewById(R.id.semester_select_spinner);
         listView = findViewById(R.id.listView);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
