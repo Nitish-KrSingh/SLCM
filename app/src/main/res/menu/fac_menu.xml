@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/profile"
+            android:title="Profile" />
+    <item
+        android:id="@+id/fac_attendance"
+        android:title="Attendance" />
+    <item
+        android:id="@+id/choose_date"
+        android:title="choose_date" />
+
+    <item
+        android:id="@+id/marks_table"
+        android:title="marks" />
+    <item
+        android:id="@+id/input_marks"
+        android:title="marks_input" />
+    <item
+        android:id="@+id/grade_sheet"
+        android:title="Grade" />
+</menu>

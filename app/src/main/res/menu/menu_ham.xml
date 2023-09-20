@@ -20,5 +20,9 @@
     <item
         android:id="@+id/menu_item5"
         android:title="Marks" />
+    <item
+    android:id="@+id/fac_attendance"
+    android:title="Marks" />
+
 
 </menu>

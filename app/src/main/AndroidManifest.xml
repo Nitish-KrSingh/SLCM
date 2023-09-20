@@ -13,26 +13,32 @@
         android:theme="@style/Theme.SLCM"
         tools:targetApi="31">
         <activity
-            android:name=".ChooseDateActivity"
+            android:name=".Student_Dashboard"
             android:exported="false" />
+        <activity
+            android:name=".ChooseDateActivity"
+            android:exported="false"
+            android:parentActivityName=".Internal_marks" />
         <activity
             android:name=".MarksTypeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Internal_marks" />
         <activity
             android:name=".GradeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Internal_marks" />
         <activity
             android:name=".Internal_marks"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Faculty_login"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
