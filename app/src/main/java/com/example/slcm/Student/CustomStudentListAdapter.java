@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.slcm.R;
-import com.example.slcm.Student.Student;
 
 public class CustomStudentListAdapter extends BaseAdapter {
     private Context context;
@@ -39,7 +38,7 @@ public class CustomStudentListAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.custom_list_item_student, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_student_marks_list_item, parent, false);
         }
 
         TextView textViewName = convertView.findViewById(R.id.textViewName);

@@ -5,41 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Student_Login">
-
-
+    tools:context=".StudentLogin">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="360dp">
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@drawable/login_container" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
-
             <ImageView
                 android:id="@+id/manipal_logo"
                 android:layout_width="164dp"
                 android:layout_height="172dp"
                 android:src="@drawable/manipal_logo" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/manipal_logo"
-                android:text="SLCM"
+                android:text="@string/slcm"
                 android:textColor="@color/light_orange"
-                android:textSize="70dp"
+                android:textSize="70sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
     </RelativeLayout>
 
@@ -53,9 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Faculty: Sign In"
+            android:text="@string/faculty_sign_in_title"
             android:textColor="@color/maroon"
-            android:textSize="32dp"
+            android:textSize="32sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -69,27 +60,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
-                    android:id="@+id/Resigtration_Number_text"
+                    android:id="@+id/Registration_No_Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Registration Number :"
+                    android:text="@string/username"
                     android:textColor="@color/gray"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
                 <View
                     android:id="@+id/id_box"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/Resigtration_Number_text"
+                    android:layout_below="@+id/Registration_No_Text"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/login_box" />
                 <EditText
-                    android:id="@+id/fac_registration_number"
+                    android:id="@+id/Fac_Username_Edit"
                     android:layout_width="220dp"
                     android:layout_height="31dp"
                     android:layout_alignTop="@+id/id_box"
@@ -101,11 +92,11 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/light_gray"
-                    android:text="220970031"
+                    android:text="XYZ"
                     android:textColor="@color/gray"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
                 <TextView
-                    android:id="@+id/Password_text"
+                    android:id="@+id/Password_Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/id_box"
@@ -113,22 +104,22 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Password :"
+                    android:text="@string/password"
                     android:textColor="@color/gray"
                     android:textSize="20dp"
                     android:textStyle="bold" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/Password_text"
+                    android:layout_below="@+id/Password_Text"
                     android:layout_gravity="center"
                     android:background="@drawable/login_box" />
                 <EditText
-                    android:id="@+id/fac_password"
+                    android:id="@+id/Fac_Password_Edit"
                     android:inputType="textPassword"
                     android:layout_width="220dp"
                     android:layout_height="31dp"
-                    android:layout_below="@id/Password_text"
+                    android:layout_below="@id/Password_Text"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="30dp"
@@ -138,40 +129,39 @@
                     android:background="@color/light_gray"
                     android:text="222434535"
                     android:textColor="@color/gray"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
             </RelativeLayout>
         </LinearLayout>
 
         <Button
-            android:id="@+id/b_faculty_signin"
+            android:id="@+id/Faculty_SignIn_Btn"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/dark_orange"
             android:radius="8dp"
-            android:text="Sign In"
-            android:textSize="25dp"
+            android:text="@string/sign_in"
+            android:textSize="25sp"
             app:cornerRadius="8dp" />
 
         <TextView
-            android:id="@+id/faculty_forgot_password"
+            android:id="@+id/Faculty_Forgot_Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Forgot password ? "
+            android:text="@string/forgot_password"
             android:textColor="@color/maroon"
             android:textStyle="italic"
-            android:textSize="17dp" />
+            android:textSize="17sp" />
 
         <TextView
-            android:id="@+id/student_signin"
+            android:id="@+id/Student_SignIn_Link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Student Login"
+            android:text="@string/student_login_link"
             android:textColor="@color/blue"
-            android:textSize="22dp"
+            android:textSize="25sp"
             android:textStyle="bold" />
+
     </LinearLayout>
-
-
 </LinearLayout>

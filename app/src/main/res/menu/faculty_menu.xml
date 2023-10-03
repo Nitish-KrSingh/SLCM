@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fac_menu_profile"
+        android:title="@string/profile" />
+    <item
+        android:id="@+id/fac_menu_create_announcements"
+        android:title="@string/fac_create_announcement" />
+    <item
+        android:id="@+id/fac_menu_view_announcements"
+        android:title="@string/fac_view_announcements" />
+    <item
+        android:id="@+id/fac_menu_timetable"
+        android:title="@string/time_table" />
+    <item
+        android:id="@+id/fac_menu_attendance"
+        android:title="@string/attendance" />
+    <item
+        android:id="@+id/fac_menu_internal_marks"
+        android:title="@string/internal_marks" />
+    <item
+        android:id="@+id/fac_menu_logout"
+        android:title="@string/log_out" />
+</menu>

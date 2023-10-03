@@ -64,7 +64,7 @@ public class ToolbarActivity {
                 return true;
             }
         });
-        popup.inflate(R.menu.menu_ham);
+        popup.inflate(R.menu.student_menu);
         popup.show();
     }
     private void hideAppTitle() {

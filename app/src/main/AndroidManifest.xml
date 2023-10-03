@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <application
         android:allowBackup="true"
@@ -11,101 +11,127 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.SLCM"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+
+        <!-- Student -->
         <activity
-            android:name=".StudentFeesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Student.StudentAttendanceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Student.StudentTimetableActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Student.StudentPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Student.StudentProfileDashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.ProfileDashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.PasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.TimetableActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.CreateAnnouncementActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.MarksSubjectActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.MarksClassActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.AttendanceSubjectActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.AttendanceClassActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.FacultyProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Student.StudentProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Student.Student_Announcements"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.Faculty_Announcements"
-            android:exported="false"
-            android:parentActivityName=".Faculty.Faculty_Dashboard" />
-        <activity
-            android:name=".Faculty.Faculty_Dashboard"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.MarksActivity"
-            android:exported="false"
-            android:parentActivityName=".Faculty.Faculty_Dashboard" />
-        <activity
-            android:name=".Faculty.AttendanceActivity"
-            android:exported="false"
-            android:parentActivityName=".Faculty.Faculty_Dashboard" />
-        <activity
-            android:name=".Student.Student_Dashboard"
-            android:exported="false" />
-        <activity
-            android:name=".Faculty.ChooseDateActivity"
-            android:exported="false"
-            android:parentActivityName=".Student.Internal_marks" />
-        <activity
-            android:name=".Faculty.MarksTypeActivity"
-            android:exported="false"
-            android:parentActivityName=".Student.Internal_marks" />
-        <activity
-            android:name=".Student.GradeActivity"
-            android:exported="false"
-            android:parentActivityName=".Student.Internal_marks" />
-        <activity
-            android:name=".Student.Internal_marks"
-            android:exported="false"
-            android:parentActivityName=".Student_Login" />
-        <activity
-            android:name=".Faculty_login"
+            android:name=".StudentLogin"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
-            android:name=".Student_Login"
+            android:name=".Student.StudentForgotPassword"
+            android:exported="false"
+            android:parentActivityName=".StudentLogin" />
+        <activity
+            android:name=".Student.StudentDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".Student.StudentAnnouncements"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentDashboard" />
+        <activity
+            android:name=".Student.StudentTimetable"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentDashboard" />
+        <activity
+            android:name=".Student.StudentAttendance"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentDashboard" />
+        <activity
+            android:name=".Student.StudentMarksheet"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentDashboard" />
+        <activity
+            android:name=".Student.StudentInternalMarks"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentDashboard" />
+        <activity
+            android:name=".Student.StudentFeesActivity"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentDashboard" />
+        <activity
+            android:name=".Student.StudentProfileDashboard"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentDashboard" />
+        <activity
+            android:name=".Student.StudentProfile"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentProfileDashboard" />
+        <activity
+            android:name=".Student.StudentChangePassword"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentProfileDashboard" /> <!-- Faculty -->
+        <activity
+            android:name=".FacultyLogin"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
+        <activity
+            android:name=".Faculty.FacultyForgotPassword"
+            android:exported="false"
+            android:parentActivityName=".StudentLogin" />
+        <activity
+            android:name=".Faculty.FacultyDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.FacultyCreateAnnouncement"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyDashboard" />
+        <activity
+            android:name=".Faculty.FacultyAnnouncements"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyCreateAnnouncement" />
+        <activity
+            android:name=".Faculty.FacultyTimetable"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyDashboard" />
+        <activity
+            android:name=".Faculty.FacultyAttendanceChooseDate"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyDashboard" />
+        <activity
+            android:name=".Faculty.FacultyAttendanceClass"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyAttendanceChooseDate" />
+        <activity
+            android:name=".Faculty.FacultyAttendanceSubject"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyAttendanceClass" />
+        <activity
+            android:name=".Faculty.FacultyAttendance"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyAttendanceSubject" />
+        <activity
+            android:name=".Faculty.FacultyMarksClass"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyDashboard" />
+        <activity
+            android:name=".Faculty.FacultyMarksSubject"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyMarksClass" />
+        <activity
+            android:name=".Faculty.FacultyMarksType"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyMarksSubject" />
+        <activity
+            android:name=".Faculty.FacultyMarks"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyMarksType" />
+        <activity
+            android:name=".Faculty.FacultyProfileDashboard"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyDashboard" />
+        <activity
+            android:name=".Faculty.FacultyProfile"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyProfileDashboard" />
+        <activity
+            android:name=".Faculty.FacultyChangePassword"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyProfileDashboard" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar">
+            android:theme="@style/Theme.Design.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

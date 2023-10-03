@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Student.Student_Dashboard">
+    tools:context=".Student.StudentDashboard">
 
-    <RelativeLayout
-        android:id="@+id/relative2"
-        android:layout_width="wrap_content"
+    <GridLayout
+        android:id="@+id/Btn_Layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
-      android:gravity="center_horizontal"
-      >
-    <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-        android:id="@+id/lin1"
-    android:layout_centerHorizontal="true">
+        android:layout_gravity="center_horizontal"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        android:layout_margin="5dp">
+
+        <!-- First Row -->
         <Button
-            android:id="@+id/btnAnnouncement"
-            android:layout_width="130dp"
+            android:id="@+id/BtnAnnouncement"
+            android:layout_width="0dp"
             android:layout_height="100dp"
+            android:layout_columnWeight="1"
             android:background="@drawable/rounded_button"
-            android:layout_alignParentStart="true"
             android:gravity="center"
-            android:textSize="11dp"
-            android:text="Announcements"
-             />
+            android:text="@string/announcements"
+            android:textSize="11sp" />
 
         <Button
-            android:id="@+id/btnTimeTable"
-            android:layout_width="120dp"
+            android:id="@+id/BtnTimeTable"
+            android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="5dp"
-            android:textSize="11dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_columnWeight="1"
             android:background="@drawable/rounded_button"
-            android:text="Time Table" />
+            android:text="@string/time_table"
+            android:textSize="11sp" />
 
         <Button
-            android:id="@+id/btnAttendance"
-            android:layout_width="130dp"
+            android:id="@+id/BtnAttendance"
+            android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="5dp"
+            android:layout_columnWeight="1"
             android:background="@drawable/rounded_button"
-            android:textSize="11dp"
-            android:text="Attendance" />
+            android:text="@string/attendance"
+            android:textSize="11sp" />
 
-</LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/lin1"
+        <!-- Second Row -->
+        <Button
+            android:id="@+id/BtnInternalMarks"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
             android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true">
-            <Button
-                android:id="@+id/btnMarks"
-                android:layout_width="130dp"
-                android:layout_height="100dp"
-                android:background="@drawable/rounded_button"
-                android:layout_alignParentStart="true"
-                android:gravity="center"
-                android:textSize="11dp"
-                android:padding="20dp"
-                android:text="Marks"
-                />
+            android:layout_marginEnd="5dp"
+            android:layout_columnWeight="1"
+            android:background="@drawable/rounded_button"
+            android:gravity="center"
+            android:text="@string/internal_marks"
+            android:textSize="11sp" />
+        <Button
+            android:id="@+id/BtnMarkSheet"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_columnWeight="1"
+            android:background="@drawable/rounded_button"
+            android:gravity="center"
+            android:text="@string/marksheet"
+            android:textSize="11dp" />
 
-            <Button
-                android:id="@+id/btnFees"
-                android:layout_width="130dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/rounded_button"
-                android:padding="20dp"
-                android:textSize="11dp"
-                android:text="Fees" />
+        <Button
+            android:id="@+id/BtnFees"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:layout_columnWeight="1"
+            android:background="@drawable/rounded_button"
+            android:text="@string/fees"
+            android:textSize="11sp" />
 
-        </LinearLayout>
-
-    </RelativeLayout>
+    </GridLayout>
 
     <TextView
-        android:id="@+id/txtheading"
+        android:id="@+id/Announcements_Title"
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/relative2"
+        android:layout_below="@+id/Btn_Layout"
 android:layout_alignParentStart="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:text="Announcements"
-        android:textSize="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/announcements"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/blue"
        />
@@ -101,89 +101,87 @@ android:layout_alignParentStart="true"
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/txtheading"
+    android:layout_below="@id/Announcements_Title"
     android:orientation="vertical"
+    android:id="@+id/Announcements_Layout"
     android:layout_centerHorizontal="true">
     <RelativeLayout
-        android:id="@+id/relative1"
+        android:id="@+id/Ann1"
         android:layout_width="350dp"
         android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/light_purple"
         android:background="@drawable/rounded_background"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:paddingTop="20dp">
 
         <TextView
-            android:id="@+id/txtHigherEducation"
+            android:id="@+id/Ann1_Name1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="HIGHER EDUCATION OPPORTUNITIES IN USA" />
 
         <TextView
-            android:id="@+id/txtDate1"
+            android:id="@+id/Ann1_Date1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtHigherEducation"
+            android:layout_below="@+id/Ann1_Name1"
             android:text="Date : 12-09-2023"
             />
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rel2"
-        android:layout_below="@+id/relative1"
+        android:id="@+id/Ann2"
+        android:layout_below="@+id/Ann1"
         android:layout_width="350dp"
         android:layout_height="80dp"
         android:backgroundTint="@color/light_purple"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="@drawable/rounded_background"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:paddingTop="20dp">
 
         <TextView
-            android:id="@+id/txtTimeTable"
+            android:id="@+id/Ann2_Name2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TIME TABLE FOR M.TECH AND MCA" />
 
         <TextView
-            android:id="@+id/txtDate2"
+            android:id="@+id/Ann2_Date2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTimeTable"
-            android:text="Date : 12-09-2023"
+            android:layout_below="@+id/Ann2_Name2"
+            android:text="Date : 19-08-2023"
             />
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rel3"
-        android:layout_below="@+id/rel2"
+        android:id="@+id/Ann3"
+        android:layout_below="@+id/Ann2"
         android:layout_width="350dp"
         android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="@drawable/rounded_background"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:backgroundTint="@color/light_purple"
         android:paddingTop="20dp">
 
         <TextView
-            android:id="@+id/txtTechTatva"
+            android:id="@+id/Ann3_Name3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TECHTATVA" />
 
         <TextView
-            android:id="@+id/txtDate3"
+            android:id="@+id/Ann3_Date3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTechTatva"
-            android:text="Date : 12-09-2023"
+            android:layout_below="@+id/Ann3_Name3"
+            android:text="Date : 21-07-2023"
             />
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rel5"
-        android:layout_below="@+id/rel4"
+        android:id="@+id/Ann4"
+        android:layout_below="@+id/Ann3"
         android:layout_width="350dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
@@ -194,43 +192,42 @@ android:layout_alignParentStart="true"
         android:paddingTop="20dp">
 
         <TextView
-            android:id="@+id/txtCybersecurityCourse"
+            android:id="@+id/Ann4_Name4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CYBERSECURITY COURSE" />
 
         <TextView
-            android:id="@+id/txtDate5"
+            android:id="@+id/Ann4_Date4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtCybersecurityCourse"
-            android:text="Date : 12-09-2023"
+            android:layout_below="@+id/Ann4_Name4"
+            android:text="Date : 11-7-2023"
             />
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rel4"
-        android:layout_below="@+id/rel3"
+        android:id="@+id/Ann5"
+        android:layout_below="@+id/Ann4"
         android:layout_width="350dp"
         android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="@drawable/rounded_background"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         android:backgroundTint="@color/light_purple"
         android:paddingTop="20dp">
 
         <TextView
-            android:id="@+id/txtHoliday"
+            android:id="@+id/Ann5_Name5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="HOLIDAY" />
 
         <TextView
-            android:id="@+id/txtDate4"
+            android:id="@+id/Ann5_Date5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtHoliday"
-            android:text="Date : 12-09-2023"
+            android:layout_below="@+id/Ann5_Name5"
+            android:text="Date : 05-07-2023"
             />
     </RelativeLayout>
 </LinearLayout>

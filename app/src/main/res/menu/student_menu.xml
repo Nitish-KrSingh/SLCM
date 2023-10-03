@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text=".NoActionBar" />-->
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/profile" />
+    <item
+        android:id="@+id/menu_announcements"
+        android:title="@string/announcements" />
+    <item
+        android:id="@+id/menu_timetable"
+        android:title="@string/time_table" />
+    <item
+        android:id="@+id/menu_attendance"
+        android:title="@string/attendance" />
+    <item
+        android:id="@+id/menu_internal_marks"
+        android:title="@string/internal_marks" />
+    <item
+        android:id="@+id/menu_marksheet"
+        android:title="@string/marksheet" />
+    <item
+        android:id="@+id/menu_fees"
+        android:title="@string/fees" />
+    <item
+        android:id="@+id/menu_logout"
+        android:title="@string/log_out" />
 </menu>

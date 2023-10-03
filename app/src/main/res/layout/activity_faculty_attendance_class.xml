@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Faculty.FacultyAttendanceClass">
+
+    <RelativeLayout
+        android:id="@+id/Fac_Att_Class_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <TextView
+            android:id="@+id/Fac_Att_Class_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:text="@string/Fac_Class"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:id="@+id/Fac_Att_Class_Btn_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/Fac_Att_Class_Title"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/Fac_Att_Class1_Btn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/light_purple"
+                android:padding="20dp"
+                android:radius="8dp"
+                android:text="MCA-A"
+                android:textColor="@color/blue"
+                android:textSize="25sp"
+                app:cornerRadius="8dp" />
+
+            <Button
+                android:id="@+id/Fac_Att_Class2_Btn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/light_purple"
+                android:padding="20dp"
+                android:radius="8dp"
+                android:text="MCA-B"
+                android:textColor="@color/blue"
+                android:textSize="25sp"
+                app:cornerRadius="8dp" />
+
+            <Button
+                android:id="@+id/Fac_Att_Class3_Btn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/light_purple"
+                android:padding="20dp"
+                android:radius="8dp"
+                android:text="B.Tech Data Science"
+                android:textColor="@color/blue"
+                android:textSize="25sp"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

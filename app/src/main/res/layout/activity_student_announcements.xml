@@ -4,97 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Student.Student_Announcements">
-
-
-
+    tools:context=".Student.StudentAnnouncements">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtheading"
         android:orientation="vertical"
+        android:id="@+id/Announcements_Layout"
         android:layout_centerHorizontal="true">
         <RelativeLayout
-            android:id="@+id/relative1"
+            android:id="@+id/Ann1"
             android:layout_width="350dp"
             android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/light_purple"
             android:background="@drawable/rounded_background"
-            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
             android:paddingTop="20dp">
 
             <TextView
-                android:id="@+id/txtHigherEducation"
+                android:id="@+id/Ann1_Name1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="HIGHER EDUCATION OPPORTUNITIES IN USA" />
 
             <TextView
-                android:id="@+id/txtDate1"
+                android:id="@+id/Ann1_Date1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtHigherEducation"
+                android:layout_below="@+id/Ann1_Name1"
                 android:text="Date : 12-09-2023"
                 />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rel2"
-            android:layout_below="@+id/relative1"
+            android:id="@+id/Ann2"
+            android:layout_below="@+id/Ann1"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:backgroundTint="@color/light_purple"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:background="@drawable/rounded_background"
-            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
             android:paddingTop="20dp">
 
             <TextView
-                android:id="@+id/txtTimeTable"
+                android:id="@+id/Ann2_Name2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TIME TABLE FOR M.TECH AND MCA" />
 
             <TextView
-                android:id="@+id/txtDate2"
+                android:id="@+id/Ann2_Date2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtTimeTable"
-                android:text="Date : 12-09-2023"
+                android:layout_below="@+id/Ann2_Name2"
+                android:text="Date : 19-08-2023"
                 />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rel3"
-            android:layout_below="@+id/rel2"
+            android:id="@+id/Ann3"
+            android:layout_below="@+id/Ann2"
             android:layout_width="350dp"
             android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:background="@drawable/rounded_background"
-            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
             android:backgroundTint="@color/light_purple"
             android:paddingTop="20dp">
 
             <TextView
-                android:id="@+id/txtTechTatva"
+                android:id="@+id/Ann3_Name3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TECHTATVA" />
 
             <TextView
-                android:id="@+id/txtDate3"
+                android:id="@+id/Ann3_Date3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtTechTatva"
-                android:text="Date : 12-09-2023"
+                android:layout_below="@+id/Ann3_Name3"
+                android:text="Date : 21-07-2023"
                 />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rel5"
-            android:layout_below="@+id/rel4"
+            android:id="@+id/Ann4"
+            android:layout_below="@+id/Ann3"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_centerHorizontal="true"
@@ -105,46 +99,44 @@
             android:paddingTop="20dp">
 
             <TextView
-                android:id="@+id/txtCybersecurityCourse"
+                android:id="@+id/Ann4_Name4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CYBERSECURITY COURSE" />
 
             <TextView
-                android:id="@+id/txtDate5"
+                android:id="@+id/Ann4_Date4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtCybersecurityCourse"
-                android:text="Date : 12-09-2023"
+                android:layout_below="@+id/Ann4_Name4"
+                android:text="Date : 11-7-2023"
                 />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/rel4"
-            android:layout_below="@+id/rel3"
+            android:id="@+id/Ann5"
+            android:layout_below="@+id/Ann4"
             android:layout_width="350dp"
             android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:background="@drawable/rounded_background"
-            android:paddingLeft="30dp"
+            android:paddingStart="30dp"
             android:backgroundTint="@color/light_purple"
             android:paddingTop="20dp">
 
             <TextView
-                android:id="@+id/txtHoliday"
+                android:id="@+id/Ann5_Name5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="HOLIDAY" />
 
             <TextView
-                android:id="@+id/txtDate4"
+                android:id="@+id/Ann5_Date5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtHoliday"
-                android:text="Date : 12-09-2023"
+                android:layout_below="@+id/Ann5_Name5"
+                android:text="Date : 05-07-2023"
                 />
         </RelativeLayout>
     </LinearLayout>
-
 
 </RelativeLayout>

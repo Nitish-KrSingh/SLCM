@@ -30,20 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/imageView2"
-            android:text="Nitish Singh"
+            android:text="Mr. XYZ"
             android:textColor="@color/white"
             android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/textregno"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtabc"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="220970031"
-            />
 
 
     </RelativeLayout>
