@@ -2,6 +2,7 @@ package com.example.slcm;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -192,5 +193,26 @@ public class DatabaseManager extends SQLiteOpenHelper {
         feesValues.put("Purpose", "Course");
         feesValues.put("StudentID", 1); // Reference to UserProfile UserID
         db.insert("Fees", null, feesValues);
+    }
+
+    public Boolean checkEmailPassword(String student_reg_number, String student_password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from StudentProfile where RegistrationNumber = ? and Password = ?", new String[]{student_reg_number, student_password});
+        if (cursor.getCount() > 0) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+    public Boolean checkEmailPassword_for_fac(String fac_user_name, String fac_password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from FacultyProfile where Username = ? and Password = ?", new String[]{fac_user_name, fac_password});
+        if (cursor.getCount() > 0) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }

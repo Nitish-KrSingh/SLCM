@@ -12,8 +12,7 @@
     <string name="faculty_login_link"><u>Faculty Login</u></string>
     <string name="student_login_link"><u>Student Login</u></string>
     <string name="new_password">New password:</string>
-    <string name="confirm_password">Confirm Password:</string>
-
+    <string name="confirm_password">Confirm Password: </string>
     <string name="announcements">Announcements</string>
     <string name="time_table">Time Table</string>
     <string name="attendance">Attendance</string>
