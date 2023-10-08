@@ -19,25 +19,43 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.d("DatabaseStatus", "Creating database and tables");
         // Create your tables and initial dummy data here
-        db.execSQL("CREATE TABLE IF NOT EXISTS UserProfile (" +
+        db.execSQL("CREATE TABLE IF NOT EXISTS FacultyProfile (" +
                 "UserID INTEGER PRIMARY KEY," +
-                "RegistrationNumber INTEGER," +
                 "Username TEXT," +
                 "Password TEXT," +
                 "UserType TEXT," +
                 "Name TEXT," +
                 "DOB DATE," +
                 "Age INTEGER," +
-                "OtherDetails TEXT," +
+                "Department TEXT," +
+                "ClassID INTEGER," +
+                "FOREIGN KEY (ClassID) REFERENCES Class(ClassID));");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS StudentProfile (" +
+                "UserID INTEGER PRIMARY KEY," +
+                "RegistrationNumber INTEGER," +
+                "Password TEXT," +
+                "UserType TEXT," +
+                "Name TEXT," +
+                "DOB DATE," +
+                "Age INTEGER," +
                 "Semester INTEGER," +
                 "Department TEXT," +
                 "ClassID INTEGER," +
                 "FOREIGN KEY (ClassID) REFERENCES Class(ClassID));");
 
+        db.execSQL("CREATE TABLE IF NOT EXISTS FacultyClassAssignment (" +
+                "AssignmentID INTEGER PRIMARY KEY," +
+                "FacultyID INTEGER," +
+                "ClassID INTEGER," +
+                "FOREIGN KEY (FacultyID) REFERENCES FacultyProfile(UserID)," +
+                "FOREIGN KEY (ClassID) REFERENCES Class(ClassID));");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS Class (" +
                 "ClassID INTEGER PRIMARY KEY," +
                 "ClassName TEXT," +
-                "Section TEXT);");
+                "Section TEXT," +
+                "Semester INTEGER);");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS Attendance (" +
                 "AttendanceID INTEGER PRIMARY KEY," +
@@ -87,26 +105,55 @@ public class DatabaseManager extends SQLiteOpenHelper {
         Log.d("DatabaseStatus", "Upgrading database from version " + oldVersion + " to " + newVersion);
     }
     private void insertDummyData(SQLiteDatabase db) {
-        // Insert dummy data into UserProfile table
-        ContentValues userValues = new ContentValues();
-        userValues.put("RegistrationNumber", 123456);
-        userValues.put("Username", "faculty1");
-        userValues.put("Password", "faculty_password");
-        userValues.put("UserType", "Faculty");
-        userValues.put("Name", "Faculty One");
-        userValues.put("DOB", "1990-01-01");
-        userValues.put("Age", 30);
-        userValues.put("OtherDetails", "Additional faculty details");
-        userValues.put("Semester", 0);
-        userValues.put("Department", "Computer Science");
-        userValues.put("ClassID", 1);
-        db.insert("UserProfile", null, userValues);
+
+        // Insert dummy data into FacultyProfile table
+        ContentValues facultyValues = new ContentValues();
+        facultyValues.put("Username", "XYZ");
+        facultyValues.put("Password", "faculty_password");
+        facultyValues.put("UserType", "Faculty");
+        facultyValues.put("Name", "XYZ");
+        facultyValues.put("DOB", "1990-01-01");
+        facultyValues.put("Age", 30);
+        facultyValues.put("Department", "Computer Science");
+        facultyValues.put("ClassID", 1);
+        long facultyId = db.insert("FacultyProfile", null, facultyValues);
+
+        // Insert dummy data into StudentProfile table
+        ContentValues studentValues = new ContentValues();
+        studentValues.put("RegistrationNumber", 220970054);
+        studentValues.put("Password", "student_password");
+        studentValues.put("UserType", "Student");
+        studentValues.put("Name", "ABC");
+        studentValues.put("DOB", "2000-01-01");
+        studentValues.put("Age", 20);
+        studentValues.put("Semester", 2);
+        studentValues.put("Department", "Computer Science");
+        studentValues.put("ClassID", 1);
+        db.insert("StudentProfile", null, studentValues);
+
+        // Insert dummy data into FacultyClassAssignment table
+        ContentValues assignmentValues1 = new ContentValues();
+        assignmentValues1.put("FacultyID", facultyId);
+        assignmentValues1.put("ClassID", 1);
+        db.insert("FacultyClassAssignment", null, assignmentValues1);
+
+        ContentValues assignmentValues2 = new ContentValues();
+        assignmentValues2.put("FacultyID", facultyId);
+        assignmentValues2.put("ClassID", 2);
+        db.insert("FacultyClassAssignment", null, assignmentValues2);
 
         // Insert dummy data into Class table
-        ContentValues classValues = new ContentValues();
-        classValues.put("ClassName", "ClassA");
-        classValues.put("Section", "Section1");
-        db.insert("Class", null, classValues);
+        ContentValues classValues1 = new ContentValues();
+        classValues1.put("ClassName", "MCA");
+        classValues1.put("Section", "A");
+        classValues1.put("Semester", 3);
+        db.insert("Class", null, classValues1);
+
+        ContentValues classValues2 = new ContentValues();
+        classValues2.put("ClassName", "MCA");
+        classValues2.put("Section", "B");
+        classValues2.put("Semester", 3);
+        db.insert("Class", null, classValues2);
 
         // Insert dummy data into Attendance table
         ContentValues attendanceValues = new ContentValues();
