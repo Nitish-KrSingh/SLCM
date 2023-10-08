@@ -2,7 +2,9 @@ package com.example.slcm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +12,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 import android.content.Intent;
+
+import com.example.slcm.Student.StudentDashboard;
 
 public class SplashActivity extends AppCompatActivity {
     private DatabaseManager db;
@@ -35,11 +39,19 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                if(fetchData()){
+                    return;
+                }
                 Intent intent = new Intent(SplashActivity.this, StudentLogin.class);
                 startActivity(intent);
                 finish();
             }
         }, 3000);
+
+
+
+
+
     }
     // Check if the database file exists
     private boolean doesDatabaseExist() {
@@ -78,6 +90,21 @@ public class SplashActivity extends AppCompatActivity {
             db.close();
         }
     }
+
+    boolean fetchData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
+        String data = sharedPreferences.getString("LOGIN_USER","");
+        Log.d("LOGIN_USER", "fetchData: "+data);
+        if(!data.isEmpty()){
+            Intent intent = new Intent(SplashActivity.this, StudentDashboard.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        return false;
+
+    }
+
 }
 
 

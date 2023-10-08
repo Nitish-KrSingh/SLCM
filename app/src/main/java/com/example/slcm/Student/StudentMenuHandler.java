@@ -2,6 +2,7 @@ package com.example.slcm.Student;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -27,9 +28,14 @@ public class StudentMenuHandler {
         } else if (id == R.id.menu_fees) {
             openActivity(context, StudentFeesActivity.class);
         } else if (id == R.id.menu_logout) {
+            SharedPreferences sharedPreferences = context.getSharedPreferences("login_state", Context.MODE_PRIVATE);
+            sharedPreferences.edit().putString("LOGIN_USER", "").apply();
             openActivity(context, StudentLogin.class);
+
         }
     }
+
+
 
     private static void openActivity(Context context, Class<?> cls) {
         Intent intent = new Intent(context, cls);
