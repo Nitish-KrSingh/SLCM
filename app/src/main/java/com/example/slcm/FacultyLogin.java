@@ -71,7 +71,7 @@ public class FacultyLogin extends AppCompatActivity {
 
                     Boolean checkCredentials = databaseManager.checkEmailPassword_for_fac(fac_userid, fac_pass);
                     if (checkCredentials == true) {
-                        Toast.makeText(FacultyLogin.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FacultyLogin.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
                         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
                         sharedPreferences.edit().putString("LOGIN_USER",fac_userid).apply();
                         Intent intent = new Intent(FacultyLogin.this, FacultyDashboard.class);

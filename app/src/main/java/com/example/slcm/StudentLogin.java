@@ -71,7 +71,7 @@ public class StudentLogin extends AppCompatActivity {
 
                     Boolean checkCredentials = databaseManager.checkEmailPassword(registrationNumber, password);
                     if (checkCredentials == true) {
-                        Toast.makeText(StudentLogin.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(StudentLogin.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
                         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
                         sharedPreferences.edit().putString("LOGIN_USER",registrationNumber).apply();
 
