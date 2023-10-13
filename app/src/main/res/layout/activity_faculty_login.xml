@@ -92,7 +92,7 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/light_gray"
-                    android:text=""
+                    android:text="faculty1"
                     android:textColor="@color/gray"
                     android:textSize="20sp" />
                 <TextView
@@ -127,7 +127,7 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/light_gray"
-                    android:text=""
+                    android:text="faculty_password2"
                     android:textColor="@color/gray"
                     android:textSize="20sp" />
             </RelativeLayout>

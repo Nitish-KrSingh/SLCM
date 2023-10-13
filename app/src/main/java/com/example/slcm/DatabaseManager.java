@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseManager extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "slcm_database";
@@ -15,7 +18,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public DatabaseManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
+    SQLiteDatabase db = this.getWritableDatabase();
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("DatabaseStatus", "Creating database and tables");
@@ -276,4 +279,75 @@ public class DatabaseManager extends SQLiteOpenHelper {
             return false;
         }
     }
+
+
+
+    public List<String> getClassesAssignedToFaculty(String facultyUsername) {
+        List<String> assignedClasses = new ArrayList<>();
+
+        String query = "SELECT Class.ClassName, Class.Section, Class.Semester " +
+                "FROM FacultyProfile " +
+                "INNER JOIN ClassAssignment ON FacultyProfile.UserID = ClassAssignment.FacultyID " +
+                "INNER JOIN Class ON ClassAssignment.ClassID = Class.ClassID " +
+                "WHERE FacultyProfile.Username = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{facultyUsername});
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    int classNameIndex = cursor.getColumnIndex("ClassName");
+                    int sectionIndex = cursor.getColumnIndex("Section");
+                    int semesterIndex = cursor.getColumnIndex("Semester");
+
+                    if (classNameIndex >= 0 && sectionIndex >= 0 && semesterIndex >= 0) {
+                        String className = cursor.getString(classNameIndex);
+                        String section = cursor.getString(sectionIndex);
+                        int semester = cursor.getInt(semesterIndex);
+
+                        String classInfo = "Class: " + className + ", Section: " + section + ", Semester: " + semester;
+                        assignedClasses.add(classInfo);
+                    }
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+        }
+
+        return assignedClasses;
+    }
+
+
+    public List<String> getSubjectsForClassAndFaculty(String className, String facultyName) {
+        List<String> subjectsList = new ArrayList<>();
+
+        // Formulate the SQL query
+        String query = "SELECT DISTINCT s.SubjectName FROM Subjects s " +
+                "INNER JOIN Class c ON s.ClassID = c.ClassID " +
+                "INNER JOIN FacultyProfile f ON c.ClassID = f.ClassID " +
+                "WHERE c.ClassName = ? AND f.Name = ?;";
+
+        // Define the selection arguments
+        String[] selectionArgs = {className, facultyName};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int subjectNameColumnIndex = cursor.getColumnIndex("SubjectName");
+                if (subjectNameColumnIndex != -1) {
+                    do {
+                        String subjectName = cursor.getString(subjectNameColumnIndex);
+                        subjectsList.add(subjectName);
+                    } while (cursor.moveToNext());
+                }
+                cursor.close();
+            }
+        }
+
+        return subjectsList;
+    }
+
+
+
+
 }
