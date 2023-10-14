@@ -31,38 +31,6 @@ public class FacultyAttendanceClass extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_attendance_class);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Attendance - Select Class");
-
-        DatabaseManager db = new DatabaseManager(this);
-
-        String selectedDate = getIntent().getStringExtra("selectedDate");
-
-        SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-        String fac_name = sharedPreferences.getString("LOGIN_USER","");
-
-
-        List<String> assignedClasses = db.getClassesAssignedToFaculty(fac_name);
-
-
-
-        ArrayAdapter<String> classAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, assignedClasses);
-        ListView classListView = findViewById(R.id.classListView);
-        classListView.setAdapter(classAdapter);
-
-
-        classListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedClass = assignedClasses.get(position);
-                Intent intent = new Intent(FacultyAttendanceClass.this , FacultyAttendanceSubject.class);
-                intent.putExtra("class_name" , selectedClass);
-                intent.putExtra("s_date" , selectedDate);
-
-                startActivity(intent);
-            }
-        });
-
-
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -283,7 +283,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getClassSectionsForFaculty2(int facultyId) {
+    public Cursor getClassSectionsForFaculty(int facultyId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String sqlQuery = "SELECT Class.ClassID, Class.ClassName, Class.Section " +
                 "FROM ClassAssignment " +
@@ -311,7 +311,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return -1;
     }
 
-    public int getStudentId2(String student_reg_number, String student_password) {
+    public int getStudentId(String student_reg_number, String student_password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT StudentID FROM StudentProfile WHERE RegistrationNumber = ? AND Password = ?", new String[]{student_reg_number, student_password});
 
@@ -329,9 +329,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return -1;
     }
 
-    public Cursor getSubjectsForFaculty2(int facultyId, int classId, String section) {
+    public Cursor getSubjectsForFaculty(int facultyId, int classId, String section) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sqlQuery = "SELECT S.SubjectName AS SubjectName " +
+        String sqlQuery = "SELECT S.SubjectID, S.SubjectName AS SubjectName " +
                 "FROM ClassAssignment CA " +
                 "INNER JOIN Subjects S ON CA.SubjectID = S.SubjectID " +
                 "INNER JOIN Class C ON CA.ClassID = C.ClassID " +
@@ -341,7 +341,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return db.rawQuery(sqlQuery, selectionArgs);
     }
 
-    public Cursor getStudentsForFacultyMarks2(int facultyId, int selectedClass, String selectedSection, int selectedSubject) {
+    public Cursor getStudentsForFacultyMarks(int facultyId, int selectedClass, String selectedSection, int selectedSubject) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // First, retrieve the ClassID for the selectedClass and selectedSection combination
@@ -371,75 +371,4 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 }
 
-
-
-    public List<String> getClassesAssignedToFaculty(String facultyUsername) {
-        List<String> assignedClasses = new ArrayList<>();
-
-        String query = "SELECT Class.ClassName, Class.Section, Class.Semester " +
-                "FROM FacultyProfile " +
-                "INNER JOIN ClassAssignment ON FacultyProfile.UserID = ClassAssignment.FacultyID " +
-                "INNER JOIN Class ON ClassAssignment.ClassID = Class.ClassID " +
-                "WHERE FacultyProfile.Username = ?";
-
-        Cursor cursor = db.rawQuery(query, new String[]{facultyUsername});
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    int classNameIndex = cursor.getColumnIndex("ClassName");
-                    int sectionIndex = cursor.getColumnIndex("Section");
-                    int semesterIndex = cursor.getColumnIndex("Semester");
-
-                    if (classNameIndex >= 0 && sectionIndex >= 0 && semesterIndex >= 0) {
-                        String className = cursor.getString(classNameIndex);
-                        String section = cursor.getString(sectionIndex);
-                        int semester = cursor.getInt(semesterIndex);
-
-                        String classInfo = "Class: " + className + ", Section: " + section + ", Semester: " + semester;
-                        assignedClasses.add(classInfo);
-                    }
-                } while (cursor.moveToNext());
-            }
-
-            cursor.close();
-        }
-
-        return assignedClasses;
-    }
-
-
-    public List<String> getSubjectsForClassAndFaculty(String className, String facultyName) {
-        List<String> subjectsList = new ArrayList<>();
-
-        // Formulate the SQL query
-        String query = "SELECT DISTINCT s.SubjectName FROM Subjects s " +
-                "INNER JOIN Class c ON s.ClassID = c.ClassID " +
-                "INNER JOIN FacultyProfile f ON c.ClassID = f.ClassID " +
-                "WHERE c.ClassName = ? AND f.Name = ?;";
-
-        // Define the selection arguments
-        String[] selectionArgs = {className, facultyName};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                int subjectNameColumnIndex = cursor.getColumnIndex("SubjectName");
-                if (subjectNameColumnIndex != -1) {
-                    do {
-                        String subjectName = cursor.getString(subjectNameColumnIndex);
-                        subjectsList.add(subjectName);
-                    } while (cursor.moveToNext());
-                }
-                cursor.close();
-            }
-        }
-
-        return subjectsList;
-    }
-
-
-
-
-}
 
