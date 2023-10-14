@@ -26,7 +26,8 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginStart="10dp"
-            android:text="Monday" />
+            android:text=""
+            android:id="@+id/selected_day_for_attendance_textview"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,8 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:id="@+id/selected_date_for_attendance_textview"
             android:layout_marginStart="10dp"
-            android:text="19-06-2023 " />
+            android:text="" />
 
     </LinearLayout>
 
@@ -62,13 +64,16 @@
 
 
     <Button
-        android:id="@+id/submit"
-        android:layout_below="@+id/Fac_Att_DatePicker"
+        android:id="@+id/sbutton_date_for_attendance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/Fac_Att_DatePicker"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/maroon"
         android:text="@string/next"
-        app:cornerRadius="8dp"
-        android:backgroundTint="@color/maroon"/>
+        app:cornerRadius="8dp" />
 </RelativeLayout>

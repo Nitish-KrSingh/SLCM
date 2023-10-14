@@ -1,23 +1,29 @@
 package com.example.slcm.Faculty;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 
 import android.content.Intent;
 import android.database.Cursor;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
 
 import java.util.ArrayList;
+
 import java.util.Objects;
 
 public class FacultyMarksSubject extends AppCompatActivity {
@@ -32,6 +38,7 @@ public class FacultyMarksSubject extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_marks_subject);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Marks - Select Subject");
+
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
@@ -52,6 +59,7 @@ public class FacultyMarksSubject extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 
@@ -93,4 +101,5 @@ public class FacultyMarksSubject extends AppCompatActivity {
             Log.d("DebugTag", "Cursor is null.");
         }
     }
+
 }
