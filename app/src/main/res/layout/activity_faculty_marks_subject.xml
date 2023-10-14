@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Faculty.FacultyAttendanceClass">
+    tools:context=".Faculty.FacultyMarksSubject">
 
 
     <RelativeLayout
@@ -16,85 +16,24 @@
         >
 
         <TextView
-            android:id="@+id/txtselectAttendaceClass"
+            android:id="@+id/txtselectAttendanceSubject"
             android:layout_width="wrap_content"
             android:layout_height="42dp"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:text="Select your subject:"
             android:textSize="25sp" />
-        <LinearLayout
+        <ListView
+            android:id="@+id/subjectListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_below="@+id/txtselectAttendaceClass"
-            android:layout_marginTop="30dp">
-            <Button
-                android:id="@+id/btnMcaA"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/green"
-                android:radius="8dp"
-                android:textColor="@color/blue"
-                android:textSize="25dp"
-                android:padding="20dp"
-                android:text="Data Analytics"
-                app:cornerRadius="8dp" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtselectAttendanceSubject"
+            android:layout_marginTop="30dp"
+            android:divider="@null"
+            android:dividerHeight="30dp"
+            android:clickable="true"
+            />
 
-            <TextView
-                android:id="@+id/txtDate1"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_below="@+id/btnDa"
-                android:text="Taken at: 12-09-2023 10:30am"
-                android:layout_centerHorizontal="true"
-                android:elevation="8dp"
-                android:textColor="@color/gray"/>
-
-            <Button
-                android:id="@+id/btnMcaB"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/red"
-                android:radius="8dp"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/blue"
-                android:textSize="25dp"
-                android:padding="20dp"
-                android:text="Object Oriented Programming"
-                app:cornerRadius="8dp" />
-            <TextView
-                android:id="@+id/txtDate2"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_below="@+id/btnDa"
-                android:text="Not taken"
-                android:layout_centerHorizontal="true"
-                android:elevation="8dp"
-                android:textColor="@color/gray"/>
-            <Button
-                android:id="@+id/btnbtech"
-                android:layout_width="300dp"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/red"
-                android:radius="8dp"
-                android:textColor="@color/blue"
-                android:textSize="25dp"
-                android:padding="20dp"
-                android:text="Java Programming"
-                app:cornerRadius="8dp" />
-            <TextView
-                android:id="@+id/txtDate3"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_below="@+id/btnDa"
-                android:text="Not taken"
-                android:layout_centerHorizontal="true"
-                android:elevation="8dp"
-                android:textColor="@color/gray"/>
-        </LinearLayout>
     </RelativeLayout>
 
 

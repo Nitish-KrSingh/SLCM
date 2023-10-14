@@ -58,31 +58,32 @@ public class FacultyLogin extends AppCompatActivity {
                 String fac_userid = fac_username.getText().toString();
                 String fac_pass = fac_password.getText().toString();
 
-
                 if (fac_userid.equals("")) {
                     fac_username.setError("Empty UserID");
                     Toast.makeText(FacultyLogin.this, "Enter UserID", Toast.LENGTH_SHORT).show();
                 } else if (fac_pass.equals("")) {
                     fac_password.setError("Empty Password");
                     Toast.makeText(FacultyLogin.this, "Enter Password", Toast.LENGTH_SHORT).show();
-
                 }
                 else {
-
                     Boolean checkCredentials = databaseManager.checkEmailPassword_for_fac(fac_userid, fac_pass);
-                    if (checkCredentials == true) {
+                    if (checkCredentials) {
+                        int facultyId = databaseManager.getFacultyId(fac_userid, fac_pass);
+                        if (facultyId != -1) {
                         Toast.makeText(FacultyLogin.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
                         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-                        sharedPreferences.edit().putString("LOGIN_USER",fac_userid).apply();
+                        sharedPreferences.edit().putString("LOGIN_USER", fac_userid).apply();
+                        sharedPreferences.edit().putString("LOGIN_TYPE", "Faculty").apply();
+                        sharedPreferences.edit().putInt("FACULTY_ID", facultyId).apply();
                         Intent intent = new Intent(FacultyLogin.this, FacultyDashboard.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(FacultyLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                    }} else {
+                        Toast.makeText(FacultyLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
                 }
-
             }
         });
-
     }
 }

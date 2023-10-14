@@ -65,18 +65,22 @@ public class StudentLogin extends AppCompatActivity {
                 } else if (password.equals("")) {
                     passwordEditText.setError("Empty Password");
                     Toast.makeText(StudentLogin.this, "Enter Password", Toast.LENGTH_SHORT).show();
-
-                }
-                else {
+                } else {
 
                     Boolean checkCredentials = databaseManager.checkEmailPassword(registrationNumber, password);
-                    if (checkCredentials == true) {
-                        Toast.makeText(StudentLogin.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
-                        SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-                        sharedPreferences.edit().putString("LOGIN_USER",registrationNumber).apply();
-
-                        Intent intent = new Intent(StudentLogin.this, StudentDashboard.class);
-                        startActivity(intent);
+                    if (checkCredentials) {
+                        int studentId = databaseManager.getStudentId(registrationNumber, password);
+                        if (studentId != -1) {
+                            Toast.makeText(StudentLogin.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
+                            SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
+                            sharedPreferences.edit().putString("LOGIN_USER", registrationNumber).apply();
+                            sharedPreferences.edit().putString("LOGIN_TYPE", "Student").apply();
+                            sharedPreferences.edit().putInt("STUDENT_ID", studentId).apply();
+                            Intent intent = new Intent(StudentLogin.this, StudentDashboard.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(StudentLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(StudentLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
@@ -84,6 +88,4 @@ public class StudentLogin extends AppCompatActivity {
             }
         });
     }
-
-
 }

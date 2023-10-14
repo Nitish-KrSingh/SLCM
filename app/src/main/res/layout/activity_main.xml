@@ -133,7 +133,7 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/light_gray"
-                    android:text="student_password"
+                    android:text="12345"
                     android:textColor="@color/gray"
                     android:textSize="20sp" />
             </RelativeLayout>

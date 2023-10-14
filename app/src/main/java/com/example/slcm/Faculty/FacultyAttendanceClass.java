@@ -2,15 +2,28 @@ package com.example.slcm.Faculty;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class FacultyAttendanceClass extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

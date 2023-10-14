@@ -1,4 +1,4 @@
-package com.example.slcm.Student;
+package com.example.slcm.Faculty;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -10,24 +10,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.slcm.R;
+import com.example.slcm.Student.Student;
 
-public class CustomStudentListAdapter extends BaseAdapter {
+import java.util.ArrayList;
+
+public class CustomStudentMarksListAdapter extends BaseAdapter {
     private Context context;
-    private Student[] students;
+    private ArrayList<Student> students;
 
-    public CustomStudentListAdapter(Context context, Student[] students) {
+    public CustomStudentMarksListAdapter(Context context, ArrayList<Student> students) {
         this.context = context;
         this.students = students;
     }
-
     @Override
     public int getCount() {
-        return students.length;
+        return students.size(); // Use size() for ArrayList
     }
 
     @Override
     public Object getItem(int position) {
-        return students[position];
+        return students.get(position); // Use get() for ArrayList
     }
 
     @Override
@@ -45,7 +47,7 @@ public class CustomStudentListAdapter extends BaseAdapter {
         TextView textViewRollNumber = convertView.findViewById(R.id.textViewRollNumber);
         EditText editTextRollNumber = convertView.findViewById(R.id.editTextMarks);
 
-        Student student = students[position];
+        Student student = students.get(position);
 
         textViewName.setText(student.getName());
         textViewRollNumber.setText(student.getRollNumber());
