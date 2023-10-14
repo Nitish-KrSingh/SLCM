@@ -19,7 +19,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public DatabaseManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-    SQLiteDatabase db = this.getWritableDatabase();
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("DatabaseStatus", "Creating database and tables");
@@ -369,6 +368,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(facultyId), String.valueOf(classId), String.valueOf(selectedSubject)};
         return db.rawQuery(sqlQuery, selectionArgs);
     }
-}
+    public Boolean updateFac_change_password(int facultyId,String fac_password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Password", fac_password); // Set the new value for the Username column
 
+        String whereClause = "FacultyID = ?";
+        String[] whereArgs = {String.valueOf(facultyId)};
+
+        int rowsUpdated = db.update("FacultyProfile", contentValues, whereClause, whereArgs);
+        if (rowsUpdated > 0) {
+            return true;
+            // The update was successful
+        } else {
+            return false;
+            // No rows were updated, which could mean there was no matching record
+        }
+    }
+}
 

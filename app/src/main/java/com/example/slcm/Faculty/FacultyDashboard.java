@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.slcm.FacultyLogin;
@@ -30,6 +31,7 @@ public class FacultyDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_dashboard);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("Faculty Dashboard");
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
