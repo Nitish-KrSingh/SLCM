@@ -1,21 +1,17 @@
 package com.example.slcm.Faculty;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.slcm.Attendance;
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
 import com.example.slcm.Student.Student;
@@ -23,20 +19,19 @@ import com.example.slcm.Student.Student;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class FacultyAttendance extends AppCompatActivity {
 
     private ArrayList<Student> studentList;
-    private Student_attendance_ListAdapter adapter;
+    private CustomStudentAttendanceListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_attendance);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Enter Attendance");
 
         ListView listView = findViewById(R.id.Fac_Stud_Att_List);
@@ -47,12 +42,12 @@ public class FacultyAttendance extends AppCompatActivity {
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
-        String select_date_for_addtendance = getIntent().getStringExtra("selectdateDate");
+        String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
         int selectedSubject = getIntent().getIntExtra("SELECTED_SUBJECT", -1);
 
         studentList = retrieveStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
         System.out.println(studentList);
-        adapter = new Student_attendance_ListAdapter(this, studentList);
+        adapter = new CustomStudentAttendanceListAdapter(this, studentList);
 
         listView.setAdapter(adapter);
 
@@ -77,11 +72,13 @@ public class FacultyAttendance extends AppCompatActivity {
             public void onClick(View v) {
                 Map<String, String> presentMap = adapter.GetPresentMap();
                 for(Student student : studentList){
-                    Attendance attendance = new Attendance(student.getRollNumber(), selectedClass, selectedSubject, select_date_for_addtendance, presentMap.get(student.getRollNumber()));
+                    Attendance attendance = new Attendance(student.getRollNumber(), selectedClass, selectedSubject, select_date_for_attendance, presentMap.get(student.getRollNumber()));
                     databaseManager.AddAttendance(attendance);
                 }
 
                 Toast.makeText(FacultyAttendance.this, "Attendance submitted!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FacultyAttendance.this, FacultyDashboard.class);
+                startActivity(intent);
                 finish();
             }
         });

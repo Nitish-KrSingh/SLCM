@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.slcm.R;
 import com.example.slcm.Student.Student;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Student_attendance_ListAdapter extends ArrayAdapter<Student> {
+public class CustomStudentAttendanceListAdapter extends ArrayAdapter<Student> {
 
     private static final String ABSENT = "absent", PRESENT = "present";
     private Context context;
@@ -23,7 +22,7 @@ public class Student_attendance_ListAdapter extends ArrayAdapter<Student> {
 
     private Map<String, String> presentMap = new HashMap<String, String>();
 
-    public Student_attendance_ListAdapter(Context context, ArrayList<Student> studentList) {
+    public CustomStudentAttendanceListAdapter(Context context, ArrayList<Student> studentList) {
         super(context, 0, studentList);
         this.context = context;
         this.students = studentList;
@@ -39,7 +38,7 @@ public class Student_attendance_ListAdapter extends ArrayAdapter<Student> {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.faculty_student_list_name, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_faculty_student_list_name, parent, false);
         }
 
         TextView textViewName = convertView.findViewById(R.id.ViewName);

@@ -23,10 +23,10 @@
     <string name="log_out">Log out</string>
     <string name="fac_create_announcement">Create Announcement</string>
     <string name="fac_view_announcements">View Announcements</string>
-    <string name="fac_submit">Submit</string>
+    <string name="fac_submit">SUBMIT</string>
     <string name="fac_date_day">Day:</string>
     <string name="fac_date_val">Date:</string>
-    <string name="next">Next</string>
+    <string name="next">NEXT</string>
     <string name="Fac_Class"><![CDATA[Select your class & section:]]></string>
 
     <!--student_internal_marks-->
@@ -40,11 +40,22 @@
     <string name="maximum_marks">Maximum Marks:</string>
     <string name="enter_marks">Enter marks</string>
     <string name="date">Date:</string>
-    <string name="change">Change</string>
+    <string name="change">CHANGE</string>
     <string name="view_details">View Details</string>
     <string name="change_password">Change Password</string>
-    <string name="semester_year">Semester/ Year:</string>
+    <string name="semester">Semester:</string>
     <string name="select_your_subject">Select your subject:</string>
+    <string name="all_present">All Present</string>
+    <string name="all_absent">All Absent</string>
+    <string name="students">ALL STUDENTS</string>
+    <string name="selected_date">Selected Date:</string>
+    <string name="total">Total</string>
+    <string name="attended">Attended</string>
+    <string name="missed">Missed</string>
+    <string name="enter_announcement">Enter announcement</string>
+    <string name="message">Message:</string>
+    <string name="enter_announcement_title">Enter announcement title</string>
+    <string name="ann_title">Title:</string>
 
     <string-array name="semesters">
         <item>I</item>

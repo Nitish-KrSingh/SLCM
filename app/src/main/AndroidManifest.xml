@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SLCM"
         tools:targetApi="31" >
-
         <!-- Student -->
         <activity
             android:name=".StudentLogin"
@@ -29,6 +28,10 @@
             android:name=".Student.StudentAnnouncements"
             android:exported="false"
             android:parentActivityName=".Student.StudentDashboard" />
+        <activity
+            android:name=".Student.StudentViewAnnouncement"
+            android:exported="false"
+            android:parentActivityName=".Student.StudentAnnouncements" />
         <activity
             android:name=".Student.StudentTimetable"
             android:exported="false"
@@ -80,6 +83,10 @@
             android:name=".Faculty.FacultyAnnouncements"
             android:exported="false"
             android:parentActivityName=".Faculty.FacultyCreateAnnouncement" />
+        <activity
+            android:name=".Faculty.FacultyViewAnnouncement"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyAnnouncements" />
         <activity
             android:name=".Faculty.FacultyTimetable"
             android:exported="false"

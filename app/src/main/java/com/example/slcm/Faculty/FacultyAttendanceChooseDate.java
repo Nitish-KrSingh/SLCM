@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import com.example.slcm.R;
 
@@ -32,7 +33,18 @@ public class FacultyAttendanceChooseDate extends AppCompatActivity {
 
         selectedDateTextView = (TextView) findViewById(R.id.selected_date_for_attendance_textview);
         datePicker = findViewById(R.id.Fac_Att_DatePicker);
-        next_page_selectclass = findViewById(R.id.sbutton_date_for_attendance);
+        next_page_selectclass = findViewById(R.id.nextAttBtn);
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        datePicker.init(year, month, day, null);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        String formattedDate = dateFormat.format(calendar.getTime());
+        selectedDateTextView.setText(formattedDate);
+
         datePicker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -40,25 +52,19 @@ public class FacultyAttendanceChooseDate extends AppCompatActivity {
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, monthOfYear);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                int day = datePicker.getDayOfMonth();
-                int month = datePicker.getMonth() + 1;
-                int years = datePicker.getYear();
-
-                selectedDateTextView.setText(calendar.getTime().toString());
-                formattedDate = String.format("%02d-%02d-%04d", day, month, years);
+                String formattedDate = dateFormat.format(calendar.getTime());
+                selectedDateTextView.setText(formattedDate);
             }
         });
-
 
         next_page_selectclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FacultyAttendanceChooseDate.this, FacultyAttendanceClass.class);
-                intent.putExtra("formattedDate", formattedDate);
+                intent.putExtra("ATT_SELECTED_DATE", formattedDate);
                 startActivity(intent);
             }
         });
-
     }
 
     @Override

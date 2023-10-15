@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp">
+
+    <Button
+        android:id="@+id/listItemButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/light_purple"
+        android:padding="20dp"
+        android:radius="8dp"
+        android:gravity="left"
+        android:text=""
+        android:textSize="18sp"
+        app:cornerRadius="8dp"
+        android:focusable="false"
+        android:textColor="@color/black"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        />
+</RelativeLayout>

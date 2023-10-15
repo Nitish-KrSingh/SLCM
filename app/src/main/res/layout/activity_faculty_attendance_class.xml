@@ -15,10 +15,11 @@
         <TextView
             android:id="@+id/Fac_Att_Class_Title"
             android:layout_width="wrap_content"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:text="@string/Fac_Class"
+            android:textStyle="bold"
             android:textSize="25sp" />
 
         <LinearLayout

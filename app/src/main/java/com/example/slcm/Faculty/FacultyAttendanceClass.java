@@ -27,11 +27,10 @@ import java.util.Objects;
 
 public class FacultyAttendanceClass extends AppCompatActivity {
 
-    private ListView classSectionListView;
     private ArrayList<String> classSectionList;
     private ArrayAdapter<String> adapter;
     private int loggedInFacultyId;
-    private int classNameIndex, sectionIndex;
+    private int classNameIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +39,8 @@ public class FacultyAttendanceClass extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Attendance - Select Class");
 
-
-        String select_date_for_addtendance  = getIntent().getStringExtra("formattedDate");
-        Log.d("Date", "select_date_for_addtendance: " + select_date_for_addtendance);
-
+        String select_date_for_attendance  = getIntent().getStringExtra("ATT_SELECTED_DATE");
+        Log.d("Date", "Att_Date: " + select_date_for_attendance);
 
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
         loggedInFacultyId = sharedPreferences.getInt("FACULTY_ID", -1);
@@ -55,13 +52,12 @@ public class FacultyAttendanceClass extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            classSectionListView = findViewById(R.id.classSectionListView);
+            ListView classSectionListView = findViewById(R.id.classSectionListView);
             classSectionList = new ArrayList<>();
             adapter = new ArrayAdapter<String>(this, R.layout.activity_faculty_marks_list_item, R.id.listItemButton, classSectionList);
             classSectionListView.setAdapter(adapter);
             retrieveClassSectionsForFaculty(loggedInFacultyId);
             classSectionListView.setOnItemClickListener((parent, view, position, id) -> {
-                Log.d("DebugTag", "Item clicked at position: " + position);
                 String selectedItem = classSectionList.get(position);
                 String[] parts = selectedItem.split(" - ");
                 String className = parts[0];
@@ -70,14 +66,11 @@ public class FacultyAttendanceClass extends AppCompatActivity {
                 intent.putExtra("SELECTED_CLASS", classNameIndex);
                 intent.putExtra("SELECTED_SECTION", section);
                 intent.putExtra("FACULTY_ID", loggedInFacultyId);
-                intent.putExtra("selectdateDate", select_date_for_addtendance);
+                intent.putExtra("ATT_SELECTED_DATE", select_date_for_attendance);
                 startActivity(intent);
 
             });
         }
-
-
-
 
     }
     @Override
@@ -92,13 +85,13 @@ public class FacultyAttendanceClass extends AppCompatActivity {
     }
 
 
-    private void retrieveClassSectionsForFaculty(int facultyId) { // Change the parameter type to int
+    private void retrieveClassSectionsForFaculty(int facultyId) {
         Log.d("ClassGet", "Retrieving class sections for faculty: " + facultyId);
         DatabaseManager databaseManager = new DatabaseManager(this);
         Cursor cursor = databaseManager.getClassSectionsForFaculty(facultyId);
         if (cursor != null) {
             classNameIndex = cursor.getColumnIndex("ClassName");
-            sectionIndex = cursor.getColumnIndex("Section");
+            int sectionIndex = cursor.getColumnIndex("Section");
 
             if (classNameIndex == -1 || sectionIndex == -1) {
                 Log.e("CursorError", "One or more columns not found in cursor: ClassNameIndex=" + classNameIndex + ", SectionIndex=" + sectionIndex);
