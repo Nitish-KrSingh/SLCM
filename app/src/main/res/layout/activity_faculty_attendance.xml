@@ -2,32 +2,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-
-    <Button
-        android:id="@+id/all_absent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/dark_green"
-        android:text="All Absent"
-        app:cornerRadius="8dp" />
 
     <Button
         android:id="@+id/all_present"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="36dp"
+        android:layout_alignParentStart="true"
+       android:layout_marginStart="13dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/light_blue"
+        android:text="@string/all_present"
+        app:cornerRadius="8dp" />
+
+    <Button
+        android:id="@+id/all_absent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_toStartOf="@+id/Fac_Submit_Att_Btn"
-        android:layout_toRightOf="@+id/all_absent"
-        android:backgroundTint="@color/dark_green"
-        android:text="All Present"
+        android:layout_toEndOf="@+id/all_present"
+        android:backgroundTint="@color/maroon"
+        android:text="@string/all_absent"
         app:cornerRadius="8dp" />
 
     <Button
@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="13dp"
         android:text="@string/fac_submit"
         app:cornerRadius="8dp"
         android:backgroundTint="@color/dark_green"/>
@@ -47,8 +47,10 @@
         android:id="@+id/Fac_Att_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Students"
+        android:text="@string/students"
         android:textSize="18sp"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
         android:layout_below="@id/Fac_Submit_Att_Btn"
         android:layout_centerHorizontal="true"
         />
@@ -61,7 +63,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:divider="@null"
-        android:dividerHeight="30dp"
+        android:dividerHeight="10dp"
         android:clickable="true"
+        tools:listitem="@layout/activity_faculty_attendance_list_item"
+
         />
 </RelativeLayout>

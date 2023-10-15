@@ -60,7 +60,7 @@ public class FacultyMarksSubject extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(FacultyMarksSubject.this, "Marks already entered for "+selectedSubject+":"+selectedAssignment, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FacultyMarksSubject.this, "Marks already entered for " +selectedAssignment, Toast.LENGTH_SHORT).show();
                 }
             }
         });

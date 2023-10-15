@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class FacultyMarksClass extends AppCompatActivity {
-    private ListView classSectionListView;
     private ArrayList<String> classSectionList;
     private ArrayAdapter<String> adapter;
     private int loggedInFacultyId;
-    private int classNameIndex, sectionIndex;
+    private int classNameIndex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +43,12 @@ public class FacultyMarksClass extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            classSectionListView = findViewById(R.id.classSectionListView);
+            ListView classSectionListView = findViewById(R.id.classSectionListView);
             classSectionList = new ArrayList<>();
             adapter = new ArrayAdapter<String>(this, R.layout.activity_faculty_marks_list_item, R.id.listItemButton, classSectionList);
             classSectionListView.setAdapter(adapter);
             retrieveClassSectionsForFaculty(loggedInFacultyId);
             classSectionListView.setOnItemClickListener((parent, view, position, id) -> {
-                Log.d("DebugTag", "Item clicked at position: " + position);
                 String selectedItem = classSectionList.get(position);
                 String[] parts = selectedItem.split(" - ");
                 String className = parts[0];
@@ -75,13 +74,13 @@ public class FacultyMarksClass extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void retrieveClassSectionsForFaculty(int facultyId) { // Change the parameter type to int
+    private void retrieveClassSectionsForFaculty(int facultyId) {
         Log.d("ClassGet", "Retrieving class sections for faculty: " + facultyId);
         DatabaseManager databaseManager = new DatabaseManager(this);
         Cursor cursor = databaseManager.getClassSectionsForFaculty(facultyId);
         if (cursor != null) {
             classNameIndex = cursor.getColumnIndex("ClassName");
-            sectionIndex = cursor.getColumnIndex("Section");
+            int sectionIndex = cursor.getColumnIndex("Section");
 
             if (classNameIndex == -1 || sectionIndex == -1) {
                 Log.e("CursorError", "One or more columns not found in cursor: ClassNameIndex=" + classNameIndex + ", SectionIndex=" + sectionIndex);

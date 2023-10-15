@@ -16,17 +16,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_centerInParent="true"
             android:textStyle="bold"
-            android:text="Title: " />
+            android:text="@string/ann_title" />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:layout_marginLeft="10dp"
-            android:hint="Enter announcement title"
+            android:id="@+id/edit_fac_create_announcement_title"
+            android:layout_marginStart="10dp"
+            android:hint="@string/enter_announcement_title"
             android:padding="10dp"
-            android:layout_centerInParent="true"
 
             />
     </LinearLayout>
@@ -44,16 +43,15 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="Message: " />
+            android:text="@string/message" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:layout_marginLeft="10dp"
-            android:hint="Enter announcement"
-            android:padding="10dp"
-            android:layout_centerInParent="true"
-            />
+            android:id="@+id/edit_fac_create_announcement_message"
+            android:layout_marginStart="10dp"
+            android:hint="@string/enter_announcement"
+            android:padding="10dp" />
     </LinearLayout>
 
     <Button
@@ -62,9 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="60dp"
-        android:text="Send"
+        android:text="@string/fac_submit"
         app:cornerRadius="8dp"
         android:backgroundTint="@color/dark_green"/>
 </RelativeLayout>

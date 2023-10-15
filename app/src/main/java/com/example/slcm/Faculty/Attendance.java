@@ -1,4 +1,4 @@
-package com.example.slcm;
+package com.example.slcm.Faculty;
 
 public class Attendance {
     public int ClassID, SubjectID;

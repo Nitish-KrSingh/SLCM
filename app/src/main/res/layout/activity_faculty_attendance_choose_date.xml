@@ -5,44 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Faculty.FacultyAttendanceChooseDate">
-
     <LinearLayout
-        android:layout_marginTop="65dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="30dp"
         android:id="@+id/Fac_Att_Date"
         android:orientation="horizontal"
         android:gravity="center_horizontal">
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:text="@string/fac_date_day" />-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="20sp"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:text=""-->
-<!--            android:id="@+id/selected_day_for_attendance_textview"/>-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:text="@string/fac_date_val" />-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="25sp"
+            android:id="@+id/datetext"
+            android:paddingTop="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/selected_date"
+            android:textStyle="bold"
+           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
             android:id="@+id/selected_date_for_attendance_textview"
             android:layout_marginStart="10dp"
-            android:text="" />
+            android:text=""
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
@@ -62,17 +51,14 @@
 
     </DatePicker>
 
-
     <Button
-        android:id="@+id/sbutton_date_for_attendance"
+        android:id="@+id/nextAttBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Fac_Att_DatePicker"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="228dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="32dp"
         android:backgroundTint="@color/maroon"
         android:text="@string/next"
         app:cornerRadius="8dp" />

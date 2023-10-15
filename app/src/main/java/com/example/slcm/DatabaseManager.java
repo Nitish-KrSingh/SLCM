@@ -5,13 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.format.DateFormat;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.example.slcm.Faculty.Attendance;
+import com.example.slcm.Student.SubjectWithAttendance;
 import com.example.slcm.Student.SubjectWithMarks;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -77,9 +82,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "ClassID INTEGER," +
                 "SubjectID INTEGER," +
                 "StudentID TEXT," +
-                "Status TEXT," +
-                "FOREIGN KEY (StudentID) REFERENCES StudentProfile(RegistrationNumber)," + // Corrected table name
-                "FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)," + // Corrected table name
+                "Attended INTEGER," +
+                "Missed INTEGER," +
+                "FOREIGN KEY (StudentID) REFERENCES StudentProfile(RegistrationNumber)," +
+                "FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)," +
                 "FOREIGN KEY (ClassID) REFERENCES Class(ClassID));");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS Marks (" +
@@ -154,7 +160,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues1.put("Name", "Nitish");
         studentValues1.put("DOB", "2000-01-01");
         studentValues1.put("Age", 20);
-        studentValues1.put("Semester", 2);
+        studentValues1.put("Semester", 3);
         studentValues1.put("Department", "Computer Science");
         studentValues1.put("ClassID", 1);
         long studentId1 = db.insert("StudentProfile", null, studentValues1);
@@ -254,6 +260,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.insert("Fees", null, feesValues2);
     }
 
+    /*LOGIN FUNCTIONS*/
     public Boolean checkEmailPassword(String student_reg_number, String student_password) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from StudentProfile where RegistrationNumber = ? and Password = ?", new String[]{student_reg_number, student_password});
@@ -274,29 +281,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
 
-    public void AddAttendance(Attendance attendance){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Log.d("ClassGet", "date"+attendance.AttendanceDate);
-        ContentValues attendanceValues = new ContentValues();
-        attendanceValues.put("Date", attendance.AttendanceDate);
-        attendanceValues.put("ClassID", attendance.ClassID);
-        attendanceValues.put("StudentID", attendance.StudentID);
-        attendanceValues.put("SubjectID", attendance.SubjectID);
-        attendanceValues.put("Status", attendance.Status);
-        db.insert("Attendance", null, attendanceValues);
-    }
-
-
-    public Cursor getClassSectionsForFaculty(int facultyId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String sqlQuery = "SELECT Class.ClassID, Class.ClassName, Class.Section " +
-                "FROM ClassAssignment " +
-                "INNER JOIN Class ON ClassAssignment.ClassID = Class.ClassID " +
-                "WHERE FacultyID = ?";
-        String[] selectionArgs = {String.valueOf(facultyId)};
-        return db.rawQuery(sqlQuery, selectionArgs);
-    }
-
+    /*ID FUNCTIONS*/
     public int getFacultyId(String fac_user_name, String fac_password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT FacultyID FROM FacultyProfile WHERE Username = ? AND Password = ?", new String[]{fac_user_name, fac_password});
@@ -333,7 +318,54 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return -1;
     }
 
+    /*PASSWORD FUNCTIONS*/
+    public Boolean updateFacPassword(String fac_username, String fac_new_pass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Password", fac_new_pass);
+        String whereClause = "Username = ?";
+        String[] whereArgs = {fac_username};
 
+        try {
+            int rowsUpdated = db.update("FacultyProfile", contentValues, whereClause, whereArgs);
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            db.close();
+        }
+    }
+    public Boolean updateStudentPassword(String StudentRegno,String stud_password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Password", stud_password);
+
+        String whereClause = "RegistrationNumber= ?";
+        String[] whereArgs = {StudentRegno};
+        try {
+            int rowsUpdated = db.update("StudentProfile", contentValues, whereClause, whereArgs);
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            db.close();
+        }
+    }
+
+    /*CLASS FUNCTIONS*/
+    public Cursor getClassSectionsForFaculty(int facultyId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Class.ClassID, Class.ClassName, Class.Section " +
+                "FROM ClassAssignment " +
+                "INNER JOIN Class ON ClassAssignment.ClassID = Class.ClassID " +
+                "WHERE FacultyID = ?";
+        String[] selectionArgs = {String.valueOf(facultyId)};
+        return db.rawQuery(sqlQuery, selectionArgs);
+    }
+
+    /*SUBJECT FUNCTIONS*/
     public Cursor getSubjectsForFaculty(int facultyId, int classId, String section) {
         SQLiteDatabase db = this.getReadableDatabase();
         String sqlQuery = "SELECT S.SubjectID, S.SubjectName AS SubjectName " +
@@ -346,11 +378,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return db.rawQuery(sqlQuery, selectionArgs);
     }
 
-
+    /*MARKS FUNCTIONS*/
     public Cursor getStudentsForFacultyMarks(int facultyId, int selectedClass, String selectedSection, int selectedSubject) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // First, retrieve the ClassID for the selectedClass and selectedSection combination
         Cursor classCursor = db.rawQuery(
                 "SELECT ClassID FROM Class WHERE ClassID = ? AND Section = ?",
                 new String[]{String.valueOf(selectedClass), selectedSection}
@@ -388,7 +419,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 " WHERE " + table + "." + subjectIdColumn + " = ?" +
                 " AND " + table + "." + classIdColumn + " = ?";
 
-        // Provide the actual values for the placeholders
         String[] selectionArgs = new String[]{String.valueOf(selectedSubject), String.valueOf(selectedClass)};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);
@@ -467,40 +497,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             return result != -1;
         }
     }
-    public Boolean updateFacPassword(String fac_username, String fac_new_pass) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("Password", fac_new_pass);
-        String whereClause = "Username = ?";
-        String[] whereArgs = {fac_username};
 
-        try {
-            int rowsUpdated = db.update("FacultyProfile", contentValues, whereClause, whereArgs);
-            return rowsUpdated > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            db.close();
-        }
-    }
-    public Boolean updateStudentPassword(String StudentRegno,String stud_password) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("Password", stud_password);
-
-        String whereClause = "RegistrationNumber= ?";
-        String[] whereArgs = {StudentRegno};
-        try {
-        int rowsUpdated = db.update("StudentProfile", contentValues, whereClause, whereArgs);
-            return rowsUpdated > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            db.close();
-        }
-    }
     public List<SubjectWithMarks> getSubjectsAndMarksForStudent(int studentId, int semester) {
         List<SubjectWithMarks> subjectsList = new ArrayList<>();
 
@@ -548,6 +545,149 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return subjectsList;
     }
 
+    /*ATTENDANCE FUNCTIONS*/
+    public void AddAttendance(Attendance attendance) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.d("ClassGet", "date" + attendance.AttendanceDate);
+
+        ContentValues attendanceValues = new ContentValues();
+        attendanceValues.put("Date", attendance.AttendanceDate);
+        attendanceValues.put("ClassID", attendance.ClassID);
+        attendanceValues.put("StudentID", attendance.StudentID);
+        attendanceValues.put("SubjectID", attendance.SubjectID);
+
+        String[] whereArgs = {
+                String.valueOf(attendance.ClassID),
+                String.valueOf(attendance.StudentID),
+                String.valueOf(attendance.SubjectID)
+        };
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Attendance WHERE ClassID=? AND StudentID=? AND SubjectID=?", whereArgs);
+        int attendedValueIndex = cursor.getColumnIndex("Attended");
+        int missedValueIndex = cursor.getColumnIndex("Missed");
+        if (cursor.moveToFirst()) {
+            int attendedValue = cursor.getInt(attendedValueIndex);
+            int missedValue = cursor.getInt(missedValueIndex);
+
+            if (attendance.Status.equals("present")) {
+                attendedValue++;
+            } else if (attendance.Status.equals("absent")) {
+                missedValue++;
+            }
+
+            ContentValues updateValues = new ContentValues();
+            updateValues.put("Attended", attendedValue);
+            updateValues.put("Missed", missedValue);
+
+            db.update("Attendance", updateValues, "ClassID=? AND StudentID=? AND SubjectID=?", whereArgs);
+        } else {
+            attendanceValues.put("Date", attendance.AttendanceDate);
+            if (attendance.Status.equals("present")) {
+                attendanceValues.put("Attended", 1);
+                attendanceValues.put("Missed", 0);
+            } else if (attendance.Status.equals("absent")) {
+                attendanceValues.put("Attended", 0);
+                attendanceValues.put("Missed", 1);
+            }
+
+            db.insert("Attendance", null, attendanceValues);
+        }
+
+        cursor.close();
+        db.close();
+    }
+
+
+    public List<SubjectWithAttendance> getSubjectsAndAttendanceForStudent(int studentId, int semester) {
+            List<SubjectWithAttendance> subjectsList = new ArrayList<>();
+        Log.d("semester", "semester" + semester+"regno"+studentId);
+
+            String classQuery = "SELECT ClassID FROM StudentProfile WHERE RegistrationNumber = ? AND Semester = ?";
+            Cursor classCursor = db.rawQuery(classQuery, new String[]{String.valueOf(studentId), String.valueOf(semester)});
+            int classIdIndex = classCursor.getColumnIndex("ClassID");
+            if (classCursor.moveToFirst()) {
+                int classId = classCursor.getInt(classIdIndex);
+
+                 String subjectsQuery = "SELECT Subjects.SubjectID, Subjects.SubjectName FROM ClassAssignment " +
+                        "JOIN Subjects ON ClassAssignment.SubjectID = Subjects.SubjectID " +
+                        "WHERE ClassAssignment.ClassID = ?";
+                Cursor subjectsCursor = db.rawQuery(subjectsQuery, new String[]{String.valueOf(classId)});
+                int subjectIdIndex = subjectsCursor.getColumnIndex("SubjectID");
+                int subjectNameIndex = subjectsCursor.getColumnIndex("SubjectName");
+                while (subjectsCursor.moveToNext()) {
+                    int subjectId = subjectsCursor.getInt(subjectIdIndex);
+                    String subjectName = subjectsCursor.getString(subjectNameIndex);
+
+                    String attendanceQuery = "SELECT SUM(Attended) AS TotalAttended, SUM(Missed) AS TotalMissed FROM Attendance WHERE ClassID = ? AND SubjectID = ? AND StudentID = ?";
+                    Cursor attendanceCursor = db.rawQuery(attendanceQuery, new String[]{String.valueOf(classId), String.valueOf(subjectId), String.valueOf(studentId)});
+
+                    int totalAttended = 0;
+                    int totalMissed = 0;
+                    int totalAttendedIndex = attendanceCursor.getColumnIndex("TotalAttended");
+                    int totalMissedIndex = attendanceCursor.getColumnIndex("TotalMissed");
+                    if (attendanceCursor.moveToFirst()) {
+                        totalAttended = attendanceCursor.getInt(totalAttendedIndex);
+                        totalMissed = attendanceCursor.getInt(totalMissedIndex);
+                    }
+                    attendanceCursor.close();
+
+                    SubjectWithAttendance subjectWithAttendance = new SubjectWithAttendance(subjectName, subjectId, totalAttended, totalMissed);
+                    subjectsList.add(subjectWithAttendance);
+                }
+                subjectsCursor.close();
+            }
+            classCursor.close();
+
+            return subjectsList;
+        }
+        /*ANNOUNCEMENT FUNCTIONS*/
+        public Boolean creatingFacultyAnnouncement(int loggedInFacultyId, String title, String message) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues announcementValues = new ContentValues();
+            announcementValues.put("Title", title);
+            announcementValues.put("Message", message);
+            SimpleDateFormat pcDateFormat = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yyyy-MM-dd"), Locale.getDefault());
+            Date date = new Date();
+            String formattedDate = pcDateFormat.format(date);
+
+            announcementValues.put("Date", formattedDate.format(formattedDate));
+            announcementValues.put("FacultyID", loggedInFacultyId);
+
+            long result = db.insert("Announcements", null, announcementValues);
+            if (result > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
+    public Cursor getAnnouncement() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY AnnouncementID DESC";
+        return db.rawQuery(sqlQuery, null);
+    }
+    public String getAnnouncementMessage(String title, String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Message FROM Announcements WHERE Title = ? AND Date = ?";
+        Cursor cursor = db.rawQuery(query, new String[] { title, date });
+        int messageIndex = cursor.getColumnIndex("Message");
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                String message = cursor.getString(messageIndex);
+                cursor.close();
+                return message;
+            }
+            cursor.close();
+        }
+        return null;
+    }
+
+
+
+
 
 }
+
+
 

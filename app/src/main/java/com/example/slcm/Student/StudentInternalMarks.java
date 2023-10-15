@@ -27,7 +27,6 @@ import com.example.slcm.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +34,6 @@ public class StudentInternalMarks extends AppCompatActivity {
     ListView listView;
     int studentId;
     DatabaseManager databaseManager;
-    int subjectIdIndex, subjectNameIdIndex;
     MyAdapter myAdapter;
     Spinner dropdown;
     RomanToNumber converter;
@@ -53,10 +51,8 @@ public class StudentInternalMarks extends AppCompatActivity {
 
         databaseManager = new DatabaseManager(this);
 
-        // Initialize the spinner and set its listener
         setupSpinner();
 
-        // Load subjects based on the initially selected semester
         loadSubjectsForSelectedSemester();
     }
 
@@ -115,7 +111,7 @@ public class StudentInternalMarks extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View myView = layoutInflater.inflate(R.layout.activity_student_internalmarks_subject_list_view, parent, false);
+            View myView = layoutInflater.inflate(R.layout.activity_student_internalmarks_subject_list_item, parent, false);
 
             TextView subjectTextView = myView.findViewById(R.id.SubjectText);
             RelativeLayout itemClicked = myView.findViewById(R.id.itemClicked);
@@ -132,7 +128,6 @@ public class StudentInternalMarks extends AppCompatActivity {
                     discLayout.setVisibility(View.VISIBLE);
                     arrowImg.setImageResource(R.drawable.ic_up_arrow);
 
-                    // Display marks for this subject
                     displayMarks(discLayout, subject.getAssignment1(), subject.getAssignment2(), subject.getAssignment3(), subject.getAssignment4(), subject.getMidterm());
                 } else {
                     TransitionManager.beginDelayedTransition(itemClicked, new AutoTransition());

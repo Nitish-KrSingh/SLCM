@@ -70,7 +70,7 @@
             android:background="@drawable/rounded_button"
             android:gravity="center"
             android:text="@string/marksheet"
-            android:textSize="11dp" />
+            android:textSize="11sp" />
 
         <Button
             android:id="@+id/BtnFees"
@@ -85,151 +85,36 @@
     </GridLayout>
 
     <TextView
-        android:id="@+id/Announcements_Title"
+        android:id="@+id/txtHeading"
         android:layout_width="200dp"
         android:layout_height="30dp"
         android:layout_below="@+id/Btn_Layout"
-android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/announcements"
-        android:textSize="20sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Announcements"
+        android:textSize="22dp"
         android:textStyle="bold"
-        android:textColor="@color/blue"
-       />
+        android:textColor="@color/black"
+        />
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/Announcements_Title"
-    android:orientation="vertical"
-    android:id="@+id/Announcements_Layout"
-    android:layout_centerHorizontal="true">
     <RelativeLayout
-        android:id="@+id/Ann1"
-        android:layout_width="350dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@color/light_purple"
-        android:background="@drawable/rounded_background"
-        android:paddingStart="30dp"
-        android:paddingTop="20dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtHeading"
+        android:id="@+id/relative3"
+        android:paddingHorizontal="15dp"
+        >
 
-        <TextView
-            android:id="@+id/Ann1_Name1"
+        <ListView
+            android:id="@+id/ann_ListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HIGHER EDUCATION OPPORTUNITIES IN USA" />
+            android:layout_marginTop="20dp"
+            android:divider="@null"
+            android:clickable="true"
+            tools:listitem="@layout/activity_faculty_announcement_list_item"
 
-        <TextView
-            android:id="@+id/Ann1_Date1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Ann1_Name1"
-            android:text="Date : 12-09-2023"
             />
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/Ann2"
-        android:layout_below="@+id/Ann1"
-        android:layout_width="350dp"
-        android:layout_height="80dp"
-        android:backgroundTint="@color/light_purple"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_background"
-        android:paddingStart="30dp"
-        android:paddingTop="20dp">
-
-        <TextView
-            android:id="@+id/Ann2_Name2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TIME TABLE FOR M.TECH AND MCA" />
-
-        <TextView
-            android:id="@+id/Ann2_Date2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Ann2_Name2"
-            android:text="Date : 19-08-2023"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/Ann3"
-        android:layout_below="@+id/Ann2"
-        android:layout_width="350dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_background"
-        android:paddingStart="30dp"
-        android:backgroundTint="@color/light_purple"
-        android:paddingTop="20dp">
-
-        <TextView
-            android:id="@+id/Ann3_Name3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TECHTATVA" />
-
-        <TextView
-            android:id="@+id/Ann3_Date3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Ann3_Name3"
-            android:text="Date : 21-07-2023"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/Ann4"
-        android:layout_below="@+id/Ann3"
-        android:layout_width="350dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_background"
-        android:paddingLeft="30dp"
-        android:backgroundTint="@color/light_purple"
-        android:paddingTop="20dp">
-
-        <TextView
-            android:id="@+id/Ann4_Name4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CYBERSECURITY COURSE" />
-
-        <TextView
-            android:id="@+id/Ann4_Date4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Ann4_Name4"
-            android:text="Date : 11-7-2023"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/Ann5"
-        android:layout_below="@+id/Ann4"
-        android:layout_width="350dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_background"
-        android:paddingStart="30dp"
-        android:backgroundTint="@color/light_purple"
-        android:paddingTop="20dp">
-
-        <TextView
-            android:id="@+id/Ann5_Name5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="HOLIDAY" />
-
-        <TextView
-            android:id="@+id/Ann5_Date5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Ann5_Name5"
-            android:text="Date : 05-07-2023"
-            />
-    </RelativeLayout>
-</LinearLayout>
 
 </RelativeLayout>

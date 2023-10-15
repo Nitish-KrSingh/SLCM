@@ -8,29 +8,39 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relative2"
+        android:id="@+id/Fac_Marks_Class_Layout"
         android:padding="30dp"
       >
-
         <TextView
-            android:id="@+id/txtselectAttendanceClass"
+            android:id="@+id/Fac_Marks_Class_Title"
             android:layout_width="wrap_content"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
-            android:text="Select your class &amp; section:"
+            android:text="@string/Fac_Class"
+
+            android:textStyle="bold"
             android:textSize="25sp" />
+
+        <LinearLayout
+            android:id="@+id/Fac_Marks_Class_Btn_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/Fac_Marks_Class_Title"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
         <ListView
             android:id="@+id/classSectionListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtselectAttendanceClass"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:divider="@null"
             android:dividerHeight="30dp"
             android:clickable="true"
             />
+        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>

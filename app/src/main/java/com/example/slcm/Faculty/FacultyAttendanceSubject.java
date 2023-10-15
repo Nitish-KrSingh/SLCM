@@ -34,14 +34,13 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_attendance_subject);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Attendance - Select Subject");
 
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
-        String select_date_for_addtendance = getIntent().getStringExtra("selectdateDate");
-
+        String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
 
         subjectListView = findViewById(R.id.classSectionListView);
         subjectList = new ArrayList<>();
@@ -57,7 +56,7 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
                 intent.putExtra("SELECTED_SECTION", selectedSection);
                 intent.putExtra("SELECTED_SUBJECT", selectedSubject);
                 intent.putExtra("FACULTY_ID", facultyId);
-                intent.putExtra("selectdateDate", select_date_for_addtendance);
+                intent.putExtra("ATT_SELECTED_DATE", select_date_for_attendance);
                 startActivity(intent);
             }
         });

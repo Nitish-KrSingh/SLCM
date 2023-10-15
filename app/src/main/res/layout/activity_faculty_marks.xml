@@ -8,18 +8,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:text="@string/fac_submit"
         app:cornerRadius="8dp"
         android:backgroundTint="@color/dark_green"/>
-
+    <TextView
+        android:id="@+id/Fac_Marks_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/students"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:layout_below="@id/submit"
+        android:layout_centerHorizontal="true"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/submit"
+        android:layout_below="@id/Fac_Marks_Title"
         android:id="@+id/rel1"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:paddingHorizontal="40dp"
         >
 
@@ -30,6 +40,7 @@
             android:layout_alignParentStart="true"
             android:text="Roll Number"
             android:textStyle="bold"
+            android:textColor="@color/blue"
             android:textSize="18sp"
             />
 
@@ -37,12 +48,11 @@
             android:id="@+id/Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_centerInParent="true"
-
-            />
+            android:text="Name"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/marks"
             android:layout_width="wrap_content"
@@ -50,6 +60,7 @@
             android:text="Marks"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/blue"
             android:layout_alignParentEnd="true"
             />
     </RelativeLayout>
@@ -60,6 +71,5 @@
         android:layout_height="match_parent"
         android:layout_below="@id/rel1"
         android:layout_centerInParent="true"
-        android:padding="25dp"
-        />
+        android:padding="25dp" />
 </RelativeLayout>
