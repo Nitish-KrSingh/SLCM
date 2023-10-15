@@ -50,12 +50,11 @@ public class FacultyMarksClass extends AppCompatActivity {
             retrieveClassSectionsForFaculty(loggedInFacultyId);
             classSectionListView.setOnItemClickListener((parent, view, position, id) -> {
                 Log.d("DebugTag", "Item clicked at position: " + position);
-                Toast.makeText(FacultyMarksClass.this, "Item clicked!", Toast.LENGTH_SHORT).show();
                 String selectedItem = classSectionList.get(position);
                 String[] parts = selectedItem.split(" - ");
                 String className = parts[0];
                 String section = parts[1];
-                Intent intent = new Intent(FacultyMarksClass.this, FacultyMarksSubject.class);
+                Intent intent = new Intent(FacultyMarksClass.this, FacultyMarksType.class);
                 intent.putExtra("SELECTED_CLASS", classNameIndex);
                 intent.putExtra("SELECTED_SECTION", section);
                 intent.putExtra("FACULTY_ID", loggedInFacultyId);

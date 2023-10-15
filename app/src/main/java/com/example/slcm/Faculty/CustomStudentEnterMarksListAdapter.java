@@ -8,28 +8,32 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.slcm.R;
 import com.example.slcm.Student.Student;
 
 import java.util.ArrayList;
 
-public class CustomStudentMarksListAdapter extends BaseAdapter {
+public class CustomStudentEnterMarksListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Student> students;
+    private String selectedAssignmentType;
 
-    public CustomStudentMarksListAdapter(Context context, ArrayList<Student> students) {
+    public CustomStudentEnterMarksListAdapter(Context context, ArrayList<Student> students, String selectedAssignmentType) {
         this.context = context;
         this.students = students;
+        this.selectedAssignmentType = selectedAssignmentType;
     }
+
     @Override
     public int getCount() {
-        return students.size(); // Use size() for ArrayList
+        return students.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return students.get(position); // Use get() for ArrayList
+        return students.get(position);
     }
 
     @Override
@@ -45,20 +49,32 @@ public class CustomStudentMarksListAdapter extends BaseAdapter {
 
         TextView textViewName = convertView.findViewById(R.id.textViewName);
         TextView textViewRollNumber = convertView.findViewById(R.id.textViewRollNumber);
-        EditText editTextRollNumber = convertView.findViewById(R.id.editTextMarks);
+        EditText editTextMarks = convertView.findViewById(R.id.editTextMarks);
 
         Student student = students.get(position);
 
         textViewName.setText(student.getName());
         textViewRollNumber.setText(student.getRollNumber());
-
-        // Set the background color of EditText based on input validation
-        if (TextUtils.isEmpty(editTextRollNumber.getText())) {
-            editTextRollNumber.setBackgroundResource(R.color.red);
+        if (TextUtils.isEmpty(editTextMarks.getText())) {
+            editTextMarks.setBackgroundResource(R.color.red);
         } else {
-            editTextRollNumber.setBackgroundResource(R.color.green);
+            float marks = Float.parseFloat(editTextMarks.getText().toString());
+            if (!isValidMarks(marks, selectedAssignmentType)) {
+                editTextMarks.setBackgroundResource(R.color.red);
+                Toast.makeText(context, "Invalid marks for " + selectedAssignmentType, Toast.LENGTH_SHORT).show();
+            } else {
+                editTextMarks.setBackgroundResource(R.color.green);
+            }
         }
 
         return convertView;
+    }
+
+    private boolean isValidMarks(float marks, String assignmentType) {
+        if ("Midterm".equals(assignmentType)) {
+            return marks >= 0 && marks <= 30;
+        } else {
+            return marks >= 0 && marks <= 5;
+        }
     }
 }

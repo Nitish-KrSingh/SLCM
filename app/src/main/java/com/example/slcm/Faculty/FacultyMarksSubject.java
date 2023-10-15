@@ -1,23 +1,17 @@
 package com.example.slcm.Faculty;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-
 import android.content.Intent;
 import android.database.Cursor;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
@@ -31,6 +25,8 @@ public class FacultyMarksSubject extends AppCompatActivity {
     private ArrayList<String> subjectList;
     private ArrayAdapter<String> adapter;
     private int subjectIndex;
+    private String selectedAssignment;
+    private String subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +37,8 @@ public class FacultyMarksSubject extends AppCompatActivity {
 
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
+        String selectedDate= getIntent().getStringExtra("SELECTED_DATE");
+        selectedAssignment = getIntent().getStringExtra("ASSIGNMENT_TYPE");
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
         subjectListView = findViewById(R.id.subjectListView);
         subjectList = new ArrayList<>();
@@ -51,12 +49,19 @@ public class FacultyMarksSubject extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int selectedSubject = subjectIndex;
-                Intent intent = new Intent(FacultyMarksSubject.this, FacultyMarks.class);
-                intent.putExtra("SELECTED_CLASS", selectedClass);
-                intent.putExtra("SELECTED_SECTION", selectedSection);
-                intent.putExtra("SELECTED_SUBJECT", selectedSubject);
-                intent.putExtra("FACULTY_ID", facultyId);
-                startActivity(intent);
+                if(checkMarks(subjectIndex, selectedClass, selectedAssignment)) {
+                    Intent intent = new Intent(FacultyMarksSubject.this, FacultyMarks.class);
+                    intent.putExtra("SELECTED_CLASS", selectedClass);
+                    intent.putExtra("SELECTED_SECTION", selectedSection);
+                    intent.putExtra("SELECTED_SUBJECT", selectedSubject);
+                    intent.putExtra("SELECTED_DATE", selectedDate);
+                    intent.putExtra("ASSIGNMENT_TYPE", selectedAssignment);
+                    intent.putExtra("FACULTY_ID", facultyId);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(FacultyMarksSubject.this, "Marks already entered for "+selectedSubject+":"+selectedAssignment, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -82,13 +87,19 @@ public class FacultyMarksSubject extends AppCompatActivity {
         if (cursor != null) {
             subjectIndex = cursor.getColumnIndex("SubjectName");
             if (subjectIndex == -1) {
-                Log.e("CursorError", "Column 'S.SubjectName' not found in cursor.");
+                Log.e("CursorError", "Column 'SubjectName' not found in cursor.");
                 Toast.makeText(this, "Subject not found", Toast.LENGTH_SHORT).show();
             } else {
                 if (cursor.moveToFirst()) {
                     do {
-                        String subject = cursor.getString(subjectIndex);
+                        subject = cursor.getString(subjectIndex);
                         Log.d("ClassGet", "Subject:"+subjectIndex+"name"+subject);
+                        if(checkMarks(subjectIndex, selectedClass, selectedAssignment)) {
+                            subjectListView.setBackgroundResource(R.color.green);
+                        }
+                        else{
+                            subjectListView.setBackgroundResource(R.color.red);
+                        }
                         subjectList.add(subject);
                     } while (cursor.moveToNext());
                     adapter.notifyDataSetChanged();
@@ -101,5 +112,10 @@ public class FacultyMarksSubject extends AppCompatActivity {
             Log.d("DebugTag", "Cursor is null.");
         }
     }
-
+    private Boolean checkMarks(int subjectIndex, int selectedClass, String selectedAssignment) {
+        DatabaseManager databaseManager = new DatabaseManager(this);
+        float marks = databaseManager.retrieveAssignmentMarks(subjectIndex, selectedClass, selectedAssignment);
+        Log.d("Assignment Marks", selectedAssignment + " Marks for Subject " + subject + ": " + marks);
+        return !(marks > 0.0);
+    }
 }
