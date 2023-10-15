@@ -368,6 +368,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(facultyId), String.valueOf(classId), String.valueOf(selectedSubject)};
         return db.rawQuery(sqlQuery, selectionArgs);
     }
+
+    //Faculty change password
     public Boolean updateFac_change_password(int facultyId,String fac_password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -377,6 +379,62 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String[] whereArgs = {String.valueOf(facultyId)};
 
         int rowsUpdated = db.update("FacultyProfile", contentValues, whereClause, whereArgs);
+        if (rowsUpdated > 0) {
+            return true;
+            // The update was successful
+        } else {
+            return false;
+            // No rows were updated, which could mean there was no matching record
+        }
+    }
+
+
+    //Student Change Password
+    public Boolean update_Student_change_password(int studentId,String stud_password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Password", stud_password); // Set the new value for the Username column
+
+        String whereClause = "StudentID = ?";
+        String[] whereArgs = {String.valueOf(studentId)};
+
+        int rowsUpdated = db.update("StudentProfile", contentValues, whereClause, whereArgs);
+        if (rowsUpdated > 0) {
+            return true;
+            // The update was successful
+        } else {
+            return false;
+            // No rows were updated, which could mean there was no matching record
+        }
+    }
+
+    //Faculty forgot password
+    public Boolean updateFac_Forgot_password(String fac_forgot_user,String fac_forgot_new_pass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Password", fac_forgot_new_pass);
+        String whereClause = "Username = ?";
+        String[] whereArgs = {String.valueOf(fac_forgot_user)};
+
+        int rowsUpdated = db.update("FacultyProfile", contentValues, whereClause, whereArgs);
+        if (rowsUpdated > 0) {
+            return true;
+            // The update was successful
+        } else {
+            return false;
+            // No rows were updated, which could mean there was no matching record
+        }
+    }
+
+    //Student forgot password
+    public Boolean updateStud_Forgot_password(int student_forgot_userRegistration,String student_forgot_new_password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Password", student_forgot_new_password);
+        String whereClause = "RegistrationNumber = ?";
+        String[] whereArgs = {String.valueOf(student_forgot_userRegistration)};
+
+        int rowsUpdated = db.update("StudentProfile", contentValues, whereClause, whereArgs);
         if (rowsUpdated > 0) {
             return true;
             // The update was successful

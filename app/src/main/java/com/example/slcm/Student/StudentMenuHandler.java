@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.slcm.R;
 import com.example.slcm.StudentLogin;
