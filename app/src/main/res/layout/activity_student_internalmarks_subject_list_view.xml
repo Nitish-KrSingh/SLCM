@@ -5,50 +5,66 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/itemClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-        <RelativeLayout
-            android:id="@+id/itemClicked"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:background="@drawable/list_item_marks_student_background">>
+
+        <TextView
+            android:id="@+id/SubjectText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:text="OOPS"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/arrowImg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_down_arrow" />
+
+    </RelativeLayout>
+
+    <TableLayout
+        android:id="@+id/discLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1"
+        android:visibility="gone"
+        android:background="@color/light_purple"
+        android:padding="10dp"
+        >
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Assignment Type"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:textSize="19sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
                 android:padding="5dp"
-                android:text="@string/title"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-
-            <ImageView
-                android:id="@+id/arrowImg"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_down_arrow" />
-
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/discLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
-                android:text="@string/assessment_type"
+                android:text="Marks"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:textAlignment="center"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-    </LinearLayout>
-
+                android:textSize="19sp" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

@@ -5,15 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Faculty.FacultyProfile">
+    tools:context=".Student.StudentProfileDashboard">
     <RelativeLayout
-        android:id="@+id/relative1"
+        android:id="@+id/ProfileLayout"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@color/blue"
         >
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ProfileImg"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
@@ -24,26 +24,16 @@
 
 
         <TextView
-            android:id="@+id/txtabc"
+            android:id="@+id/Registration_No_Text"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/imageView2"
-            android:text="Nitish Singh"
+            android:layout_below="@+id/ProfileImg"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/textregno"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtabc"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:textColor="@color/white"
-            android:text="220970031"
-            />
 
 
     </RelativeLayout>
@@ -52,10 +42,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:layout_below="@+id/relative1"
+        android:layout_below="@+id/ProfileLayout"
         android:layout_marginTop="30dp">
         <Button
-            android:id="@+id/btnMcaA"
+            android:id="@+id/ProfileViewDetails"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/light_purple"
@@ -63,11 +53,11 @@
             android:textColor="@color/blue"
             android:textSize="20dp"
             android:padding="20dp"
-            android:text="View Details"
+            android:text="@string/view_details"
             app:cornerRadius="8dp" />
 
         <Button
-            android:id="@+id/btnMcaB"
+            android:id="@+id/ProfileChangePassword"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/light_purple"
@@ -76,10 +66,10 @@
             android:textColor="@color/blue"
             android:textSize="20dp"
             android:padding="20dp"
-            android:text="Change Password"
+            android:text="@string/change_password"
             app:cornerRadius="8dp" />
         <Button
-            android:id="@+id/btnbtech"
+            android:id="@+id/ProfileLogout"
             android:layout_width="300dp"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
@@ -88,7 +78,7 @@
             android:textColor="@color/blue"
             android:textSize="20dp"
             android:padding="20dp"
-            android:text="Logout"
+            android:text="@string/log_out"
             app:cornerRadius="8dp" />
     </LinearLayout>
 </RelativeLayout>
