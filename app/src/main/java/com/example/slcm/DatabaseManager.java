@@ -67,13 +67,20 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "Section TEXT," +
                 "Semester INTEGER);");
 
+        db.execSQL("CREATE TABLE IF NOT EXISTS Subjects (" +
+                "SubjectID INTEGER PRIMARY KEY," +
+                "SubjectName TEXT);");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS Attendance (" +
                 "AttendanceID INTEGER PRIMARY KEY," +
                 "Date DATE," +
                 "ClassID INTEGER," +
-                "StudentID INTEGER," +
+                "SubjectID INTEGER," +
+                "StudentID TEXT," +
                 "Status TEXT," +
-                "FOREIGN KEY (StudentID) REFERENCES StudentProfile(StudentID)," +
+                "FOREIGN KEY (StudentID) REFERENCES StudentProfile(RegistrationNumber)," + // Corrected table name
+                "FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)," + // Corrected table name
+
                 "FOREIGN KEY (ClassID) REFERENCES Class(ClassID));");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS Marks (" +
@@ -109,9 +116,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "StudentID INTEGER," +
                 "FOREIGN KEY (StudentID) REFERENCES StudentProfile(StudentID));");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS Subjects (" +
-                "SubjectID INTEGER PRIMARY KEY," +
-                "SubjectName TEXT);");
+
         insertDummyData(db);
     }
 
@@ -164,7 +169,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues2.put("Age", 22);
         studentValues2.put("Semester", 3);
         studentValues2.put("Department", "Mathematics");
-        studentValues2.put("ClassID", 2);
+        studentValues2.put("ClassID", 1);
         long studentId2 = db.insert("StudentProfile", null, studentValues2);
 
         ContentValues subjectValues1 = new ContentValues();
@@ -199,19 +204,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
         classValues2.put("Semester", 3);
         db.insert("Class", null, classValues2);
 
-        ContentValues attendanceValues1 = new ContentValues();
-        attendanceValues1.put("Date", "2023-01-01");
-        attendanceValues1.put("ClassID", 1);
-        attendanceValues1.put("StudentID", studentId1);
-        attendanceValues1.put("Status", "Present");
-        db.insert("Attendance", null, attendanceValues1);
-
-        ContentValues attendanceValues2 = new ContentValues();
-        attendanceValues2.put("Date", "2023-01-02");
-        attendanceValues2.put("ClassID", 2);
-        attendanceValues2.put("StudentID", studentId2);
-        attendanceValues2.put("Status", "Absent");
-        db.insert("Attendance", null, attendanceValues2);
 
         ContentValues marksValues1 = new ContentValues();
         marksValues1.put("Date", "2023-10-14");
@@ -281,6 +273,17 @@ public class DatabaseManager extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    public void AddAttendance(Attendance attendance){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues attendanceValues = new ContentValues();
+        attendanceValues.put("Date", attendance.AttendanceDate);
+        attendanceValues.put("ClassID", attendance.ClassID);
+        attendanceValues.put("StudentID", attendance.StudentID);
+        attendanceValues.put("SubjectID", attendance.SubjectID);
+        attendanceValues.put("Status", attendance.Status);
+        db.insert("Attendance", null, attendanceValues);
     }
 
 

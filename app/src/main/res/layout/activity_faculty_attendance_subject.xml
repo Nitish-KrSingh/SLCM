@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/relative2"
-        android:padding="30dp"
-        >
+        android:padding="30dp">
 
         <TextView
             android:id="@+id/txtselectAttendaceClass"
@@ -24,13 +23,6 @@
             android:text="Select your subject:"
             android:textSize="25sp" />
 
-
-        <ListView
-            android:layout_below="@+id/txtselectAttendaceClass"
-            android:id="@+id/subjectListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp" />
 <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->
@@ -103,6 +95,19 @@
 <!--                android:elevation="8dp"-->
 <!--                android:textColor="@color/gray"/>-->
 <!--        </LinearLayout>-->
+
+
+
+            <ListView
+                android:id="@+id/classSectionListView"
+                android:layout_below="@+id/txtselectAttendaceClass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:divider="@null"
+                android:dividerHeight="30dp"
+                android:clickable="true"
+                />
 
 
 

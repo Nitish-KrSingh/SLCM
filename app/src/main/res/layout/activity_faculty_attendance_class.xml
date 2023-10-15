@@ -26,15 +26,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/Fac_Att_Class_Title"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
+
             <ListView
-                android:id="@+id/classListView"
+                android:id="@+id/classSectionListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:divider="@null"
+                android:dividerHeight="30dp"
+                android:clickable="true"
+                />
 
         </LinearLayout>
     </RelativeLayout>
