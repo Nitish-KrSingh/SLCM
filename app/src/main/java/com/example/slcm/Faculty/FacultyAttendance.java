@@ -23,7 +23,7 @@ private CustomFacultyListAdapter adapter;
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("Enter Attendance");
 
-        ListView listView = findViewById(R.id.students); // Use ListView for your list
+        ListView listView = findViewById(R.id.Fac_Stud_Att_List); // Use ListView for your list
 
         // Sample list of roll numbers
         String[] rollNumbers = {"220970030", "220970031", "220970032"};

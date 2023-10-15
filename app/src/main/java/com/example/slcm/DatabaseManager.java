@@ -5,11 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -19,7 +23,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public DatabaseManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     SQLiteDatabase db = this.getWritableDatabase();
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("DatabaseStatus", "Creating database and tables");
@@ -92,8 +98,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "Title TEXT," +
                 "Message TEXT," +
                 "Date DATE," +
-                "UserID INTEGER," +
-                "FOREIGN KEY (UserID) REFERENCES FacultyProfile(UserID));"); // Corrected table name
+                "UserId INTEGER," +
+                "FOREIGN KEY (UserId) REFERENCES FacultyProfile(FacultyID));"); // Corrected table name
 
         db.execSQL("CREATE TABLE IF NOT EXISTS Fees (" +
                 "FeesID INTEGER PRIMARY KEY," +
@@ -237,14 +243,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
         announcementValues1.put("Title", "Important Announcement 1");
         announcementValues1.put("Message", "This is an important announcement for all students.");
         announcementValues1.put("Date", "2023-01-01");
-        announcementValues1.put("UserID", 1);
+        announcementValues1.put("FacultyID", 1);
         db.insert("Announcements", null, announcementValues1);
 
         ContentValues announcementValues2 = new ContentValues();
         announcementValues2.put("Title", "Important Announcement 2");
         announcementValues2.put("Message", "Another important announcement for students.");
         announcementValues2.put("Date", "2023-01-02");
-        announcementValues2.put("UserID", 2);
+        announcementValues2.put("FacultyID", 2);
         db.insert("Announcements", null, announcementValues2);
 
         ContentValues feesValues1 = new ContentValues();
@@ -352,7 +358,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         int classId = -1;
         if (classCursor != null && classCursor.moveToFirst()) {
             classId = classCursor.getColumnIndex("ClassID");
-            if(classId!=-1) {
+            if (classId != -1) {
                 classId = classCursor.getInt(classId);
                 classCursor.close();
             }
@@ -369,6 +375,58 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(facultyId), String.valueOf(classId), String.valueOf(selectedSubject)};
         return db.rawQuery(sqlQuery, selectionArgs);
     }
+
+
+    //Creating Faculty Announcement
+    public Boolean creatingFacultyAnnouncement(int loggedInFacultyId, String title, String message) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues announcementValues = new ContentValues();
+        announcementValues.put("Title", title);
+        announcementValues.put("Message", message);
+        SimpleDateFormat pcDateFormat = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yyyy-MM-dd"), Locale.getDefault());
+        Date date = new Date();
+        String formattedDate = pcDateFormat.format(date);
+
+        announcementValues.put("Date", formattedDate.format(formattedDate));
+        announcementValues.put("UserID", loggedInFacultyId);
+
+        long result = db.insert("Announcements", null, announcementValues);
+        if (result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    //Faculty Announcement
+    public Cursor getAnnouncementForFaculty() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY AnnouncementID DESC";
+        return db.rawQuery(sqlQuery, null);
+    }
+
+    //Student Announcement
+    public Cursor getAnnouncementForStudent() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY AnnouncementID DESC";
+        return db.rawQuery(sqlQuery, null);
+    }
+
+    public Cursor getAnnouncementForFacultyDashboard() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY AnnouncementID DESC";
+        return db.rawQuery(sqlQuery, null);
+    }
+
+
+    public Cursor getAnnouncementForStudentDashboard() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY AnnouncementID DESC";
+        return db.rawQuery(sqlQuery, null);
+    }
+
+
 }
 
 
