@@ -16,25 +16,23 @@
         >
 
         <TextView
-            android:id="@+id/txtselectAttendanceSubject"
+            android:id="@+id/txtselectMarksSubject"
             android:layout_width="wrap_content"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
-            android:text="Select your subject:"
+            android:text="@string/select_your_subject"
             android:textSize="25sp" />
         <ListView
             android:id="@+id/subjectListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtselectAttendanceSubject"
+            android:layout_below="@+id/txtselectMarksSubject"
             android:layout_marginTop="30dp"
             android:divider="@null"
             android:dividerHeight="30dp"
             android:clickable="true"
+            tools:listitem="@layout/activity_faculty_marks_list_item"
             />
-
     </RelativeLayout>
-
-
 </RelativeLayout>

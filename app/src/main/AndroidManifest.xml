@@ -105,17 +105,17 @@
             android:exported="false"
             android:parentActivityName=".Faculty.FacultyDashboard" />
         <activity
+            android:name=".Faculty.FacultyMarksType"
+            android:exported="false"
+            android:parentActivityName=".Faculty.FacultyMarksClass" />
+        <activity
             android:name=".Faculty.FacultyMarksSubject"
             android:exported="false"
             android:parentActivityName=".Faculty.FacultyMarksClass" />
         <activity
-            android:name=".Faculty.FacultyMarksType"
-            android:exported="false"
-            android:parentActivityName=".Faculty.FacultyMarksSubject" />
-        <activity
             android:name=".Faculty.FacultyMarks"
             android:exported="false"
-            android:parentActivityName=".Faculty.FacultyMarksType" />
+            android:parentActivityName=".Faculty.FacultyMarksSubject" />
         <activity
             android:name=".Faculty.FacultyProfileDashboard"
             android:exported="false"

@@ -12,79 +12,71 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="25dp"
-        android:id="@+id/lay1"
-
+        android:id="@+id/assessTypeLayout"
         android:background="@color/light_gray">
 
         <RelativeLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="15dp">
-
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-            android:layout_alignParentStart="true"
+                android:layout_alignParentStart="true"
                 android:textStyle="bold"
-                android:text="ASSESMENT TYPE" />
+                android:id="@+id/assessTitle"
+                android:text="@string/assessment_type" />
 
         </RelativeLayout>
-        <LinearLayout
-
+        <RadioGroup
+            android:id="@+id/assessRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
             android:orientation="vertical">
 
-            <CheckBox
+            <RadioButton
+                android:id="@+id/internalAssignment1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Internal Assignment 1"
-                android:textSize="20dp">
+                android:text="@string/internal_assignment_1"
+                android:textSize="20dp" />
 
-            </CheckBox>
-
-            <CheckBox
+            <RadioButton
+                android:id="@+id/internalAssignment2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Internal Assignment 2"
-                android:textSize="20dp">
+                android:text="@string/internal_assignment_2"
+                android:textSize="20dp" />
 
-
-            </CheckBox>
-            <CheckBox
+            <RadioButton
+                android:id="@+id/internalAssignment3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Internal Assignment 3"
-                android:textSize="20dp">
+                android:text="@string/internal_assignment_3"
+                android:textSize="20dp" />
 
-
-            </CheckBox>
-            <CheckBox
+            <RadioButton
+                android:id="@+id/internalAssignment4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Internal Assignment 4"
-                android:textSize="20dp">
+                android:text="@string/internal_assignment_4"
+                android:textSize="20dp" />
 
-
-            </CheckBox>
-            <CheckBox
+            <RadioButton
+                android:id="@+id/midTerm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mid Term"
-                android:textSize="20dp">
-            </CheckBox>
-        </LinearLayout>
+                android:text="@string/midterm"
+                android:textSize="20dp" />
+        </RadioGroup>
 
 
 
     </LinearLayout>
     <LinearLayout
-android:layout_below="@+id/lay1"
-        android:id="@+id/lay2"
+        android:layout_below="@+id/assessTypeLayout"
+        android:id="@+id/maxMarksLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
@@ -94,23 +86,24 @@ android:layout_below="@+id/lay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_centerInParent="true"
             android:textStyle="bold"
-            android:text="Maximum Marks: " />
-        <EditText
+            android:text="@string/maximum_marks" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"
-            android:hint="Enter marks"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:hint="@string/enter_marks"
             android:padding="10dp"
-            android:layout_centerInParent="true"
+            android:text="5"
+            android:id="@+id/maxMarksText"
             android:textStyle="bold"
             />
     </LinearLayout>
     <LinearLayout
-        android:layout_below="@+id/lay2"
-        android:id="@+id/lay3"
+        android:layout_below="@+id/maxMarksLayout"
+        android:id="@+id/marksDateLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
@@ -120,42 +113,33 @@ android:layout_below="@+id/lay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_centerInParent="true"
             android:textStyle="bold"
-            android:text="Date: " />
-
+            android:text="@string/date" />
         <ImageButton
+            android:id="@+id/marksCalendarButton"
             android:layout_width="26dp"
             android:layout_height="27dp"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:src="@drawable/baseline_calendar_month_24"
             android:textSize="18sp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            />
         <TextView
+            android:id="@+id/marksDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_marginLeft="5dp"
-            android:layout_centerInParent="true"
-
-            android:text="19-06-2023 " />
-
+            android:layout_marginStart="5dp" />
     </LinearLayout>
-
         <Button
-            android:id="@+id/submit"
-            android:layout_below="@+id/lay3"
+            android:id="@+id/nextBtn"
+            android:layout_below="@+id/marksDateLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-      android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="40dp"
-            android:text="Next"
+            android:text="@string/next"
             app:cornerRadius="8dp"
             android:backgroundTint="@color/maroon"/>
-
-
-
 </RelativeLayout>

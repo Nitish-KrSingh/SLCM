@@ -10,7 +10,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:text="Next"
+        android:text="@string/fac_submit"
         app:cornerRadius="8dp"
         android:backgroundTint="@color/dark_green"/>
 

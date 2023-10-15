@@ -31,11 +31,25 @@
 
     <!--student_internal_marks-->
     <string name="title">Subject code: MCA 4245 Data Analytics</string>
-    <string name="assessment_type">Assignment 1</string>
+    <string name="assessment_type">ASSESSMENT TYPE</string>
+    <string name="internal_assignment_4">Internal Assignment 4</string>
+    <string name="internal_assignment_3">Internal Assignment 3</string>
+    <string name="midterm">MidTerm</string>
+    <string name="internal_assignment_1">Internal Assignment 1</string>
+    <string name="internal_assignment_2">Internal Assignment 2</string>
+    <string name="maximum_marks">Maximum Marks:</string>
+    <string name="enter_marks">Enter marks</string>
+    <string name="date">Date:</string>
+    <string name="change">Change</string>
+    <string name="view_details">View Details</string>
+    <string name="change_password">Change Password</string>
+    <string name="semester_year">Semester/ Year:</string>
+    <string name="select_your_subject">Select your subject:</string>
 
     <string-array name="semesters">
-        <item>I  Semester</item>
-        <item>II Semester</item>
-        <item>III Semester</item>
+        <item>I</item>
+        <item>II</item>
+        <item>III</item>
+        <item>IV</item>
     </string-array>
 </resources>
