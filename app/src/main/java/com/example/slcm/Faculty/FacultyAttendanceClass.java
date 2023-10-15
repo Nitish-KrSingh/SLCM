@@ -62,7 +62,6 @@ public class FacultyAttendanceClass extends AppCompatActivity {
             retrieveClassSectionsForFaculty(loggedInFacultyId);
             classSectionListView.setOnItemClickListener((parent, view, position, id) -> {
                 Log.d("DebugTag", "Item clicked at position: " + position);
-                Toast.makeText(FacultyAttendanceClass.this, "Item clicked!", Toast.LENGTH_SHORT).show();
                 String selectedItem = classSectionList.get(position);
                 String[] parts = selectedItem.split(" - ");
                 String className = parts[0];

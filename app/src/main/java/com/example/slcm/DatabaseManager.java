@@ -80,7 +80,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "Status TEXT," +
                 "FOREIGN KEY (StudentID) REFERENCES StudentProfile(RegistrationNumber)," + // Corrected table name
                 "FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)," + // Corrected table name
-
                 "FOREIGN KEY (ClassID) REFERENCES Class(ClassID));");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS Marks (" +
@@ -277,6 +276,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     public void AddAttendance(Attendance attendance){
         SQLiteDatabase db = this.getWritableDatabase();
+        Log.d("ClassGet", "date"+attendance.AttendanceDate);
         ContentValues attendanceValues = new ContentValues();
         attendanceValues.put("Date", attendance.AttendanceDate);
         attendanceValues.put("ClassID", attendance.ClassID);
