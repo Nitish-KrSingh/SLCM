@@ -14,27 +14,27 @@
         android:id="@+id/Fac_Att_Date"
         android:orientation="horizontal"
         android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="@string/fac_date_day" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="@string/fac_date_day" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginStart="10dp"
-            android:text=""
-            android:id="@+id/selected_day_for_attendance_textview"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="@string/fac_date_val" />
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="20sp"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:text=""-->
+<!--            android:id="@+id/selected_day_for_attendance_textview"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="@string/fac_date_val" />-->
 
         <TextView
             android:layout_width="wrap_content"
