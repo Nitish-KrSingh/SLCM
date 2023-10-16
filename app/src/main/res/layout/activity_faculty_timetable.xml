@@ -14,12 +14,18 @@
         android:layout_centerHorizontal="true">
 
     </TextView>
-<ImageView
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_below="@+id/heading"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/timetable1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/heading"
+        android:orientation="vertical">
 
-</ImageView>
+        <ImageView
+            android:id="@+id/faculty_time_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rotation="90"
+            android:src="@drawable/timetable1"></ImageView>
+    </LinearLayout>
+
 </RelativeLayout>
