@@ -1,7 +1,5 @@
 package com.example.slcm.Faculty;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,20 +8,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 public class FacultyAttendanceChooseDate extends AppCompatActivity {
-    private DatePicker datePicker;
-    public TextView selectedDateTextView ;
-
-    public  Button next_page_selectclass;
+    public TextView selectedDateTextView;
+    public Button next_page_selectclass;
     String formattedDate;
+    private DatePicker datePicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class FacultyAttendanceChooseDate extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Attendance - Select Date");
 
-        selectedDateTextView = (TextView) findViewById(R.id.selected_date_for_attendance_textview);
+        selectedDateTextView = findViewById(R.id.selected_date_for_attendance_textview);
         datePicker = findViewById(R.id.Fac_Att_DatePicker);
         next_page_selectclass = findViewById(R.id.nextAttBtn);
 
@@ -72,6 +72,7 @@ public class FacultyAttendanceChooseDate extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.faculty_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         FacultyMenuHandler.handleMenuAction(item, this);

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/list_item_background">
 
-<TextView
-    android:id="@+id/textViewRollNumber"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="@color/black"
-    android:padding="16dp"
-    android:textSize="18sp"
-    android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true"
-    app:cornerRadius="8dp"
-    android:text="Roll Number" />
+    <TextView
+        android:id="@+id/textViewRollNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:padding="16dp"
+        android:text="Roll Number"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:cornerRadius="8dp" />
 </RelativeLayout>

@@ -1,10 +1,6 @@
 package com.example.slcm.Student;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,10 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.DatabaseManager;
-import com.example.slcm.Faculty.FacultyAnnouncements;
-import com.example.slcm.Faculty.FacultyViewAnnouncement;
-import com.example.slcm.FacultyLogin;
 import com.example.slcm.R;
 
 import java.util.ArrayList;
@@ -30,7 +25,6 @@ public class StudentAnnouncements extends AppCompatActivity {
 
     private ArrayList<String> student_announcement_List;
     private ArrayAdapter<String> adapter;
-
 
 
     @Override
@@ -49,11 +43,11 @@ public class StudentAnnouncements extends AppCompatActivity {
         student_announcement_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedAnnouncement =student_announcement_List.get(position);
+                String selectedAnnouncement = student_announcement_List.get(position);
                 String[] splitAnnouncement = selectedAnnouncement.split("\nDate:");
                 String title = splitAnnouncement[0];
                 String date = splitAnnouncement[1];
-                Log.d("DebugTag", "Date: " + date+ "Title"+title);
+                Log.d("DebugTag", "Date: " + date + "Title" + title);
 
                 DatabaseManager databaseManager = new DatabaseManager(StudentAnnouncements.this);
                 String message = databaseManager.getAnnouncementMessage(title, date);
@@ -71,11 +65,13 @@ public class StudentAnnouncements extends AppCompatActivity {
         });
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.student_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         StudentMenuHandler.handleMenuAction(item, this);

@@ -1,7 +1,5 @@
 package com.example.slcm.Faculty;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,18 +10,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
-import com.example.slcm.Student.StudentChangePassword;
-import com.example.slcm.Student.StudentProfileDashboard;
 
 import java.util.Objects;
 
 public class FacultyChangePassword extends AppCompatActivity {
-    private String loggedInUsername;
     EditText new_password, confirm_password;
     Button change_submit_btn;
     DatabaseManager databaseManager;
+    private String loggedInUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +58,7 @@ public class FacultyChangePassword extends AppCompatActivity {
                         } else {
                             Toast.makeText(FacultyChangePassword.this, "Password did not change", Toast.LENGTH_SHORT).show();
                         }
-                        Intent change_pass=new Intent(FacultyChangePassword.this, FacultyProfileDashboard.class);
+                        Intent change_pass = new Intent(FacultyChangePassword.this, FacultyProfileDashboard.class);
                         startActivity(change_pass);
                     } else {
                         new_password.setError("Password did not match");

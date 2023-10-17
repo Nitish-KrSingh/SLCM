@@ -12,11 +12,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
 import com.example.slcm.Student.Student;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -35,9 +35,9 @@ public class FacultyAttendance extends AppCompatActivity {
         getSupportActionBar().setTitle("Enter Attendance");
 
         ListView listView = findViewById(R.id.Fac_Stud_Att_List);
-        Button Submit_Attendance = (Button) findViewById(R.id.Fac_Submit_Att_Btn);
-        Button all_Student_present = (Button) findViewById(R.id.all_present);
-        Button all_Student_absent = (Button) findViewById(R.id.all_absent);
+        Button Submit_Attendance = findViewById(R.id.Fac_Submit_Att_Btn);
+        Button all_Student_present = findViewById(R.id.all_present);
+        Button all_Student_absent = findViewById(R.id.all_absent);
 
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
@@ -71,7 +71,7 @@ public class FacultyAttendance extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Map<String, String> presentMap = adapter.GetPresentMap();
-                for(Student student : studentList){
+                for (Student student : studentList) {
                     Attendance attendance = new Attendance(student.getRollNumber(), selectedClass, selectedSubject, select_date_for_attendance, presentMap.get(student.getRollNumber()));
                     databaseManager.AddAttendance(attendance);
                 }
@@ -84,7 +84,7 @@ public class FacultyAttendance extends AppCompatActivity {
         });
 
 //        retrieveStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
-        Cursor cursor = databaseManager.getStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
+     //   Cursor cursor = databaseManager.getStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
 
 //        all_Student_present.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -104,8 +104,6 @@ public class FacultyAttendance extends AppCompatActivity {
 //        });
 
 
-
-
     }
 
     @Override
@@ -113,6 +111,7 @@ public class FacultyAttendance extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.faculty_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         FacultyMenuHandler.handleMenuAction(item, this);

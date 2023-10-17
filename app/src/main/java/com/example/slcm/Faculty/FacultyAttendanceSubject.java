@@ -1,10 +1,6 @@
 package com.example.slcm.Faculty;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
 
@@ -24,11 +22,11 @@ import java.util.Objects;
 
 public class FacultyAttendanceSubject extends AppCompatActivity {
 
-
     private ListView subjectListView;
     private ArrayList<String> subjectList;
     private ArrayAdapter<String> adapter;
-    private int subjectIndex;
+    private Cursor cursor; // Declare cursor as a class-level variable
+    private int subjectIDIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,64 +40,73 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
         String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
 
-        subjectListView = findViewById(R.id.classSectionListView);
+        subjectListView = findViewById(R.id.subjectListView);
         subjectList = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this, R.layout.activity_faculty_marks_list_item, R.id.listItemButton, subjectList);
+        adapter = new ArrayAdapter<>(this, R.layout.activity_faculty_marks_list_item, R.id.listItemButton, subjectList);
         subjectListView.setAdapter(adapter);
-        retrieveSubjectsForFaculty(facultyId, selectedClass, selectedSection);
-        subjectListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int selectedSubject = subjectIndex;
-                Intent intent = new Intent(FacultyAttendanceSubject.this, FacultyAttendance.class);
-                intent.putExtra("SELECTED_CLASS", selectedClass);
-                intent.putExtra("SELECTED_SECTION", selectedSection);
-                intent.putExtra("SELECTED_SUBJECT", selectedSubject);
-                intent.putExtra("FACULTY_ID", facultyId);
-                intent.putExtra("ATT_SELECTED_DATE", select_date_for_attendance);
-                startActivity(intent);
-            }
-        });
-
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.faculty_menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        FacultyMenuHandler.handleMenuAction(item, this);
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-    private void retrieveSubjectsForFaculty(int facultyId, int selectedClass, String selectedSection) {
-        Log.d("ClassGet", "Retrieving subjects for faculty: " + facultyId+"class"+selectedClass+"section"+selectedSection);
+        Log.d("ClassGet", "Retrieving subjects for faculty: " + facultyId + "class" + selectedClass + "section" + selectedSection);
         DatabaseManager databaseManager = new DatabaseManager(this);
-        Cursor cursor = databaseManager.getSubjectsForFaculty(facultyId, selectedClass, selectedSection);
+        cursor = databaseManager.getSubjectsForFaculty(facultyId, selectedClass, selectedSection); // Initialize the cursor
         if (cursor != null) {
-            subjectIndex = cursor.getColumnIndex("SubjectName");
-            if (subjectIndex == -1) {
+            int subjectNameIndex = cursor.getColumnIndex("SubjectName");
+            subjectIDIndex = cursor.getColumnIndex("SubjectID"); // Update subjectIDIndex here
+            if (subjectNameIndex == -1 || subjectIDIndex == -1) {
                 Log.e("CursorError", "Column 'S.SubjectName' not found in cursor.");
                 Toast.makeText(this, "Subject not found", Toast.LENGTH_SHORT).show();
             } else {
                 if (cursor.moveToFirst()) {
                     do {
-                        String subject = cursor.getString(subjectIndex);
-                        Log.d("ClassGet", "Subject:"+subjectIndex+"name"+subject);
+                        String subject = cursor.getString(subjectNameIndex);
+                        int subjectId = cursor.getInt(subjectIDIndex);
+                        Log.d("ClassGet", "Subject:" + subjectIDIndex + "name" + subject + "id" + subjectId);
                         subjectList.add(subject);
                     } while (cursor.moveToNext());
                     adapter.notifyDataSetChanged();
                 } else {
                     Log.d("DebugTag", "Cursor is empty.");
                 }
-                cursor.close();
             }
         } else {
             Log.d("DebugTag", "Cursor is null.");
         }
+        subjectListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Retrieve the selected subject ID from the cursor
+                int selectedSubjectId = getSubjectIdFromCursor(position);
+
+                // Rest of your code remains the same
+                Intent intent = new Intent(FacultyAttendanceSubject.this, FacultyAttendance.class);
+                intent.putExtra("SELECTED_CLASS", selectedClass);
+                intent.putExtra("SELECTED_SECTION", selectedSection);
+                intent.putExtra("SELECTED_SUBJECT", selectedSubjectId);
+                intent.putExtra("FACULTY_ID", facultyId);
+                intent.putExtra("ATT_SELECTED_DATE", select_date_for_attendance);
+                startActivity(intent);
+            }
+
+            private int getSubjectIdFromCursor(int position) {
+                if (cursor != null && cursor.moveToPosition(position)) {
+                    int subjectIDIndex = cursor.getColumnIndex("SubjectID");
+                    if (subjectIDIndex != -1) {
+                        return cursor.getInt(subjectIDIndex);
+                    }
+                }
+                // Return a default value or handle the error as needed
+                return -1;
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.faculty_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        FacultyMenuHandler.handleMenuAction(item, this);
+        return super.onOptionsItemSelected(item);
     }
 }

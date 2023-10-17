@@ -1,23 +1,23 @@
 package com.example.slcm;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
-import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.Faculty.FacultyDashboard;
 import com.example.slcm.Student.StudentDashboard;
 
 public class SplashActivity extends AppCompatActivity {
     private DatabaseManager db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(fetchData()){
+                if (fetchData()) {
                     return;
                 }
                 Intent intent = new Intent(SplashActivity.this, StudentLogin.class);
@@ -45,6 +45,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 3000);
     }
+
     private boolean doesDatabaseExist() {
         SQLiteDatabase checkDB = null;
         try {
@@ -64,6 +65,7 @@ public class SplashActivity extends AppCompatActivity {
             return false;
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -71,13 +73,14 @@ public class SplashActivity extends AppCompatActivity {
             db.close();
         }
     }
-    boolean fetchData(){
+
+    boolean fetchData() {
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-        String data = sharedPreferences.getString("LOGIN_USER","");
-        String type = sharedPreferences.getString("LOGIN_TYPE","");
-        Log.d("LOGIN_USER", "fetchData: "+data);
-        Log.d("LOGIN_TYPE", "fetchData: "+type);
-        if(!data.isEmpty()) {
+        String data = sharedPreferences.getString("LOGIN_USER", "");
+        String type = sharedPreferences.getString("LOGIN_TYPE", "");
+        Log.d("LOGIN_USER", "fetchData: " + data);
+        Log.d("LOGIN_TYPE", "fetchData: " + type);
+        if (!data.isEmpty()) {
             if (type.equals("Student")) {
                 Intent intent = new Intent(SplashActivity.this, StudentDashboard.class);
                 startActivity(intent);

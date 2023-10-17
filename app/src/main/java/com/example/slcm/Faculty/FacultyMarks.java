@@ -13,11 +13,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
 import com.example.slcm.Student.Student;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -51,7 +51,7 @@ public class FacultyMarks extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveMarks(selectedSubject, selectedDate, studentID, selectedClass, selectedAssignment);
+                saveMarks(selectedSubject, selectedDate, selectedClass, selectedAssignment);
             }
         });
     }
@@ -101,7 +101,7 @@ public class FacultyMarks extends AppCompatActivity {
         }
     }
 
-    private void saveMarks(int selectedSubject, String selectedDate, int studentID, int selectedClass, String selectedAssignment) {
+    private void saveMarks(int selectedSubject, String selectedDate,  int selectedClass, String selectedAssignment) {
         DatabaseManager databaseManager = new DatabaseManager(this);
         boolean allMarksValid = true;
 
@@ -115,16 +115,24 @@ public class FacultyMarks extends AppCompatActivity {
                 float marks = Float.parseFloat(marksText);
 
                 if (isValidMarks(marks, selectedAssignment)) {
-                    boolean success = databaseManager.updateMarks(
-                            selectedSubject,
-                            selectedDate,
-                            studentID,
-                            selectedClass,
-                            selectedAssignment,
-                            marks
-                    );
-                    if (!success) {
-                        Toast.makeText(this, "Failed to submit marks!", Toast.LENGTH_SHORT).show();
+                    int studentId = databaseManager.getStudentIdForMarks(student.getName(), student.getRollNumber());
+
+                    if (studentId != -1) {
+                        boolean success = databaseManager.updateOrInsertMarks(
+                                selectedSubject,
+                                selectedDate,
+                                studentId,
+                                selectedClass,
+                                selectedAssignment,
+                                marks
+                        );
+
+                        if (!success) {
+                            Toast.makeText(this, "Failed to submit marks!", Toast.LENGTH_SHORT).show();
+                            allMarksValid = false;
+                        }
+                    } else {
+                        Toast.makeText(this, "Student not found in the database!", Toast.LENGTH_SHORT).show();
                         allMarksValid = false;
                     }
                 } else {
@@ -137,13 +145,14 @@ public class FacultyMarks extends AppCompatActivity {
         }
 
         if (allMarksValid) {
-            Toast.makeText(this, selectedAssignment+ " marks submitted successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, selectedAssignment + " marks submitted successfully!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(FacultyMarks.this, FacultyDashboard.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Please enter valid marks for all students.", Toast.LENGTH_SHORT).show();
         }
     }
+
     private boolean isValidMarks(float marks, String assignmentType) {
         if ("Midterm".equals(assignmentType)) {
             return marks >= 0 && marks <= 30;

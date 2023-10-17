@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
+
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/dark_green"
         android:text="@string/fac_submit"
-        app:cornerRadius="8dp"
-        android:backgroundTint="@color/dark_green"/>
+        app:cornerRadius="8dp" />
+
     <TextView
         android:id="@+id/Fac_Marks_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/students"
-        android:textSize="18sp"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
         android:layout_below="@id/submit"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="20dp"
+        android:text="@string/students"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <RelativeLayout
+        android:id="@+id/rel1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Fac_Marks_Title"
-        android:id="@+id/rel1"
-        android:layout_marginTop="5dp"
-        android:paddingHorizontal="40dp"
-        >
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="12dp">
 
         <TextView
             android:id="@+id/rollNoName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
             android:text="Roll Number"
-            android:textStyle="bold"
             android:textColor="@color/blue"
-            android:textSize="18sp"
-            />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/Name"
@@ -51,18 +53,19 @@
             android:layout_centerInParent="true"
             android:text="Name"
             android:textColor="@color/blue"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/marks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Marks"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/blue"
             android:layout_alignParentEnd="true"
-            />
+            android:layout_marginEnd="40dp"
+            android:text="Marks"
+            android:textColor="@color/blue"
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <ListView
@@ -70,6 +73,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rel1"
+        android:clickable="true"
+        android:divider="@null"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:padding="25dp" />
+        tools:listitem="@layout/activity_student_marks_list_item" />
+    />
 </RelativeLayout>

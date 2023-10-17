@@ -4,7 +4,6 @@ package com.example.slcm.Student;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,15 +75,27 @@ public class StudentAttendance extends AppCompatActivity {
     private void loadSubjectsForSelectedSemester() {
         String selectedSemester = dropdown.getSelectedItem().toString();
         int selectedValue = converter.romanToNumber(selectedSemester);
-        int regNo= Integer.parseInt(studentRegNo);
-        List<SubjectWithAttendance> subjectsList = databaseManager. getSubjectsAndAttendanceForStudent(regNo, selectedValue);
+        int regNo = Integer.parseInt(studentRegNo);
+        List<SubjectWithAttendance> subjectsList = databaseManager.getSubjectsAndAttendanceForStudent(regNo, selectedValue);
 
         myAdapter = new MyAdapter(subjectsList);
         listView.setAdapter(myAdapter);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.student_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        StudentMenuHandler.handleMenuAction(item, this);
+        return super.onOptionsItemSelected(item);
+    }
+
     private class MyAdapter extends BaseAdapter {
-        private List<SubjectWithAttendance> subjectsList;
+        private final List<SubjectWithAttendance> subjectsList;
 
         public MyAdapter(List<SubjectWithAttendance> subjectsList) {
             this.subjectsList = subjectsList;
@@ -128,18 +139,5 @@ public class StudentAttendance extends AppCompatActivity {
         }
 
 
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.student_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        StudentMenuHandler.handleMenuAction(item, this);
-        return super.onOptionsItemSelected(item);
     }
 }

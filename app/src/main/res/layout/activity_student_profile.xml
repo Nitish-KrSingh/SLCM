@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,26 +10,25 @@
         android:id="@+id/relative1"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@color/blue"
-        >
+        android:background="@color/blue">
+
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="150dp"
             android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-         android:layout_marginTop="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
             android:background="@mipmap/profile"
-            android:visibility="visible"
-            />
+            android:visibility="visible" />
 
 
         <TextView
             android:id="@+id/txtabc"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/imageView2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             android:text="Nitish Singh"
             android:textColor="@color/white"
             android:textSize="30dp" />
@@ -42,26 +39,25 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtabc"
             android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:textColor="@color/white"
             android:text="220970031"
-    />
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relative2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relative2"
         android:layout_below="@+id/relative1"
-       android:padding="20dp">
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/enrollNumber"
             android:layout_width="150dp"
             android:layout_height="42dp"
-            android:text="Enrollment Number"/>
+            android:text="Enrollment Number" />
 
         <TextView
             android:id="@+id/enrollNumber1"
@@ -76,52 +72,50 @@
             android:id="@+id/applicationNumber"
             android:layout_width="150dp"
             android:layout_height="42dp"
-            android:text="Application Number"
-            android:layout_below="@id/enrollNumber"/>
+            android:layout_below="@id/enrollNumber"
+            android:text="Application Number" />
 
         <TextView
             android:id="@+id/applicationNumber1"
             android:layout_width="150dp"
-            android:layout_marginLeft="60dp"
             android:layout_height="42dp"
-            android:layout_toRightOf="@id/applicationNumber"
             android:layout_below="@id/enrollNumber1"
-            android:text=":                     122289191"/>
-
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@id/applicationNumber"
+            android:text=":                     122289191" />
 
 
         <TextView
             android:id="@+id/section"
             android:layout_width="150dp"
             android:layout_height="42dp"
-            android:text="Section"
-            android:layout_below="@id/applicationNumber"/>
+            android:layout_below="@id/applicationNumber"
+            android:text="Section" />
 
         <TextView
             android:id="@+id/section1"
             android:layout_width="150dp"
-            android:layout_marginLeft="60dp"
             android:layout_height="42dp"
-            android:layout_toRightOf="@id/section"
             android:layout_below="@id/applicationNumber1"
-            android:text=":                     B"/>
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@id/section"
+            android:text=":                     B" />
 
         <TextView
             android:id="@+id/academicYear"
             android:layout_width="150dp"
             android:layout_height="42dp"
-            android:text="Academic Year"
-            android:layout_below="@id/section"/>
+            android:layout_below="@id/section"
+            android:text="Academic Year" />
 
         <TextView
             android:id="@+id/academicYear1"
             android:layout_width="150dp"
-            android:layout_marginLeft="60dp"
             android:layout_height="42dp"
-            android:layout_toRightOf="@id/academicYear"
             android:layout_below="@id/section1"
-            android:text=":                     2022-2024"/>
-
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@id/academicYear"
+            android:text=":                     2022-2024" />
 
 
         <TextView
@@ -129,17 +123,16 @@
             android:layout_width="150dp"
             android:layout_height="42dp"
             android:layout_below="@id/academicYear"
-            android:text="Semester"/>
+            android:text="Semester" />
 
         <TextView
             android:id="@+id/semester1"
             android:layout_width="150dp"
-            android:layout_marginLeft="60dp"
             android:layout_height="42dp"
-            android:layout_toRightOf="@id/semester"
             android:layout_below="@id/academicYear1"
-            android:text=":                     |||"/>
-
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@id/semester"
+            android:text=":                     |||" />
 
 
         <TextView
@@ -147,23 +140,23 @@
             android:layout_width="150dp"
             android:layout_height="42dp"
             android:layout_below="@id/semester"
-            android:text="Program/Branch"/>
+            android:text="Program/Branch" />
 
         <TextView
             android:id="@+id/branch1"
             android:layout_width="150dp"
-            android:layout_marginLeft="60dp"
             android:layout_height="42dp"
-            android:layout_toRightOf="@id/branch"
             android:layout_below="@id/semester1"
-            android:text=":                     MCA"/>
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@id/branch"
+            android:text=":                     MCA" />
 
         <TextView
             android:id="@+id/dob"
             android:layout_width="150dp"
             android:layout_height="42dp"
             android:layout_below="@id/branch"
-            android:text="DOB"/>
+            android:text="DOB" />
 
         <TextView
             android:id="@+id/dob1"
@@ -172,14 +165,14 @@
             android:layout_below="@id/branch1"
             android:layout_marginLeft="60dp"
             android:layout_toRightOf="@id/dob"
-            android:text=":                     29/10/2001"/>
+            android:text=":                     29/10/2001" />
 
         <TextView
             android:id="@+id/gender"
             android:layout_width="150dp"
             android:layout_height="42dp"
             android:layout_below="@id/dob"
-            android:text="Gender"/>
+            android:text="Gender" />
 
         <TextView
             android:id="@+id/gender1"
@@ -188,7 +181,7 @@
             android:layout_below="@id/dob1"
             android:layout_marginLeft="60dp"
             android:layout_toRightOf="@id/gender"
-            android:text=":                     Male"/>
+            android:text=":                     Male" />
 
 
         <TextView
@@ -196,7 +189,7 @@
             android:layout_width="150dp"
             android:layout_height="42dp"
             android:layout_below="@id/gender"
-            android:text="Phone Number"/>
+            android:text="Phone Number" />
 
         <TextView
             android:id="@+id/phone1"
@@ -205,7 +198,7 @@
             android:layout_below="@id/gender1"
             android:layout_marginLeft="60dp"
             android:layout_toRightOf="@id/phone"
-            android:text=":                     9188181911"/>
+            android:text=":                     9188181911" />
 
 
         <TextView
@@ -213,7 +206,7 @@
             android:layout_width="150dp"
             android:layout_height="42dp"
             android:layout_below="@id/phone"
-            android:text="Email Id"/>
+            android:text="Email Id" />
 
         <TextView
             android:id="@+id/email1"
@@ -222,7 +215,7 @@
             android:layout_below="@id/phone1"
             android:layout_marginLeft="60dp"
             android:layout_toRightOf="@id/email"
-            android:text=":                   abc@gmail.com"/>
+            android:text=":                   abc@gmail.com" />
 
 
         <TextView
@@ -230,7 +223,7 @@
             android:layout_width="150dp"
             android:layout_height="42dp"
             android:layout_below="@id/email"
-            android:text="Blood Group"/>
+            android:text="Blood Group" />
 
         <TextView
             android:id="@+id/bloodgroup1"
@@ -239,8 +232,7 @@
             android:layout_below="@id/email1"
             android:layout_marginLeft="60dp"
             android:layout_toRightOf="@id/bloodgroup"
-            android:text=":                     B+"/>
-
+            android:text=":                     B+" />
 
 
     </RelativeLayout>

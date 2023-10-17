@@ -22,12 +22,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "slcm_database";
     private static final int DATABASE_VERSION = 1;
+    SQLiteDatabase db = this.getWritableDatabase();
 
     public DatabaseManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
-    SQLiteDatabase db = this.getWritableDatabase();
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -38,11 +37,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "Password TEXT," +
                 "UserType TEXT," +
                 "Name TEXT," +
+                "Designation TEXT," +
+                "AcademicRole TEXT," +
+                "AreasOfInterest TEXT," +
                 "DOB DATE," +
                 "Age INTEGER," +
-                "Department TEXT," +
-                "ClassID INTEGER," +
-                "FOREIGN KEY (ClassID) REFERENCES Class(ClassID));");
+                "Department TEXT);");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS StudentProfile (" +
                 "StudentID INTEGER PRIMARY KEY," +
@@ -132,70 +132,258 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     private void insertDummyData(SQLiteDatabase db) {
         ContentValues facultyValues1 = new ContentValues();
-        facultyValues1.put("Username", "XYZ");
+        facultyValues1.put("Username", "MIT1");
         facultyValues1.put("Password", "12345");
         facultyValues1.put("UserType", "Faculty");
-        facultyValues1.put("Name", "Faculty One");
-        facultyValues1.put("DOB", "1990-01-01");
-        facultyValues1.put("Age", 30);
-        facultyValues1.put("Department", "Computer Science");
-        facultyValues1.put("ClassID", 1);
+        facultyValues1.put("Name", "Mr. S S Shameem");
+        facultyValues1.put("Designation", "Assistant Professor");
+        facultyValues1.put("DOB", "1985-01-01");
+        facultyValues1.put("Age", 40);
+        facultyValues1.put("Department", "Department of Data Science and Computer Applications");
+        facultyValues1.put("AcademicRole", "Coordinator for department-level library activities");
+        facultyValues1.put("AreasOfInterest", "Video Compression and Parallel Programming, Programming Languages (C, C++, Java), ERP, Cloud Computing, Software Engineering");
         long facultyId1 = db.insert("FacultyProfile", null, facultyValues1);
 
         ContentValues facultyValues2 = new ContentValues();
-        facultyValues2.put("Username", "PQR");
+        facultyValues2.put("Username", "MIT2");
         facultyValues2.put("Password", "12345");
         facultyValues2.put("UserType", "Faculty");
-        facultyValues2.put("Name", "Faculty Two");
+        facultyValues2.put("Name", "Mr. Nirmal Kumar Nigam");
+        facultyValues2.put("Designation", "Assistant Professor-Senior Scale");
         facultyValues2.put("DOB", "1985-05-15");
-        facultyValues2.put("Age", 36);
-        facultyValues2.put("Department", "Computer Science");
-        facultyValues2.put("ClassID", 2);
+        facultyValues2.put("Age", 49);
+        facultyValues2.put("Department", "Department of Data Science and Computer Applications");
+        facultyValues2.put("AcademicRole", "ISO Co-coordinator");
+        facultyValues2.put("AreasOfInterest", "Computer Networks, Information and Network Security, Data Mining");
         long facultyId2 = db.insert("FacultyProfile", null, facultyValues2);
 
+        ContentValues facultyValues3 = new ContentValues();
+        facultyValues3.put("Username", "MIT3");
+        facultyValues3.put("Password", "12345");
+        facultyValues3.put("UserType", "Faculty");
+        facultyValues3.put("Name", "Dr. Dasharathraj K Shetty");
+        facultyValues3.put("Designation", "Associate Professor");
+        facultyValues3.put("DOB", "1985-05-15");
+        facultyValues3.put("Age", 45);
+        facultyValues3.put("Department", "Department of Data Science and Computer Applications");
+        facultyValues3.put("AcademicRole", "Digital Coordinator, MIT");
+        facultyValues3.put("AreasOfInterest", "AI/ML, Image Processing, Computer Vision, E-Business/E-Commerce, Enterprise Application, Software Life Cycle Management, Software Project Management and Strategic Management");
+        long facultyId3 = db.insert("FacultyProfile", null, facultyValues3);
+
+        ContentValues facultyValues4 = new ContentValues();
+        facultyValues4.put("Username", "MIT4");
+        facultyValues4.put("Password", "12345");
+        facultyValues4.put("UserType", "Faculty");
+        facultyValues4.put("Name", "Dr. Savitha G");
+        facultyValues4.put("Designation", "Assistant Professor");
+        facultyValues4.put("DOB", "1985-05-15");
+        facultyValues4.put("Age", 40);
+        facultyValues4.put("Department", "Department of Data Science and Computer Applications");
+        facultyValues4.put("AcademicRole", "Teaching Data Structures & Algorithms to BTech DSE");
+        facultyValues4.put("AreasOfInterest", "Image Processing, Machine Learning, Deep learning, Cloud computing");
+        long facultyId4 = db.insert("FacultyProfile", null, facultyValues4);
+
+        ContentValues facultyValues5 = new ContentValues();
+        facultyValues5.put("Username", "MIT5");
+        facultyValues5.put("Password", "12345");
+        facultyValues5.put("UserType", "Faculty");
+        facultyValues5.put("Name", "Mr. Vinayak M");
+        facultyValues5.put("Designation", "Assistant Professor-Senior Scale");
+        facultyValues5.put("DOB", "1985-05-15");
+        facultyValues5.put("Age", 40);
+        facultyValues5.put("Department", "Department of Data Science and Computer Applications");
+        facultyValues5.put("AcademicRole", "Assistant Professor - Senior Scale in the Department of Information and Communication Technology");
+        facultyValues5.put("AreasOfInterest", "Database Management Systems, Image Processing and Network Security");
+        long facultyId5 = db.insert("FacultyProfile", null, facultyValues5);
+
         ContentValues studentValues1 = new ContentValues();
-        studentValues1.put("RegistrationNumber", 220970054);
+        studentValues1.put("RegistrationNumber", 220970001);
         studentValues1.put("Password", "12345");
         studentValues1.put("UserType", "Student");
-        studentValues1.put("Name", "Nitish");
-        studentValues1.put("DOB", "2000-01-01");
-        studentValues1.put("Age", 20);
+        studentValues1.put("Name", "Nibeel");
+        studentValues1.put("DOB", "2001-01-01");
+        studentValues1.put("Age", 23);
         studentValues1.put("Semester", 3);
-        studentValues1.put("Department", "Computer Science");
+        studentValues1.put("Department", "Department of Data Science and Computer Applications");
         studentValues1.put("ClassID", 1);
         long studentId1 = db.insert("StudentProfile", null, studentValues1);
 
         ContentValues studentValues2 = new ContentValues();
-        studentValues2.put("RegistrationNumber", 220970055);
+        studentValues2.put("RegistrationNumber", 220970002);
         studentValues2.put("Password", "12345");
         studentValues2.put("UserType", "Student");
-        studentValues2.put("Name", "Misha");
-        studentValues2.put("DOB", "1999-03-10");
-        studentValues2.put("Age", 22);
+        studentValues2.put("Name", "Noel");
+        studentValues2.put("DOB", "2001-01-01");
+        studentValues2.put("Age", 23);
         studentValues2.put("Semester", 3);
-        studentValues2.put("Department", "Mathematics");
+        studentValues2.put("Department", "Department of Data Science and Computer Applications");
         studentValues2.put("ClassID", 1);
         long studentId2 = db.insert("StudentProfile", null, studentValues2);
 
+        ContentValues studentValues4 = new ContentValues();
+        studentValues4.put("RegistrationNumber", 220970003);
+        studentValues4.put("Password", "12345");
+        studentValues4.put("UserType", "Student");
+        studentValues4.put("Name", "Ritik");
+        studentValues4.put("DOB", "2001-01-01");
+        studentValues4.put("Age", 23);
+        studentValues4.put("Semester", 3);
+        studentValues4.put("Department", "Department of DataScience and Computer Applications");
+        studentValues4.put("ClassID", 1);
+        long studentId4 = db.insert("StudentProfile", null, studentValues4);
+
+        ContentValues studentValues9 = new ContentValues();
+        studentValues9.put("RegistrationNumber", 220970004);
+        studentValues9.put("Password", "12345");
+        studentValues9.put("UserType", "Student");
+        studentValues9.put("Name", "Misha");
+        studentValues9.put("DOB", "2001-01-01");
+        studentValues9.put("Age", 23);
+        studentValues9.put("Semester", 3);
+        studentValues9.put("Department", "Department of Data Science and Computer Applications");
+        studentValues9.put("ClassID", 1);
+        long studentId9 = db.insert("StudentProfile", null, studentValues9);
+
+        ContentValues studentValues10 = new ContentValues();
+        studentValues10.put("RegistrationNumber", 220970005);
+        studentValues10.put("Password", "12345");
+        studentValues10.put("UserType", "Student");
+        studentValues10.put("Name", "Nitish");
+        studentValues10.put("DOB", "2001-01-01");
+        studentValues10.put("Age", 23);
+        studentValues10.put("Semester", 3);
+        studentValues10.put("Department", "Department of Data Science and Computer Applications");
+        studentValues10.put("ClassID", 1);
+        long studentId10 = db.insert("StudentProfile", null, studentValues10);
+
+        ContentValues studentValues11 = new ContentValues();
+        studentValues11.put("RegistrationNumber", 220970006);
+        studentValues11.put("Password", "12345");
+        studentValues11.put("UserType", "Student");
+        studentValues11.put("Name", "Akshatha");
+        studentValues11.put("DOB", "2001-01-01");
+        studentValues11.put("Age", 23);
+        studentValues11.put("Semester", 3);
+        studentValues11.put("Department", "Department of Data Science and Computer Applications");
+        studentValues11.put("ClassID", 2);
+        long studentId11 = db.insert("StudentProfile", null, studentValues11);
+
+        ContentValues studentValues12 = new ContentValues();
+        studentValues12.put("RegistrationNumber", 220970007);
+        studentValues12.put("Password", "12345");
+        studentValues12.put("UserType", "Student");
+        studentValues12.put("Name", "Shashikanta");
+        studentValues12.put("DOB", "2001-01-01");
+        studentValues12.put("Age", 23);
+        studentValues12.put("Semester", 3);
+        studentValues12.put("Department", "Department of Data Science and Computer Applications");
+        studentValues12.put("ClassID", 2);
+        long studentId12 = db.insert("StudentProfile", null, studentValues12);
+
+        ContentValues studentValues13 = new ContentValues();
+        studentValues13.put("RegistrationNumber", 220970008);
+        studentValues13.put("Password", "12345");
+        studentValues13.put("UserType", "Student");
+        studentValues13.put("Name", "Tanushree");
+        studentValues13.put("DOB", "2001-01-01");
+        studentValues13.put("Age", 23);
+        studentValues13.put("Semester", 3);
+        studentValues13.put("Department", "Department of Data Science and Computer Applications");
+        studentValues13.put("ClassID", 2);
+        long studentId13 = db.insert("StudentProfile", null, studentValues13);
+
+        ContentValues studentValues14 = new ContentValues();
+        studentValues14.put("RegistrationNumber", 220970009);
+        studentValues14.put("Password", "12345");
+        studentValues14.put("UserType", "Student");
+        studentValues14.put("Name", "Shreya");
+        studentValues14.put("DOB", "2001-01-01");
+        studentValues14.put("Age", 23);
+        studentValues14.put("Semester", 3);
+        studentValues14.put("Department", "Department of Data Science and Computer Applications");
+        studentValues14.put("ClassID", 2);
+        long studentId14 = db.insert("StudentProfile", null, studentValues14);
+
+        ContentValues studentValues15 = new ContentValues();
+        studentValues15.put("RegistrationNumber", 220970010);
+        studentValues15.put("Password", "12345");
+        studentValues15.put("UserType", "Student");
+        studentValues15.put("Name", "Varshith");
+        studentValues15.put("DOB", "2001-01-01");
+        studentValues15.put("Age", 23);
+        studentValues15.put("Semester", 3);
+        studentValues15.put("Department", "Department of Data Science and Computer Applications");
+        studentValues15.put("ClassID", 2);
+        long studentId15 = db.insert("StudentProfile", null, studentValues15);
+
+
         ContentValues subjectValues1 = new ContentValues();
-        subjectValues1.put("SubjectName", "OOPS");
+        subjectValues1.put("SubjectName", "Machine Learning");
         db.insert("Subjects", null, subjectValues1);
 
         ContentValues subjectValues2 = new ContentValues();
-        subjectValues2.put("SubjectName", "Java");
+        subjectValues2.put("SubjectName", "Cloud Computing");
         db.insert("Subjects", null, subjectValues2);
 
-        ContentValues classAssignmentValues1 = new ContentValues();
-        classAssignmentValues1.put("FacultyID", facultyId1);
-        classAssignmentValues1.put("ClassID", 1);
-        classAssignmentValues1.put("SubjectID", 1);
-        db.insert("ClassAssignment", null, classAssignmentValues1);
+        ContentValues subjectValues3 = new ContentValues();
+        subjectValues3.put("SubjectName", "Big Data");
+        db.insert("Subjects", null, subjectValues3);
 
-        ContentValues classAssignmentValues2 = new ContentValues();
-        classAssignmentValues2.put("FacultyID", facultyId2);
-        classAssignmentValues2.put("ClassID", 2);
-        classAssignmentValues2.put("SubjectID", 2);
-        db.insert("ClassAssignment", null, classAssignmentValues2);
+        ContentValues subjectValues4 = new ContentValues();
+        subjectValues4.put("SubjectName", "Computer Networks");
+        db.insert("Subjects", null, subjectValues4);
+
+        ContentValues subjectValues5 = new ContentValues();
+        subjectValues5.put("SubjectName", "Human Resource Management");
+        db.insert("Subjects", null, subjectValues5);
+
+        ContentValues classAssignmentValues3 = new ContentValues();
+        classAssignmentValues3.put("FacultyID", facultyId1);
+        classAssignmentValues3.put("ClassID", 2);
+        classAssignmentValues3.put("SubjectID", 1);
+        db.insert("ClassAssignment", null, classAssignmentValues3);
+
+        ContentValues classAssignmentValues4 = new ContentValues();
+        classAssignmentValues4.put("FacultyID", facultyId2);
+        classAssignmentValues4.put("ClassID", 1);
+        classAssignmentValues4.put("SubjectID", 1);
+        db.insert("ClassAssignment", null, classAssignmentValues4);
+
+        ContentValues classAssignmentValues7 = new ContentValues();
+        classAssignmentValues7.put("FacultyID", facultyId2);
+        classAssignmentValues7.put("ClassID", 2);
+        classAssignmentValues7.put("SubjectID", 4);
+        db.insert("ClassAssignment", null, classAssignmentValues7);
+
+        ContentValues classAssignmentValues8 = new ContentValues();
+        classAssignmentValues8.put("FacultyID", facultyId3);
+        classAssignmentValues8.put("ClassID", 1);
+        classAssignmentValues8.put("SubjectID", 5);
+        db.insert("ClassAssignment", null, classAssignmentValues8);
+
+        ContentValues classAssignmentValues9 = new ContentValues();
+        classAssignmentValues9.put("FacultyID", facultyId3);
+        classAssignmentValues9.put("ClassID", 2);
+        classAssignmentValues9.put("SubjectID", 2);
+        db.insert("ClassAssignment", null, classAssignmentValues9);
+
+        ContentValues classAssignmentValues10 = new ContentValues();
+        classAssignmentValues10.put("FacultyID", facultyId4);
+        classAssignmentValues10.put("ClassID", 1);
+        classAssignmentValues10.put("SubjectID", 2);
+        db.insert("ClassAssignment", null, classAssignmentValues10);
+
+        ContentValues classAssignmentValues11 = new ContentValues();
+        classAssignmentValues11.put("FacultyID", facultyId5);
+        classAssignmentValues11.put("ClassID", 1);
+        classAssignmentValues11.put("SubjectID", 4);
+        db.insert("ClassAssignment", null, classAssignmentValues11);
+
+        ContentValues classAssignmentValues12 = new ContentValues();
+        classAssignmentValues12.put("FacultyID", facultyId3);
+        classAssignmentValues12.put("ClassID", 2);
+        classAssignmentValues12.put("SubjectID", 5);
+        db.insert("ClassAssignment", null, classAssignmentValues12);
 
         ContentValues classValues1 = new ContentValues();
         classValues1.put("ClassName", "MCA");
@@ -209,76 +397,71 @@ public class DatabaseManager extends SQLiteOpenHelper {
         classValues2.put("Semester", 3);
         db.insert("Class", null, classValues2);
 
-
-        ContentValues marksValues1 = new ContentValues();
-        marksValues1.put("Date", "2023-10-14");
-        marksValues1.put("ClassID", 1);
-        marksValues1.put("StudentID", studentId1);
-        marksValues1.put("SubjectID", 1);
-        marksValues1.put("Assignment1", 3);
-        marksValues1.put("Assignment2", 4);
-        marksValues1.put("TotalMarks", 7);
-        db.insert("Marks", null, marksValues1);
-
-        ContentValues marksValues2 = new ContentValues();
-        marksValues2.put("Date", "2023-10-13");
-        marksValues2.put("ClassID", 2);
-        marksValues2.put("StudentID", studentId2);
-        marksValues2.put("SubjectID", 2);
-        marksValues2.put("Assignment1", 5);
-        marksValues2.put("Assignment2", 5);
-        marksValues2.put("Assignment3", 4.5);
-        marksValues2.put("TotalMarks", 14.5);
-        db.insert("Marks", null, marksValues2);
-
         ContentValues announcementValues1 = new ContentValues();
-        announcementValues1.put("Title", "Important Announcement 1");
+        announcementValues1.put("Title", "Announcement 1");
         announcementValues1.put("Message", "This is an important announcement for all students.");
-        announcementValues1.put("Date", "2023-01-01");
+        announcementValues1.put("Date", "2023-09-18");
         announcementValues1.put("FacultyID", 1);
         db.insert("Announcements", null, announcementValues1);
 
         ContentValues announcementValues2 = new ContentValues();
-        announcementValues2.put("Title", "Important Announcement 2");
+        announcementValues2.put("Title", "Announcement 2");
         announcementValues2.put("Message", "Another important announcement for students.");
-        announcementValues2.put("Date", "2023-01-02");
+        announcementValues2.put("Date", "2023-10-10");
         announcementValues2.put("FacultyID", 2);
         db.insert("Announcements", null, announcementValues2);
 
         ContentValues feesValues1 = new ContentValues();
-        feesValues1.put("DatePaid", "2023-01-01");
-        feesValues1.put("Amount", 500.0);
-        feesValues1.put("Purpose", "Course");
-        feesValues1.put("StudentID", studentId1);
+        feesValues1.put("DatePaid", "2023-07-01");
+        feesValues1.put("Amount", 186000.0);
+        feesValues1.put("Purpose", "Course ");
+        feesValues1.put("StudentID", studentId9);
         db.insert("Fees", null, feesValues1);
 
         ContentValues feesValues2 = new ContentValues();
-        feesValues2.put("DatePaid", "2023-01-02");
-        feesValues2.put("Amount", 600.0);
-        feesValues2.put("Purpose", "Exam");
-        feesValues2.put("StudentID", studentId2);
+        feesValues2.put("DatePaid", "2023-07-02");
+        feesValues2.put("Amount", 86000.0);
+        feesValues2.put("Purpose", "Hostel ");
+        feesValues2.put("StudentID", studentId9);
         db.insert("Fees", null, feesValues2);
+
+        ContentValues feesValues4 = new ContentValues();
+        feesValues4.put("DatePaid", "2023-06-01");
+        feesValues4.put("Amount", 186000.0);
+        feesValues4.put("Purpose", "Course");
+        feesValues4.put("StudentID", studentId11);
+        db.insert("Fees", null, feesValues4);
+        ContentValues feesValues3 = new ContentValues();
+        feesValues3.put("DatePaid", "2023-06-02");
+        feesValues3.put("Amount", 86000.0);
+        feesValues3.put("Purpose", "Hostel");
+        feesValues3.put("StudentID", studentId11);
+        db.insert("Fees", null, feesValues3);
+        ContentValues feesValues6 = new ContentValues();
+        feesValues6.put("DatePaid", "2023-06-01");
+        feesValues6.put("Amount", 186000.0);
+        feesValues6.put("Purpose", "Course");
+        feesValues6.put("StudentID", studentId10);
+        db.insert("Fees", null, feesValues6);
+        ContentValues feesValues5 = new ContentValues();
+        feesValues5.put("DatePaid", "2023-06-02");
+        feesValues5.put("Amount", 86000.0);
+        feesValues5.put("Purpose", "Hostel");
+        feesValues5.put("StudentID", studentId10);
+        db.insert("Fees", null, feesValues5);
     }
 
     /*LOGIN FUNCTIONS*/
     public Boolean checkEmailPassword(String student_reg_number, String student_password) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from StudentProfile where RegistrationNumber = ? and Password = ?", new String[]{student_reg_number, student_password});
-        if (cursor.getCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return cursor.getCount() > 0;
     }
 
     public Boolean checkEmailPassword_for_fac(String fac_user_name, String fac_password) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from FacultyProfile where Username = ? and Password = ?", new String[]{fac_user_name, fac_password});
-        if (cursor.getCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return cursor.getCount() > 0;
     }
 
     /*ID FUNCTIONS*/
@@ -317,6 +500,23 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
         return -1;
     }
+    public int getStudentIdForMarks(String studentName, String studentRollNumber) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT StudentID FROM StudentProfile WHERE Name = ? AND RegistrationNumber = ?", new String[]{studentName, studentRollNumber});
+
+        if (cursor.moveToFirst()) {
+            int studentIdIndex = cursor.getColumnIndex("StudentID");
+            if (studentIdIndex != -1) {
+                int studentId = cursor.getInt(studentIdIndex);
+                cursor.close();
+                return studentId;
+            }
+        } else {
+            cursor.close();
+            return -1;
+        }
+        return -1;
+    }
 
     /*PASSWORD FUNCTIONS*/
     public Boolean updateFacPassword(String fac_username, String fac_new_pass) {
@@ -336,7 +536,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
             db.close();
         }
     }
-    public Boolean updateStudentPassword(String StudentRegno,String stud_password) {
+
+    public Boolean updateStudentPassword(String StudentRegno, String stud_password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Password", stud_password);
@@ -357,7 +558,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     /*CLASS FUNCTIONS*/
     public Cursor getClassSectionsForFaculty(int facultyId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sqlQuery = "SELECT Class.ClassID, Class.ClassName, Class.Section " +
+        String sqlQuery = "SELECT DISTINCT Class.ClassID, Class.ClassName, Class.Section " +
                 "FROM ClassAssignment " +
                 "INNER JOIN Class ON ClassAssignment.ClassID = Class.ClassID " +
                 "WHERE FacultyID = ?";
@@ -368,14 +569,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
     /*SUBJECT FUNCTIONS*/
     public Cursor getSubjectsForFaculty(int facultyId, int classId, String section) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sqlQuery = "SELECT S.SubjectID, S.SubjectName AS SubjectName " +
+        String sqlQuery = "SELECT DISTINCT S.SubjectID AS SubjectID, S.SubjectName AS SubjectName " +
                 "FROM ClassAssignment CA " +
                 "INNER JOIN Subjects S ON CA.SubjectID = S.SubjectID " +
-                "INNER JOIN Class C ON CA.ClassID = C.ClassID " +
-                "WHERE CA.FacultyID = ? AND C.ClassID = ? AND C.Section = ?";
+                "WHERE CA.FacultyID = ? AND CA.ClassID = ?";
 
-        String[] selectionArgs = {String.valueOf(facultyId), String.valueOf(classId), section};
-        return db.rawQuery(sqlQuery, selectionArgs);
+        Log.d("ClassGet", "id" + facultyId + "classid" + classId);
+        String[] selectionArgs = {String.valueOf(facultyId), String.valueOf(classId)};
+        Cursor cursor = db.rawQuery(sqlQuery, selectionArgs);
+
+        int numberOfItems = 0;
+        if (cursor != null) {
+            numberOfItems = cursor.getCount();
+        }
+        Log.d("CursorItemCount", "Number of items in cursor: " + numberOfItems);
+        return cursor; // Return the cursor without closing it here
     }
 
     /*MARKS FUNCTIONS*/
@@ -383,8 +591,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor classCursor = db.rawQuery(
-                "SELECT ClassID FROM Class WHERE ClassID = ? AND Section = ?",
-                new String[]{String.valueOf(selectedClass), selectedSection}
+                "SELECT ClassID FROM Class WHERE ClassID = ?",
+                new String[]{String.valueOf(selectedClass)}
         );
         int classId = -1;
         if (classCursor != null && classCursor.moveToFirst()) {
@@ -394,7 +602,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 classCursor.close();
             }
         } else {
-            Log.e("DatabaseError", "Class and section combination not found.");
+            Log.e("DatabaseError", "Class not found.");
             return null;
         }
 
@@ -440,15 +648,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         cursor.close();
         return marks;
     }
-
-    public boolean updateMarks(int subjectId, String date, int studentID, int classId, String assignmentType, float marks) {
+    public boolean updateOrInsertMarks(int subjectId, String date, int studentID, int classId, String assignmentType, float marks) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("SubjectID", subjectId);
         values.put("Date", date);
-        values.put("ClassID", classId);
-        values.put("StudentID", studentID);
 
         switch (assignmentType) {
             case "Assignment1":
@@ -472,31 +676,84 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 return false;
         }
 
-        String whereClause = "StudentID = ? AND SubjectID = ? AND ClassID = ?";
-        String[] whereArgs = {String.valueOf(studentID), String.valueOf(subjectId), String.valueOf(classId)};
-        Cursor cursor = db.query("Marks", null, whereClause, whereArgs, null, null, null);
-        Log.d("UpdateMarks", "StudentID: " + studentID+"SUbject"+subjectId+"Class"+classId);
-        if (cursor.moveToFirst()) {
-            int rowsUpdated = db.update("Marks", values, whereClause, whereArgs);
-            db.close();
-            if (rowsUpdated > 0) {
-                Log.d("UpdateMarks", "Marks updated successfully for StudentID: " + studentID);
-            } else {
-                Log.d("UpdateMarks", "Failed to update marks for StudentID: " + studentID);
-            }
-            return rowsUpdated > 0;
-        } else {
+        String whereClause = "SubjectID = ? AND ClassID = ? AND StudentID = ?";
+        String[] whereArgs = {String.valueOf(subjectId), String.valueOf(classId), String.valueOf(studentID)};
+        Log.d("UpdateMarks", "Sid" + subjectId+classId+studentID);
+        int rowsUpdated = db.update("Marks", values, whereClause, whereArgs);
 
-            long result = db.insert("Marks", null, values);
+        if (rowsUpdated > 0) {
+            Log.d("UpdateMarks", "Marks and date updated successfully for StudentID: " + studentID + ", ClassID: " + classId + ", SubjectID: " + subjectId);
+
+            // Calculate total marks and update in the database
+            float totalMarks = calculateTotalMarks(studentID, classId, subjectId, db);
+            updateTotalMarks(studentID, classId, subjectId, totalMarks, db);
+
             db.close();
-            if (result != -1) {
-                Log.d("UpdateMarks", "Marks inserted successfully for StudentID: " + studentID);
+
+            return true;
+        } else {
+            // If no records were updated, it means there was no matching record, so insert a new one.
+            values.put("SubjectID", subjectId);
+            values.put("ClassID", classId);
+            values.put("StudentID", studentID);
+            long newRowId = db.insert("Marks", null, values);
+            float totalMarks = calculateTotalMarks(studentID, classId, subjectId, db);
+            updateTotalMarks(studentID, classId, subjectId, totalMarks, db);
+            db.close();
+
+            if (newRowId != -1) {
+                Log.d("UpdateMarks", "New record inserted successfully for StudentID: " + studentID + ", ClassID: " + classId + ", SubjectID: " + subjectId);
+                return true;
             } else {
-                Log.d("UpdateMarks", "Failed to insert marks for StudentID: " + studentID);
+                Log.e("UpdateMarks", "Failed to insert a new record for StudentID: " + studentID + ", ClassID: " + classId + ", SubjectID: " + subjectId);
+                return false;
             }
-            return result != -1;
         }
     }
+
+
+    // Method to calculate total marks for a specific student within a class and subject
+    private float calculateTotalMarks(int studentID, int classId, int subjectId, SQLiteDatabase db) {
+        float totalMarks = 0.0f;
+
+        // Retrieve Assignment1, Assignment2, Assignment3, Assignment4, and Midterm marks from the database for the student
+        String[] columns = {"Assignment1", "Assignment2", "Assignment3", "Assignment4", "Midterm"};
+        String whereClause = "StudentID = ? AND ClassID = ? AND SubjectID = ?";
+        String[] whereArgs = {String.valueOf(studentID), String.valueOf(classId), String.valueOf(subjectId)};
+
+        Cursor cursor = db.query("Marks", columns, whereClause, whereArgs, null, null, null);
+        int assignment1Index = cursor.getColumnIndex("Assignment1");
+        int assignment2Index = cursor.getColumnIndex("Assignment2");
+        int assignment3Index = cursor.getColumnIndex("Assignment3");
+        int assignment4Index = cursor.getColumnIndex("Assignment4");
+       int midtermIndex = cursor.getColumnIndex("Midterm");
+        if (cursor.moveToFirst()) {
+            float assignment1 = cursor.getFloat(assignment1Index);
+            float assignment2 = cursor.getFloat(assignment2Index);
+            float assignment3 = cursor.getFloat(assignment3Index);
+            float assignment4 = cursor.getFloat(assignment4Index);
+            float midterm = cursor.getFloat(midtermIndex);
+
+            // Calculate total marks based on your criteria
+            totalMarks = assignment1 + assignment2 + assignment3 + assignment4 + midterm;
+        }
+
+        cursor.close();
+        return totalMarks;
+    }
+
+    // Method to update total marks for a specific student within a class and subject
+    private void updateTotalMarks(int studentID, int classId, int subjectId, float totalMarks, SQLiteDatabase db) {
+        ContentValues totalMarksValues = new ContentValues();
+        totalMarksValues.put("TotalMarks", totalMarks);
+
+        String totalMarksWhereClause = "StudentID = ? AND ClassID = ? AND SubjectID = ?";
+        String[] totalMarksWhereArgs = {String.valueOf(studentID), String.valueOf(classId), String.valueOf(subjectId)};
+
+        db.update("Marks", totalMarksValues, totalMarksWhereClause, totalMarksWhereArgs);
+    }
+
+
 
     public List<SubjectWithMarks> getSubjectsAndMarksForStudent(int studentId, int semester) {
         List<SubjectWithMarks> subjectsList = new ArrayList<>();
@@ -512,8 +769,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "LEFT JOIN Marks M ON S.SubjectID = M.SubjectID AND SP.StudentID = M.StudentID " +
                 "WHERE SP.StudentID = ? AND C.Semester = ?"; // Retrieve Semester from the Class table
 
-        String[] selectionArgs = { String.valueOf(studentId), String.valueOf(semester)};
-        Log.d("UpdateMarks", "Semester"+semester);
+        String[] selectionArgs = {String.valueOf(studentId), String.valueOf(semester)};
+        Log.d("UpdateMarks", "Semester" + semester);
 
         Cursor cursor = db.rawQuery(sqlQuery, selectionArgs);
 
@@ -599,67 +856,64 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
 
     public List<SubjectWithAttendance> getSubjectsAndAttendanceForStudent(int studentId, int semester) {
-            List<SubjectWithAttendance> subjectsList = new ArrayList<>();
-        Log.d("semester", "semester" + semester+"regno"+studentId);
+        List<SubjectWithAttendance> subjectsList = new ArrayList<>();
+        Log.d("semester", "semester" + semester + "regno" + studentId);
 
-            String classQuery = "SELECT ClassID FROM StudentProfile WHERE RegistrationNumber = ? AND Semester = ?";
-            Cursor classCursor = db.rawQuery(classQuery, new String[]{String.valueOf(studentId), String.valueOf(semester)});
-            int classIdIndex = classCursor.getColumnIndex("ClassID");
-            if (classCursor.moveToFirst()) {
-                int classId = classCursor.getInt(classIdIndex);
+        String classQuery = "SELECT ClassID FROM StudentProfile WHERE RegistrationNumber = ? AND Semester = ?";
+        Cursor classCursor = db.rawQuery(classQuery, new String[]{String.valueOf(studentId), String.valueOf(semester)});
+        int classIdIndex = classCursor.getColumnIndex("ClassID");
+        if (classCursor.moveToFirst()) {
+            int classId = classCursor.getInt(classIdIndex);
 
-                 String subjectsQuery = "SELECT Subjects.SubjectID, Subjects.SubjectName FROM ClassAssignment " +
-                        "JOIN Subjects ON ClassAssignment.SubjectID = Subjects.SubjectID " +
-                        "WHERE ClassAssignment.ClassID = ?";
-                Cursor subjectsCursor = db.rawQuery(subjectsQuery, new String[]{String.valueOf(classId)});
-                int subjectIdIndex = subjectsCursor.getColumnIndex("SubjectID");
-                int subjectNameIndex = subjectsCursor.getColumnIndex("SubjectName");
-                while (subjectsCursor.moveToNext()) {
-                    int subjectId = subjectsCursor.getInt(subjectIdIndex);
-                    String subjectName = subjectsCursor.getString(subjectNameIndex);
+            String subjectsQuery = "SELECT Subjects.SubjectID, Subjects.SubjectName FROM ClassAssignment " +
+                    "JOIN Subjects ON ClassAssignment.SubjectID = Subjects.SubjectID " +
+                    "WHERE ClassAssignment.ClassID = ?";
+            Cursor subjectsCursor = db.rawQuery(subjectsQuery, new String[]{String.valueOf(classId)});
+            int subjectIdIndex = subjectsCursor.getColumnIndex("SubjectID");
+            int subjectNameIndex = subjectsCursor.getColumnIndex("SubjectName");
+            while (subjectsCursor.moveToNext()) {
+                int subjectId = subjectsCursor.getInt(subjectIdIndex);
+                String subjectName = subjectsCursor.getString(subjectNameIndex);
 
-                    String attendanceQuery = "SELECT SUM(Attended) AS TotalAttended, SUM(Missed) AS TotalMissed FROM Attendance WHERE ClassID = ? AND SubjectID = ? AND StudentID = ?";
-                    Cursor attendanceCursor = db.rawQuery(attendanceQuery, new String[]{String.valueOf(classId), String.valueOf(subjectId), String.valueOf(studentId)});
+                String attendanceQuery = "SELECT SUM(Attended) AS TotalAttended, SUM(Missed) AS TotalMissed FROM Attendance WHERE ClassID = ? AND SubjectID = ? AND StudentID = ?";
+                Cursor attendanceCursor = db.rawQuery(attendanceQuery, new String[]{String.valueOf(classId), String.valueOf(subjectId), String.valueOf(studentId)});
 
-                    int totalAttended = 0;
-                    int totalMissed = 0;
-                    int totalAttendedIndex = attendanceCursor.getColumnIndex("TotalAttended");
-                    int totalMissedIndex = attendanceCursor.getColumnIndex("TotalMissed");
-                    if (attendanceCursor.moveToFirst()) {
-                        totalAttended = attendanceCursor.getInt(totalAttendedIndex);
-                        totalMissed = attendanceCursor.getInt(totalMissedIndex);
-                    }
-                    attendanceCursor.close();
-
-                    SubjectWithAttendance subjectWithAttendance = new SubjectWithAttendance(subjectName, subjectId, totalAttended, totalMissed);
-                    subjectsList.add(subjectWithAttendance);
+                int totalAttended = 0;
+                int totalMissed = 0;
+                int totalAttendedIndex = attendanceCursor.getColumnIndex("TotalAttended");
+                int totalMissedIndex = attendanceCursor.getColumnIndex("TotalMissed");
+                if (attendanceCursor.moveToFirst()) {
+                    totalAttended = attendanceCursor.getInt(totalAttendedIndex);
+                    totalMissed = attendanceCursor.getInt(totalMissedIndex);
                 }
-                subjectsCursor.close();
+                attendanceCursor.close();
+
+                SubjectWithAttendance subjectWithAttendance = new SubjectWithAttendance(subjectName, subjectId, totalAttended, totalMissed);
+                subjectsList.add(subjectWithAttendance);
             }
-            classCursor.close();
-
-            return subjectsList;
+            subjectsCursor.close();
         }
-        /*ANNOUNCEMENT FUNCTIONS*/
-        public Boolean creatingFacultyAnnouncement(int loggedInFacultyId, String title, String message) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues announcementValues = new ContentValues();
-            announcementValues.put("Title", title);
-            announcementValues.put("Message", message);
-            SimpleDateFormat pcDateFormat = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yyyy-MM-dd"), Locale.getDefault());
-            Date date = new Date();
-            String formattedDate = pcDateFormat.format(date);
+        classCursor.close();
 
-            announcementValues.put("Date", formattedDate.format(formattedDate));
-            announcementValues.put("FacultyID", loggedInFacultyId);
+        return subjectsList;
+    }
 
-            long result = db.insert("Announcements", null, announcementValues);
-            if (result > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+    /*ANNOUNCEMENT FUNCTIONS*/
+    public Boolean creatingFacultyAnnouncement(int loggedInFacultyId, String title, String message) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues announcementValues = new ContentValues();
+        announcementValues.put("Title", title);
+        announcementValues.put("Message", message);
+        SimpleDateFormat pcDateFormat = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yyyy-MM-dd"), Locale.getDefault());
+        Date date = new Date();
+        String formattedDate = pcDateFormat.format(date);
+
+        announcementValues.put("Date", String.format(formattedDate));
+        announcementValues.put("FacultyID", loggedInFacultyId);
+
+        long result = db.insert("Announcements", null, announcementValues);
+        return result > 0;
+    }
 
 
     public Cursor getAnnouncement() {
@@ -667,10 +921,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY AnnouncementID DESC";
         return db.rawQuery(sqlQuery, null);
     }
+
     public String getAnnouncementMessage(String title, String date) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT Message FROM Announcements WHERE Title = ? AND Date = ?";
-        Cursor cursor = db.rawQuery(query, new String[] { title, date });
+        Cursor cursor = db.rawQuery(query, new String[]{title, date});
         int messageIndex = cursor.getColumnIndex("Message");
         if (cursor != null) {
             if (cursor.moveToFirst()) {
@@ -684,7 +939,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
 
-
+    /*FEES FUNCTIONS*/
+    public Cursor getFees(int studentId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Purpose, Amount, DatePaid FROM Fees WHERE StudentID=? ORDER BY FeesID DESC";
+        String[] selectionArgs = {String.valueOf(studentId)};
+        return db.rawQuery(sqlQuery, selectionArgs);
+    }
 
 
 }

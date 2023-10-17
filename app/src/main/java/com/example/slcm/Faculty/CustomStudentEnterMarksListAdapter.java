@@ -16,9 +16,9 @@ import com.example.slcm.Student.Student;
 import java.util.ArrayList;
 
 public class CustomStudentEnterMarksListAdapter extends BaseAdapter {
-    private Context context;
-    private ArrayList<Student> students;
-    private String selectedAssignmentType;
+    private final Context context;
+    private final ArrayList<Student> students;
+    private final String selectedAssignmentType;
 
     public CustomStudentEnterMarksListAdapter(Context context, ArrayList<Student> students, String selectedAssignmentType) {
         this.context = context;

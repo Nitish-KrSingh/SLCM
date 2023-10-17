@@ -1,163 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Faculty.FacultyAnnouncements"
-    >
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    tools:context=".Student.StudentFees">
 
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true">
-        <RelativeLayout
-            android:id="@+id/relative1"
-            android:layout_width="350dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/light_purple"
-            android:background="@drawable/rounded_background"
-            android:paddingLeft="30dp"
-            android:paddingTop="20dp">
+    <RelativeLayout
+        android:id="@+id/relative2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="10dp">
 
-            <TextView
-                android:id="@+id/coursefee"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Course Fee"
-                android:textStyle="bold"/>
+        <ListView
+            android:id="@+id/fees_ListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="false"
+            android:divider="@null"
+            tools:listitem="@layout/activity_student_fees_list_item"
 
-            <TextView
-                android:id="@+id/amt1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/coursefee"
-                android:text="1,86,000"
-                android:textSize="20dp"
-                />
-            <TextView
-                android:id="@+id/txtDate1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-              android:layout_toRightOf="@+id/amt1"
-                android:layout_below="@+id/coursefee"
-                android:text="Paid Date - 01/12/2023"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/relative2"
-            android:layout_width="350dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/light_purple"
-            android:background="@drawable/rounded_background"
-            android:paddingLeft="30dp"
-            android:paddingTop="20dp">
+            />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/hostelfee"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hostel Fee"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/amt2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/hostelfee"
-                android:text="96,000"
-                android:textSize="20dp"
-                />
-            <TextView
-                android:id="@+id/txtDate2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_toRightOf="@+id/amt2"
-                android:layout_below="@+id/hostelfee"
-                android:text="Paid Date - 01/12/2023"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/relative3"
-            android:layout_width="350dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/light_purple"
-            android:background="@drawable/rounded_background"
-            android:paddingLeft="30dp"
-            android:paddingTop="20dp">
-
-            <TextView
-                android:id="@+id/coursefee2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Course Fee"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/amt3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/coursefee2"
-                android:text="1,86,000"
-                android:textSize="20dp"
-                />
-            <TextView
-                android:id="@+id/txtDate3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_toRightOf="@+id/amt3"
-                android:layout_below="@+id/coursefee2"
-                android:text="Paid Date - 30/06/2022"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/relative4"
-            android:layout_width="350dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/light_purple"
-            android:background="@drawable/rounded_background"
-            android:paddingLeft="30dp"
-            android:paddingTop="20dp">
-
-            <TextView
-                android:id="@+id/hostelfee2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hostel Fee"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/amt4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/hostelfee2"
-                android:text="96,000"
-                android:textSize="20dp"
-                />
-            <TextView
-                android:id="@+id/txtDate4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_toRightOf="@+id/amt4"
-                android:layout_below="@+id/hostelfee2"
-                android:text="Paid Date - 30/06/2022"
-                />
-        </RelativeLayout>
-
-
-
-    </LinearLayout>
 </RelativeLayout>
