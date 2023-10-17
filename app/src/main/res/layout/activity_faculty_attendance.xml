@@ -1,34 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-
-    <Button
-        android:id="@+id/all_present"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-       android:layout_marginStart="13dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/light_blue"
-        android:text="@string/all_present"
-        app:cornerRadius="8dp" />
-
-    <Button
-        android:id="@+id/all_absent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_toStartOf="@+id/Fac_Submit_Att_Btn"
-        android:layout_toEndOf="@+id/all_present"
-        android:backgroundTint="@color/maroon"
-        android:text="@string/all_absent"
-        app:cornerRadius="8dp" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/Fac_Submit_Att_Btn"
@@ -38,34 +12,60 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="13dp"
+        android:backgroundTint="@color/dark_green"
         android:text="@string/fac_submit"
-        app:cornerRadius="8dp"
-        android:backgroundTint="@color/dark_green"/>
-
+        app:cornerRadius="8dp" />
 
     <TextView
         android:id="@+id/Fac_Att_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/Btn_Layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="@string/students"
         android:textSize="18sp"
-        android:layout_marginTop="40dp"
-        android:textStyle="bold"
-        android:layout_below="@id/Fac_Submit_Att_Btn"
-        android:layout_centerHorizontal="true"
-        />
+        android:textStyle="bold" />
 
     <ListView
-        android:padding="20dp"
         android:id="@+id/Fac_Stud_Att_List"
-        android:layout_below="@id/Fac_Att_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/Fac_Att_Title"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
         android:divider="@null"
         android:dividerHeight="10dp"
-        android:clickable="true"
-        tools:listitem="@layout/activity_faculty_attendance_list_item"
+        android:padding="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        tools:listitem="@layout/activity_faculty_attendance_list_item" />
 
-        />
+    <LinearLayout
+        android:id="@+id/Btn_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Fac_Submit_Att_Btn"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/all_present"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_blue"
+            android:text="@string/all_present"
+            android:textSize="11sp"
+            app:cornerRadius="8dp" />
+
+        <Button
+            android:id="@+id/all_absent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/maroon"
+            android:text="@string/all_absent"
+            android:textSize="11sp"
+            app:cornerRadius="8dp" />
+    </LinearLayout>
 </RelativeLayout>

@@ -1,13 +1,13 @@
 package com.example.slcm.Student;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
@@ -16,7 +16,7 @@ import com.example.slcm.StudentLogin;
 import java.util.Objects;
 
 public class StudentForgotPassword extends AppCompatActivity {
-    EditText NewPassword, ConfirmPassword,  RegistrationNumber;
+    EditText NewPassword, ConfirmPassword, RegistrationNumber;
     Button ChangeBtn;
     DatabaseManager databaseManager;
 
@@ -27,17 +27,17 @@ public class StudentForgotPassword extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Student - Forgot Password");
 
-       RegistrationNumber = findViewById(R.id.Registration_No_Edit);
-       NewPassword = findViewById(R.id.Stud_New_Password_Edit);
-       ConfirmPassword = findViewById(R.id.Stud_Confirm_Password_Edit);
-       ChangeBtn = findViewById(R.id.submit);
-        databaseManager= new DatabaseManager(this);
+        RegistrationNumber = findViewById(R.id.Registration_No_Edit);
+        NewPassword = findViewById(R.id.Stud_New_Password_Edit);
+        ConfirmPassword = findViewById(R.id.Stud_Confirm_Password_Edit);
+        ChangeBtn = findViewById(R.id.submit);
+        databaseManager = new DatabaseManager(this);
         ChangeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String regNo = RegistrationNumber.getText().toString();
-                String studForgotNewPass =NewPassword.getText().toString();
+                String studForgotNewPass = NewPassword.getText().toString();
                 String studForgotConfirmPass = ConfirmPassword.getText().toString();
 
                 if (regNo.isEmpty()) {
@@ -57,7 +57,7 @@ public class StudentForgotPassword extends AppCompatActivity {
                         } else {
                             Toast.makeText(StudentForgotPassword.this, "Invalid Registration Number ", Toast.LENGTH_SHORT).show();
                         }
-                        Intent change_pass=new Intent(StudentForgotPassword.this, StudentLogin.class);
+                        Intent change_pass = new Intent(StudentForgotPassword.this, StudentLogin.class);
                         startActivity(change_pass);
                     } else {
                         NewPassword.setError("Password did not match");

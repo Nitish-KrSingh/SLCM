@@ -1,7 +1,5 @@
 package com.example.slcm.Faculty;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
 
@@ -20,10 +20,10 @@ import java.util.Objects;
 
 public class FacultyCreateAnnouncement extends AppCompatActivity {
 
-    private int loggedInFacultyId;
     EditText faculty_create_announcement_title, faculty_create_announcement_msg;
     Button fac_createAnnouncement_submit_btn;
     DatabaseManager databaseManager;
+    private int loggedInFacultyId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

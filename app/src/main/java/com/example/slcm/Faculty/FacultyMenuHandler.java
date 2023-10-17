@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.slcm.R;
 import com.example.slcm.FacultyLogin;
+import com.example.slcm.R;
 
 public class FacultyMenuHandler {
     public static void handleMenuAction(MenuItem item, Context context) {

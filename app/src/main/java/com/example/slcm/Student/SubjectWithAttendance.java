@@ -1,10 +1,12 @@
 package com.example.slcm.Student;
 
 public class SubjectWithAttendance {
-        private String subjectName;
-        private int totalClasses, subjectId;
-        private int attendedClasses;
-        private int missedClasses, total;
+    private final String subjectName;
+    private int totalClasses;
+    private final int subjectId;
+    private final int attendedClasses;
+    private final int missedClasses;
+    private int total;
 
     public SubjectWithAttendance(String subjectName, int subjectId, int totalAttended, int totalMissed) {
         this.subjectName = subjectName;
@@ -14,25 +16,26 @@ public class SubjectWithAttendance {
     }
 
 
-        public String getSubjectName() {
-            return subjectName;
-        }
-        public int getSubjectID() {
-            return subjectId;
-        }
+    public String getSubjectName() {
+        return subjectName;
+    }
 
-        public int getTotalClasses() {
-            total=attendedClasses+missedClasses;
-            return total;
-        }
+    public int getSubjectID() {
+        return subjectId;
+    }
 
-        public int getAttendedClasses() {
-            return attendedClasses;
-        }
+    public int getTotalClasses() {
+        total = attendedClasses + missedClasses;
+        return total;
+    }
 
-        public int getMissedClasses() {
-            return missedClasses;
-        }
+    public int getAttendedClasses() {
+        return attendedClasses;
+    }
+
+    public int getMissedClasses() {
+        return missedClasses;
+    }
 
     public int getPercentage() {
         total = attendedClasses + missedClasses;

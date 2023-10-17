@@ -22,10 +22,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 import java.util.Objects;
@@ -86,8 +86,20 @@ public class StudentInternalMarks extends AppCompatActivity {
         listView.setAdapter(myAdapter);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.student_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        StudentMenuHandler.handleMenuAction(item, this);
+        return super.onOptionsItemSelected(item);
+    }
+
     private class MyAdapter extends BaseAdapter {
-        private List<SubjectWithMarks> subjectsList;
+        private final List<SubjectWithMarks> subjectsList;
 
         public MyAdapter(List<SubjectWithMarks> subjectsList) {
             this.subjectsList = subjectsList;
@@ -141,6 +153,7 @@ public class StudentInternalMarks extends AppCompatActivity {
 
         private void displayMarks(LinearLayout discLayout, Double assignment1, Double assignment2, Double assignment3, Double assignment4, Double midterm) {
             TableLayout tableLayout = discLayout.findViewById(R.id.discLayout);
+            tableLayout.removeAllViews();
             addRowToTable(tableLayout, "Assignment 1", assignment1, 5.0); // Total marks for Assignment 1 is 5.0
             addRowToTable(tableLayout, "Assignment 2", assignment2, 5.0); // Total marks for Assignment 2 is 5.0
             addRowToTable(tableLayout, "Assignment 3", assignment3, 5.0); // Total marks for Assignment 3 is 5.0
@@ -149,49 +162,43 @@ public class StudentInternalMarks extends AppCompatActivity {
         }
 
         private void addRowToTable(TableLayout tableLayout, String assignmentName, Double mark, double totalMarks) {
+            TableRow row = new TableRow(getApplicationContext());
+
+            TextView assignmentTypeTextView = new TextView(getApplicationContext());
+            assignmentTypeTextView.setText(assignmentName);
+            assignmentTypeTextView.setLayoutParams(new TableRow.LayoutParams(
+                    TableRow.LayoutParams.WRAP_CONTENT,
+                    TableRow.LayoutParams.WRAP_CONTENT
+            ));
+            assignmentTypeTextView.setPadding(5, 5, 5, 5);
+            assignmentTypeTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            assignmentTypeTextView.setTextSize(14);
+            assignmentTypeTextView.setTextColor(getResources().getColor(R.color.blue));
+
+            TextView marksTextView = new TextView(getApplicationContext());
+
             if (mark != null) {
-                TableRow row = new TableRow(getApplicationContext());
-
-                TextView assignmentTypeTextView = new TextView(getApplicationContext());
-                assignmentTypeTextView.setText(assignmentName);
-                assignmentTypeTextView.setLayoutParams(new TableRow.LayoutParams(
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT
-                ));
-                assignmentTypeTextView.setPadding(5, 5, 5, 5);
-                assignmentTypeTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                assignmentTypeTextView.setTextSize(18);
-                assignmentTypeTextView.setTextColor(getResources().getColor(R.color.blue));
-
-                TextView marksTextView = new TextView(getApplicationContext());
+                // Marks are available, display them
                 String formattedMarks = String.format("%.1f/%.1f", mark, totalMarks);
                 marksTextView.setText(formattedMarks);
-                marksTextView.setLayoutParams(new TableRow.LayoutParams(
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT
-                ));
-                marksTextView.setPadding(5, 5, 5, 5);
-                marksTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                marksTextView.setTextSize(18);
-                marksTextView.setTextColor(getResources().getColor(R.color.blue));
-
-                row.addView(assignmentTypeTextView);
-                row.addView(marksTextView);
-
-                tableLayout.addView(row);
+            } else {
+                // Marks are not available, display "0"
+                marksTextView.setText("Not entered");
             }
+
+            marksTextView.setLayoutParams(new TableRow.LayoutParams(
+                    TableRow.LayoutParams.WRAP_CONTENT,
+                    TableRow.LayoutParams.WRAP_CONTENT
+            ));
+            marksTextView.setPadding(5, 5, 5, 5);
+            marksTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            marksTextView.setTextSize(14);
+            marksTextView.setTextColor(getResources().getColor(R.color.blue));
+
+            row.addView(assignmentTypeTextView);
+            row.addView(marksTextView);
+
+            tableLayout.addView(row);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.student_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        StudentMenuHandler.handleMenuAction(item, this);
-        return super.onOptionsItemSelected(item);
     }
 }

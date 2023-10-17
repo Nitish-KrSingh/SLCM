@@ -1,13 +1,13 @@
 package com.example.slcm.Student;
 
 public class SubjectWithMarks {
-    private int subjectId;
-    private String subjectName;
-    private Double assignment1;
-    private Double assignment2;
-    private Double assignment3;
-    private Double assignment4;
-    private Double midterm;
+    private final int subjectId;
+    private final String subjectName;
+    private final Double assignment1;
+    private final Double assignment2;
+    private final Double assignment3;
+    private final Double assignment4;
+    private final Double midterm;
 
     public SubjectWithMarks(int subjectId, String subjectName, Double assignment1, Double assignment2, Double assignment3, Double assignment4, Double midterm) {
         this.subjectId = subjectId;

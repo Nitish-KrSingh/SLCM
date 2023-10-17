@@ -1,7 +1,5 @@
 package com.example.slcm.Faculty;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +14,9 @@ import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.slcm.Faculty.FacultyMenuHandler;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.R;
 
 import java.text.SimpleDateFormat;
@@ -25,11 +25,11 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class FacultyMarksType extends AppCompatActivity {
+    private final Calendar selectedDate = Calendar.getInstance();
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
     private RadioGroup assessmentTypes;
     private TextView maxMarks;
     private TextView marksDate;
-    private final Calendar selectedDate = Calendar.getInstance();
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
     private String selectedAssignmentType = "Assignment1"; // Default assessment type
 
     @Override
@@ -125,7 +125,7 @@ public class FacultyMarksType extends AppCompatActivity {
     }
 
     private void setMaxMarksForAssessmentType(String assessmentType) {
-        int marks=5;
+        int marks = 5;
         if ("Midterm".equals(assessmentType)) {
             marks = 30;
             maxMarks.setText(String.format("%d", marks));
@@ -138,7 +138,7 @@ public class FacultyMarksType extends AppCompatActivity {
 
     private boolean validateInput() {
         int selectedRadioButtonId = assessmentTypes.getCheckedRadioButtonId();
-        if (selectedRadioButtonId == -1 ) {
+        if (selectedRadioButtonId == -1) {
             showErrorDialog("Please fill in all fields.");
             return false;
         }

@@ -1,7 +1,5 @@
 package com.example.slcm;
 
-import static com.example.slcm.DatabaseManager.*;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;

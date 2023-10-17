@@ -2,11 +2,11 @@ package com.example.slcm.Faculty;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.R;
 import com.example.slcm.Student.StudentMenuHandler;
@@ -14,7 +14,8 @@ import com.example.slcm.Student.StudentMenuHandler;
 import java.util.Objects;
 
 public class FacultyViewAnnouncement extends AppCompatActivity {
-String title;
+    String title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +35,15 @@ String title;
             announcementDate.setText(date);
             announcementMessage.setText(message);
         }
-        getSupportActionBar().setTitle("Announcement: "+title);
+        getSupportActionBar().setTitle(title);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.faculty_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         StudentMenuHandler.handleMenuAction(item, this);

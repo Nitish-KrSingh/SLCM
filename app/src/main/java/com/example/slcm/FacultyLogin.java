@@ -1,7 +1,5 @@
 package com.example.slcm;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,14 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.Faculty.FacultyDashboard;
 import com.example.slcm.Faculty.FacultyForgotPassword;
-import com.example.slcm.Student.StudentDashboard;
-import com.example.slcm.Student.StudentForgotPassword;
 
 public class FacultyLogin extends AppCompatActivity {
 
-    TextView student_login_page, forgotp ;
+    TextView student_login_page, forgotp;
     Button faculty_signin;
     private EditText fac_username;
     private EditText fac_password;
@@ -40,14 +38,14 @@ public class FacultyLogin extends AppCompatActivity {
         student_login_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent s_login = new Intent(FacultyLogin.this , StudentLogin.class);
+                Intent s_login = new Intent(FacultyLogin.this, StudentLogin.class);
                 startActivity(s_login);
             }
         });
         forgotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent forgot_password = new Intent(FacultyLogin.this , FacultyForgotPassword.class);
+                Intent forgot_password = new Intent(FacultyLogin.this, FacultyForgotPassword.class);
                 startActivity(forgot_password);
             }
 
@@ -64,22 +62,22 @@ public class FacultyLogin extends AppCompatActivity {
                 } else if (fac_pass.equals("")) {
                     fac_password.setError("Empty Password");
                     Toast.makeText(FacultyLogin.this, "Enter Password", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Boolean checkCredentials = databaseManager.checkEmailPassword_for_fac(fac_userid, fac_pass);
                     if (checkCredentials) {
                         int facultyId = databaseManager.getFacultyId(fac_userid, fac_pass);
                         if (facultyId != -1) {
-                        Toast.makeText(FacultyLogin.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
-                        SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-                        sharedPreferences.edit().putString("LOGIN_USER", fac_userid).apply();
-                        sharedPreferences.edit().putString("LOGIN_TYPE", "Faculty").apply();
-                        sharedPreferences.edit().putInt("FACULTY_ID", facultyId).apply();
-                        Intent intent = new Intent(FacultyLogin.this, FacultyDashboard.class);
-                        startActivity(intent);
+                            Toast.makeText(FacultyLogin.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
+                            SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
+                            sharedPreferences.edit().putString("LOGIN_USER", fac_userid).apply();
+                            sharedPreferences.edit().putString("LOGIN_TYPE", "Faculty").apply();
+                            sharedPreferences.edit().putInt("FACULTY_ID", facultyId).apply();
+                            Intent intent = new Intent(FacultyLogin.this, FacultyDashboard.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(FacultyLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(FacultyLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                    }} else {
                         Toast.makeText(FacultyLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
                 }

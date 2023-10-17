@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Student.StudentProfileDashboard">
+
     <RelativeLayout
         android:id="@+id/ProfileLayout"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@color/blue"
-        >
+        android:background="@color/blue">
+
         <ImageView
             android:id="@+id/ProfileImg"
             android:layout_width="150dp"
@@ -19,66 +19,66 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
             android:background="@mipmap/profile"
-            android:visibility="visible"
-            />
-
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/Registration_No_Text"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/ProfileImg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             android:text=""
             android:textColor="@color/white"
             android:textSize="30dp" />
 
 
-
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
         android:layout_below="@+id/ProfileLayout"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <Button
             android:id="@+id/ProfileViewDetails"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/light_purple"
+            android:padding="15dp"
             android:radius="8dp"
-            android:textColor="@color/blue"
-            android:textSize="20dp"
-            android:padding="20dp"
             android:text="@string/view_details"
+            android:textColor="@color/blue"
+            android:textSize="22dp"
             app:cornerRadius="8dp" />
 
         <Button
             android:id="@+id/ProfileChangePassword"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/light_purple"
-            android:radius="8dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/blue"
-            android:textSize="20dp"
-            android:padding="20dp"
+            android:backgroundTint="@color/light_purple"
+            android:padding="15dp"
+            android:radius="8dp"
             android:text="@string/change_password"
+            android:textColor="@color/blue"
+            android:textSize="22dp"
             app:cornerRadius="8dp" />
+
         <Button
             android:id="@+id/ProfileLogout"
             android:layout_width="300dp"
-            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/light_purple"
+            android:padding="15dp"
             android:radius="8dp"
-            android:textColor="@color/blue"
-            android:textSize="20dp"
-            android:padding="20dp"
             android:text="@string/log_out"
+            android:textColor="@color/blue"
+            android:textSize="22dp"
             app:cornerRadius="8dp" />
     </LinearLayout>
 </RelativeLayout>

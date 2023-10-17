@@ -1,7 +1,5 @@
 package com.example.slcm.Faculty;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.FacultyLogin;
 import com.example.slcm.R;
-import com.example.slcm.Student.StudentChangePassword;
-import com.example.slcm.Student.StudentProfileDashboard;
 
 import java.util.Objects;
 
@@ -47,8 +45,7 @@ public class FacultyForgotPassword extends AppCompatActivity {
                 if (user.equals("")) {
                     new_password.setError("Empty Username");
                     Toast.makeText(FacultyForgotPassword.this, "Enter Username", Toast.LENGTH_SHORT).show();
-                }
-                else if (fac_forgot_new_pass.equals("")) {
+                } else if (fac_forgot_new_pass.equals("")) {
                     new_password.setError("Empty New Password");
                     Toast.makeText(FacultyForgotPassword.this, "Enter New Password", Toast.LENGTH_SHORT).show();
                 } else if (fac_forgot_confirm_pass.equals("")) {
@@ -63,7 +60,7 @@ public class FacultyForgotPassword extends AppCompatActivity {
                         } else {
                             Toast.makeText(FacultyForgotPassword.this, "Invalid UserName", Toast.LENGTH_SHORT).show();
                         }
-                        Intent change_pass=new Intent(FacultyForgotPassword.this, FacultyLogin.class);
+                        Intent change_pass = new Intent(FacultyForgotPassword.this, FacultyLogin.class);
                         startActivity(change_pass);
                     } else {
                         new_password.setError("Password did not match");

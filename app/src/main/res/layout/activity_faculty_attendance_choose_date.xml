@@ -1,65 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Faculty.FacultyAttendanceChooseDate">
-    <LinearLayout
+    android:fillViewport="true">
 
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="30dp"
-        android:id="@+id/Fac_Att_Date"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        tools:context=".Faculty.FacultyAttendanceChooseDate">
 
-        <TextView
+        <Button
+            android:id="@+id/nextAttBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:id="@+id/datetext"
-            android:paddingTop="10dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/selected_date"
-            android:textStyle="bold"
-           />
-        <TextView
-            android:layout_width="wrap_content"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/maroon"
+            android:text="@string/next"
+            app:cornerRadius="8dp" />
+
+        <LinearLayout
+
+            android:id="@+id/Fac_Att_Date"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:id="@+id/selected_date_for_attendance_textview"
-            android:layout_marginStart="10dp"
-            android:text=""
-            android:textStyle="bold"/>
+            android:layout_below="@+id/nextAttBtn"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="30dp">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/datetext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/selected_date"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-    <DatePicker
-        android:id="@+id/Fac_Att_DatePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Fac_Att_Date"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        android:calendarTextColor="@color/green"
-        android:datePickerMode="calendar"
-        android:visibility="visible">
+            <TextView
+                android:id="@+id/selected_date_for_attendance_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-    </DatePicker>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/nextAttBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Fac_Att_DatePicker"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/maroon"
-        android:text="@string/next"
-        app:cornerRadius="8dp" />
-</RelativeLayout>
+        <DatePicker
+            android:id="@+id/Fac_Att_DatePicker"
+            android:layout_width="300dp"
+            android:layout_height="440dp"
+            android:layout_below="@+id/Fac_Att_Date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:calendarTextColor="@color/green"
+            android:datePickerMode="calendar"
+            android:visibility="visible">
+
+        </DatePicker>
+
+
+    </RelativeLayout>
+</ScrollView>
