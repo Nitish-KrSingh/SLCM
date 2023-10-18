@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,15 +30,16 @@ public class FacultyAttendanceClass extends AppCompatActivity {
     private int classNameIndex;
     private int sectionIndex; // Declare sectionIndex as a class-level field
     private Cursor cursor; // Declare cursor as a class-level field
-
+    private TextView intentheading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_attendance_class);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Attendance - Select Class");
-
+        intentheading = findViewById(R.id.intentheading);
         String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
+        intentheading.setText("Selected: "+ select_date_for_attendance);
         Log.d("Date", "Att_Date: " + select_date_for_attendance);
 
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
