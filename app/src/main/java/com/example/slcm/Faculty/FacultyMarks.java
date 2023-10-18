@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class FacultyMarks extends AppCompatActivity {
     private ListView listView;
     private ArrayList<Student> studentList;
     private CustomStudentEnterMarksListAdapter adapter;
-
+    private TextView intentheading;
     private int studentID;
 
     @Override
@@ -36,6 +37,12 @@ public class FacultyMarks extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_marks);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Enter Marks");
+        intentheading = findViewById(R.id.intentheading);
+        Intent i=getIntent();
+        String section=i.getStringExtra("SELECTED_SECTION");
+        String assignmentType=i.getStringExtra("ASSIGNMENT_TYPE");
+        String subject=i.getStringExtra("SUBJECT");
+        intentheading.setText("Selected: MCA"+"-"+section+","+assignmentType+","+subject);
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
         String selectedDate = getIntent().getStringExtra("SELECTED_DATE");
