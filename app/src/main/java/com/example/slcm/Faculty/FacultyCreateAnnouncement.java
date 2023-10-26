@@ -25,6 +25,7 @@ public class FacultyCreateAnnouncement extends AppCompatActivity {
     DatabaseManager databaseManager;
     private int loggedInFacultyId;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

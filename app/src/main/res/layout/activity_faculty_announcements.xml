@@ -5,11 +5,48 @@
     android:layout_height="match_parent"
     tools:context=".Faculty.FacultyAnnouncements">
 
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:paddingHorizontal="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Announcements : "
+            android:id="@+id/fac_created_announcement_text"
+            android:textColor="@color/gray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/fac_announcement_ListView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/fac_created_announcement_text"
+            android:clickable="true"
+            android:divider="@null"
+            tools:listitem="@layout/activity_faculty_announcement_list_item" />
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/relative2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/relative1"
         android:paddingHorizontal="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Others : "
+            android:id="@+id/fac_created_announcement_text1"
+            android:textColor="@color/gray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/fac_announcement_ListView"
@@ -17,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:clickable="true"
+            android:layout_below="@id/fac_created_announcement_text1"
             android:divider="@null"
             tools:listitem="@layout/activity_faculty_announcement_list_item" />
     </RelativeLayout>

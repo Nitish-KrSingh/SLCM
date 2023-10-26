@@ -19,14 +19,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.FacultyLogin;
 import com.example.slcm.R;
+import com.example.slcm.Student.Student;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class FacultyAnnouncements extends AppCompatActivity {
 
     private ArrayList<String> faculty_announcement_List;
+    private ArrayList<String> faculty_created_announcement_List;
+
     private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,14 @@ public class FacultyAnnouncements extends AppCompatActivity {
             faculty_announcement_List = new ArrayList<>();
             adapter = new ArrayAdapter<String>(this, R.layout.activity_faculty_announcement_list_item, R.id.listItemButton, faculty_announcement_List);
             faculty_announcement_ListView.setAdapter(adapter);
-            retrieveAnnouncementForFaculty();
+            retrieveAnnouncementForFaculty(loggedInFacultyId);
+
+            ListView faculty_created_announcement_ListView = findViewById(R.id.fac_announcement_ListView1);
+            faculty_created_announcement_List = new ArrayList<>();
+            adapter1 = new ArrayAdapter<String>(this, R.layout.activity_faculty_created_announcement_list_item, R.id.listItemButton, faculty_created_announcement_List);
+            faculty_created_announcement_ListView.setAdapter(adapter1);
+            retrieveAnnouncementForFacultyCreated(loggedInFacultyId);
+
             faculty_announcement_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -73,6 +85,31 @@ public class FacultyAnnouncements extends AppCompatActivity {
                     }
                 }
             });
+
+            faculty_created_announcement_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedAnnouncement = faculty_created_announcement_List.get(position);
+                    String[] splitAnnouncement = selectedAnnouncement.split("\nDate:");
+                    String title = splitAnnouncement[0];
+                    String date = splitAnnouncement[1];
+                    Log.d("DebugTag", "Date: " + date + "Title" + title);
+
+                    DatabaseManager databaseManager = new DatabaseManager(FacultyAnnouncements.this);
+                    String message = databaseManager.getCreatedAnnouncementMessage(title, date);
+
+                    if (message != null) {
+                        Intent intent = new Intent(FacultyAnnouncements.this, FacultyCreatedViewAnnouncement.class);
+                        intent.putExtra("title", title);
+                        intent.putExtra("date", date);
+                        intent.putExtra("message", message);
+                        startActivity(intent);
+                    } else {
+                        Log.d("DebugTag", "No message found.");
+                    }
+                }
+            });
+
         }
     }
 
@@ -88,9 +125,9 @@ public class FacultyAnnouncements extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void retrieveAnnouncementForFaculty() {
+    private void retrieveAnnouncementForFaculty(int loggedInFacultyId) {
         DatabaseManager databaseManager = new DatabaseManager(this);
-        Cursor cursor = databaseManager.getAnnouncement();
+        Cursor cursor = databaseManager.getAnnouncementForFaculty(loggedInFacultyId);
 
         if (cursor != null) {
             int titleIndex = cursor.getColumnIndex("Title");
@@ -116,5 +153,61 @@ public class FacultyAnnouncements extends AppCompatActivity {
             Log.d("DebugTag", "Cursor is null.");
         }
     }
+
+    private void retrieveAnnouncementForFacultyCreated(int loggedInFacultyId)
+    {
+        DatabaseManager databaseManager = new DatabaseManager(this);
+        Cursor cursor = databaseManager.getFacultyCreatedAnnouncement(loggedInFacultyId);
+
+        if (cursor != null) {
+            int titleIndex = cursor.getColumnIndex("Title");
+            int messageIndex = cursor.getColumnIndex("Message");
+            int dateIndex = cursor.getColumnIndex("Date");
+
+            if (titleIndex == -1 || messageIndex == -1 || dateIndex == -1) {
+                Log.e("CursorError", "One or more columns not found in cursor");
+                Toast.makeText(this, "One or more columns not found in cursor", Toast.LENGTH_SHORT).show();
+            } else {
+                while (cursor.moveToNext()) {
+                    String title = cursor.getString(titleIndex);
+                    String message = cursor.getString(messageIndex);
+                    String date = cursor.getString(dateIndex);
+                    String announcement = title + "\nDate:" + date;
+                    faculty_created_announcement_List.add(announcement);
+                    Log.d("DebugTag", "Added announcement: " + announcement);
+                }
+                adapter.notifyDataSetChanged();
+                cursor.close();
+            }
+        } else {
+            Log.d("DebugTag", "Cursor is null.");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Clear the existing data in the adapter
+        adapter.clear();
+        adapter1.clear();
+
+        // Reload announcements for the faculty
+        int loggedInFacultyId = getLoggedInFacultyId(); // Get the actual faculty ID here
+
+        retrieveAnnouncementForFaculty(loggedInFacultyId);
+        retrieveAnnouncementForFacultyCreated(loggedInFacultyId);
+
+        // Notify the adapter to refresh the view with the updated data
+        adapter.notifyDataSetChanged();
+        adapter1.notifyDataSetChanged();
+    }
+
+    // Add this method to retrieve the logged-in faculty ID from SharedPreferences
+    private int getLoggedInFacultyId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("FACULTY_ID", -1);
+    }
+
 
 }

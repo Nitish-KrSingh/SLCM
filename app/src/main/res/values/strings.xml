@@ -27,6 +27,7 @@
     <string name="fac_create_announcement">Create Announcement</string>
     <string name="fac_view_announcements">View Announcements</string>
     <string name="fac_submit">SUBMIT</string>
+    <string name="fac_update">Update</string>
     <string name="fac_date_day">Day:</string>
     <string name="fac_date_val">Date:</string>
     <string name="next">NEXT</string>

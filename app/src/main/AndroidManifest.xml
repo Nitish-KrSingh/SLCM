@@ -12,7 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SLCM"
         tools:targetApi="31">
-        <!-- Student -->
+        <activity
+            android:name=".Faculty.FacultyUpdateAnnouncement"
+            android:exported="false" />
+        <activity
+            android:name=".FacultyUpdateAnnouncement"
+            android:exported="false" />
+        <activity
+            android:name=".Faculty.FacultyCreatedViewAnnouncement"
+            android:exported="false" /> <!-- Student -->
         <activity
             android:name=".StudentLogin"
             android:exported="false"

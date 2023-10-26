@@ -398,16 +398,16 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.insert("Class", null, classValues2);
 
         ContentValues announcementValues1 = new ContentValues();
-        announcementValues1.put("Title", "Announcement 1");
-        announcementValues1.put("Message", "This is an important announcement for all students.");
-        announcementValues1.put("Date", "2023-09-18");
+        announcementValues1.put("Title", "New Student Orientation");
+        announcementValues1.put("Message", "Welcome to our incoming class! New student orientation will take place 31-08-2023. Get ready for a fun and informative introduction to campus life and resources.");
+        announcementValues1.put("Date", "2023-08-18");
         announcementValues1.put("FacultyID", 1);
         db.insert("Announcements", null, announcementValues1);
 
         ContentValues announcementValues2 = new ContentValues();
-        announcementValues2.put("Title", "Announcement 2");
-        announcementValues2.put("Message", "Another important announcement for students.");
-        announcementValues2.put("Date", "2023-10-10");
+        announcementValues2.put("Title", "Campus Wi-Fi Upgrades");
+        announcementValues2.put("Message", "We are enhancing our campus Wi-Fi network for better connectivity. Expect temporary disruptions in certain areas as we make these improvements over the next week.");
+        announcementValues2.put("Date", "2023-09-10");
         announcementValues2.put("FacultyID", 2);
         db.insert("Announcements", null, announcementValues2);
 
@@ -500,6 +500,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
         return -1;
     }
+
     public int getStudentIdForMarks(String studentName, String studentRollNumber) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT StudentID FROM StudentProfile WHERE Name = ? AND RegistrationNumber = ?", new String[]{studentName, studentRollNumber});
@@ -648,6 +649,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         cursor.close();
         return marks;
     }
+
     public boolean updateOrInsertMarks(int subjectId, String date, int studentID, int classId, String assignmentType, float marks) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -678,7 +680,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         String whereClause = "SubjectID = ? AND ClassID = ? AND StudentID = ?";
         String[] whereArgs = {String.valueOf(subjectId), String.valueOf(classId), String.valueOf(studentID)};
-        Log.d("UpdateMarks", "Sid" + subjectId+classId+studentID);
+        Log.d("UpdateMarks", "Sid" + subjectId + classId + studentID);
         int rowsUpdated = db.update("Marks", values, whereClause, whereArgs);
 
         if (rowsUpdated > 0) {
@@ -726,7 +728,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         int assignment2Index = cursor.getColumnIndex("Assignment2");
         int assignment3Index = cursor.getColumnIndex("Assignment3");
         int assignment4Index = cursor.getColumnIndex("Assignment4");
-       int midtermIndex = cursor.getColumnIndex("Midterm");
+        int midtermIndex = cursor.getColumnIndex("Midterm");
         if (cursor.moveToFirst()) {
             float assignment1 = cursor.getFloat(assignment1Index);
             float assignment2 = cursor.getFloat(assignment2Index);
@@ -752,7 +754,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         db.update("Marks", totalMarksValues, totalMarksWhereClause, totalMarksWhereArgs);
     }
-
 
 
     public List<SubjectWithMarks> getSubjectsAndMarksForStudent(int studentId, int semester) {
@@ -918,9 +919,17 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     public Cursor getAnnouncement() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY AnnouncementID DESC";
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY Date DESC, AnnouncementID DESC";
         return db.rawQuery(sqlQuery, null);
     }
+
+    public Cursor getAnnouncementForFaculty(int loggedInFacultyId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements WHERE FacultyId != ? ORDER BY Date DESC, AnnouncementID DESC";
+        String[] selectionArgs = {String.valueOf(loggedInFacultyId)};
+        return db.rawQuery(sqlQuery, selectionArgs);
+    }
+
 
     public String getAnnouncementMessage(String title, String date) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -937,6 +946,101 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
         return null;
     }
+
+    public String getCreatedAnnouncementMessage(String title, String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Message FROM Announcements WHERE Title = ? AND Date = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{title, date});
+        int messageIndex = cursor.getColumnIndex("Message");
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                String message = cursor.getString(messageIndex);
+                cursor.close();
+                return message;
+            }
+            cursor.close();
+        }
+        return null;
+    }
+
+    public Cursor getFacultyCreatedAnnouncement(int loggedInFacultyId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"Title", "Message", "Date"};
+        String selection = "FacultyID = ?";
+        String[] selectionArgs = {String.valueOf(loggedInFacultyId)};
+        String sortOrder = "Date DESC, AnnouncementID DESC";
+        return db.query("Announcements", columns, selection, selectionArgs, null, null, sortOrder);
+    }
+
+    public int getAnnouncementIdFaculty(int facultyId, String title) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String announcementQuery = "SELECT AnnouncementID FROM Announcements WHERE FacultyID = ? AND Title = ?";
+        Cursor announcementCursor = db.rawQuery(announcementQuery, new String[]{String.valueOf(facultyId), title});
+        int updateIdIndex = announcementCursor.getColumnIndex("AnnouncementID");
+
+        if (announcementCursor.moveToFirst()) {
+            int announcementID = announcementCursor.getInt(updateIdIndex);
+            announcementCursor.close();
+            return announcementID;
+        } else {
+            announcementCursor.close();
+            return -1;
+        }
+    }
+
+
+
+
+    public Cursor updatingFacultyAnnouncement(int getAnnouncementId, String title, String message) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues announcementValues = new ContentValues();
+        SimpleDateFormat pcDateFormat = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yyyy-MM-dd"), Locale.getDefault());
+        Date date = new Date();
+        String formattedDate = pcDateFormat.format(date);
+        announcementValues.put("Title", title);
+        announcementValues.put("Message", message);
+        announcementValues.put("Date", formattedDate);
+
+        String whereClause = "AnnouncementID = ?";
+        String[] whereArgs = {String.valueOf(getAnnouncementId)};
+
+        int result = db.update("Announcements", announcementValues, whereClause, whereArgs);
+
+        if (result > 0) {
+            Log.d("UpdateAnnouncement", "Update successful");
+        } else {
+            Log.e("UpdateAnnouncement", "Update failed");
+        }
+
+        String sortOrder = "Date DESC"; // Sort by date in descending order
+
+        Cursor cursor = db.query("Announcements", null, whereClause, whereArgs, null, null, sortOrder);
+
+        return cursor;
+    }
+
+
+
+    public boolean deletingFacultyAnnouncement(int getAnnouncementId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = "AnnouncementID = ?";
+        String[] whereArgs = {String.valueOf(getAnnouncementId)};
+
+        int result = db.delete("Announcements", whereClause, whereArgs);
+
+        if (result > 0) {
+            Log.d("DeleteAnnouncement", "Deletion successful");
+        } else {
+            Log.e("DeleteAnnouncement", "Deletion failed");
+        }
+
+        return result > 0;
+    }
+
+
+
+
 
 
     /*FEES FUNCTIONS*/
