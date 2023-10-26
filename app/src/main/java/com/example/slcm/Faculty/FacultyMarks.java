@@ -22,6 +22,10 @@ import com.example.slcm.Student.Student;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+
 public class FacultyMarks extends AppCompatActivity {
 
     private ListView listView;
@@ -51,7 +55,28 @@ public class FacultyMarks extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveMarks(selectedSubject, selectedDate, selectedClass, selectedAssignment);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FacultyMarks.this);
+                alertDialogBuilder.setTitle("Confirm Marks Submission");
+                alertDialogBuilder.setMessage("Are you sure you want to submit the marks?");
+
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        saveMarks(selectedSubject, selectedDate, selectedClass, selectedAssignment);
+                        dialog.dismiss();
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
     }

@@ -22,6 +22,10 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+
 public class FacultyAttendance extends AppCompatActivity {
 
     private ArrayList<Student> studentList;
@@ -70,40 +74,38 @@ public class FacultyAttendance extends AppCompatActivity {
         Submit_Attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> presentMap = adapter.GetPresentMap();
-                for (Student student : studentList) {
-                    Attendance attendance = new Attendance(student.getRollNumber(), selectedClass, selectedSubject, select_date_for_attendance, presentMap.get(student.getRollNumber()));
-                    databaseManager.AddAttendance(attendance);
-                }
 
-                Toast.makeText(FacultyAttendance.this, "Attendance submitted!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(FacultyAttendance.this, FacultyDashboard.class);
-                startActivity(intent);
-                finish();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FacultyAttendance.this);
+                alertDialogBuilder.setTitle("Confirm Submission");
+                alertDialogBuilder.setMessage("Are you sure you want to submit the attendance?");
+
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Map<String, String> presentMap = adapter.GetPresentMap();
+                        for (Student student : studentList) {
+                            Attendance attendance = new Attendance(student.getRollNumber(), selectedClass, selectedSubject, select_date_for_attendance, presentMap.get(student.getRollNumber()));
+                            databaseManager.AddAttendance(attendance);
+                        }
+
+                        Toast.makeText(FacultyAttendance.this, "Attendance submitted!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(FacultyAttendance.this, FacultyDashboard.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
-
-//        retrieveStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
-     //   Cursor cursor = databaseManager.getStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
-
-//        all_Student_present.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (studentList.size() == 0) {
-//                    Toast.makeText(FacultyAttendance.this, "No student present.", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    for (Student student : studentList) {
-//
-//                        student.setAttendanceStatus(AttendanceStatus.PRESENT);
-//                    }
-//
-//
-//                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//        });
-
-
     }
 
     @Override

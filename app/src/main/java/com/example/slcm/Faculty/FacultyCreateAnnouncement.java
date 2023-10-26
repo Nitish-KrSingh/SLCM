@@ -18,6 +18,10 @@ import com.example.slcm.R;
 
 import java.util.Objects;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+
 public class FacultyCreateAnnouncement extends AppCompatActivity {
 
     EditText faculty_create_announcement_title, faculty_create_announcement_msg;
@@ -43,7 +47,35 @@ public class FacultyCreateAnnouncement extends AppCompatActivity {
         fac_createAnnouncement_submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = faculty_create_announcement_title.getText().toString();
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FacultyCreateAnnouncement.this);
+                alertDialogBuilder.setTitle("Confirm Announcement Creation");
+                alertDialogBuilder.setMessage("Are you sure you want to create this announcement?");
+
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        createAnnouncement();
+                        dialog.dismiss();
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+    }
+
+    private void createAnnouncement() {
+        String title = faculty_create_announcement_title.getText().toString();
                 String message = faculty_create_announcement_msg.getText().toString();
 
                 if (title.isEmpty()) {
@@ -65,9 +97,6 @@ public class FacultyCreateAnnouncement extends AppCompatActivity {
                     }
                 }
             }
-        });
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.faculty_menu, menu);
