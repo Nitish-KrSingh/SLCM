@@ -27,6 +27,7 @@
             android:layout_below="@id/pagedetails"
             android:id="@+id/line"
             android:background="@color/gray" />
+  
         <LinearLayout
             android:layout_below="@id/line"
             android:id="@+id/assessTypeLayout"

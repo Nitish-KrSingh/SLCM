@@ -30,6 +30,7 @@ public class FacultyMarksSubject extends AppCompatActivity {
     private String subject;
     private Cursor cursor; // Declare cursor as a class-level variable
     private int subjectIDIndex;
+    private TextView intentheading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,11 @@ public class FacultyMarksSubject extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_marks_subject);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Marks - Select Subject");
+        intentheading = findViewById(R.id.intentheading);
+        Intent i=getIntent();
+        String section=i.getStringExtra("SELECTED_SECTION");
+        String assignmentType=i.getStringExtra("ASSIGNMENT_TYPE");
+        intentheading.setText("Selecting: MCA "+"-"+section+","+assignmentType);
 
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
@@ -80,12 +86,14 @@ public class FacultyMarksSubject extends AppCompatActivity {
         } else {
             Log.d("DebugTag", "Cursor is null.");
         }
+
         subjectListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int selectedSubject = getSubjectIdFromCursor(position);
                 String subjectName=getSubjectNameFromCursor(position);
                 if (checkMarks(subjectId, selectedClass, selectedAssignment)) {
+
                     Intent intent = new Intent(FacultyMarksSubject.this, FacultyMarks.class);
                     intent.putExtra("SELECTED_CLASS", selectedClass);
                     intent.putExtra("SELECTED_SECTION", selectedSection);
@@ -122,6 +130,7 @@ public class FacultyMarksSubject extends AppCompatActivity {
 
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
