@@ -45,6 +45,6 @@
                 android:text="Message"
                 android:textSize="15sp" />
         </LinearLayout>
-
+        <include layout="@layout/activity_chat_floating_button" />
     </RelativeLayout>
 </ScrollView>

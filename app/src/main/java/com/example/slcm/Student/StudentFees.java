@@ -1,6 +1,7 @@
 package com.example.slcm.Student;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -76,6 +78,15 @@ public class StudentFees extends AppCompatActivity {
             retrieveFeesForStudent();
             feesRetrieved = true; // Set the flag to true once data is retrieved
         }
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(StudentFees.this, StudentChatViewFaculty.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

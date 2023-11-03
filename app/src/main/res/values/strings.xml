@@ -29,8 +29,10 @@
     <string name="fac_submit">SUBMIT</string>
     <string name="fac_date_day">Day:</string>
     <string name="fac_date_val">Date:</string>
+    <string name="select_date">Select Date:</string>
+    <string name="fac_update">Update</string>
     <string name="next">NEXT</string>
-    <string name="Fac_Class"><![CDATA[Select your class & section:]]></string>
+    <string name="Fac_Class"><![CDATA[Select Class:]]></string>
     <string name="title">Subject code: MCA 4245 Data Analytics</string>
     <string name="assessment_type">Select Assessment Type:</string>
     <string name="internal_assignment_4">Internal Assignment 4</string>
@@ -45,7 +47,7 @@
     <string name="view_details">View Details</string>
     <string name="change_password">Change Password</string>
     <string name="semester">Semester:</string>
-    <string name="select_your_subject">Select your subject:</string>
+    <string name="select_your_subject">Select Subject:</string>
     <string name="all_present">All Present</string>
     <string name="all_absent">All Absent</string>
     <string name="students">ALL STUDENTS</string>

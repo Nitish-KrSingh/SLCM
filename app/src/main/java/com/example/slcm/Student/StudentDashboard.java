@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -116,6 +117,15 @@ public class StudentDashboard extends AppCompatActivity {
             public void onClick(View view) {
                 Intent stud_fees_intent = new Intent(StudentDashboard.this, StudentFees.class);
                 startActivity(stud_fees_intent);
+            }
+        });
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(StudentDashboard.this, StudentChatViewFaculty.class);
+                startActivity(intent);
             }
         });
 

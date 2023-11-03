@@ -3,6 +3,8 @@ package com.example.slcm.Student;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
@@ -35,12 +38,22 @@ public class StudentChangePassword extends AppCompatActivity {
         getSupportActionBar().setTitle("Change Password");
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
         loggedInRegistrationNo = sharedPreferences.getString("LOGIN_USER", "");
-        TextView registrationNo = findViewById(R.id.Registration_No_Text);
         studentNewPassword = findViewById(R.id.New_Password_Edit);
         studentConfirmPassword = findViewById(R.id.Confirm_Password_Edit);
         studentChangeSubmitBtn = findViewById(R.id.submit);
-        registrationNo.setText(loggedInRegistrationNo);
-        databaseManager = new DatabaseManager(this);
+        int studentId = sharedPreferences.getInt("STUDENT_ID", -1);
+        DatabaseManager dbHelper = new DatabaseManager(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor nameCursor = db.rawQuery("SELECT Name, RegistrationNumber FROM StudentProfile WHERE StudentID = ?",  new String[]{String.valueOf(studentId)});
+        String studentName = "", studentregno="";
+        if (nameCursor.moveToFirst()) {
+            studentName = nameCursor.getString(nameCursor.getColumnIndexOrThrow("Name"));
+            studentregno= nameCursor.getString(nameCursor.getColumnIndexOrThrow("RegistrationNumber"));
+        }
+        TextView studentNameTextView = findViewById(R.id.studname);
+        TextView studentRegno = findViewById(R.id.studregnno);
+        studentNameTextView.setText(studentName);
+        studentRegno.setText(studentregno);
         studentChangeSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +82,15 @@ public class StudentChangePassword extends AppCompatActivity {
                         Toast.makeText(StudentChangePassword.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(StudentChangePassword.this, StudentChatViewFaculty.class);
+                startActivity(intent);
             }
         });
     }

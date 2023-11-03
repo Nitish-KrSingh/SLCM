@@ -20,6 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.FacultyLogin;
 import com.example.slcm.R;
+import com.example.slcm.Student.StudentChatViewFaculty;
+import com.example.slcm.Student.StudentDashboard;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -67,19 +70,28 @@ public class FacultyDashboard extends AppCompatActivity {
                     Log.d("DebugTag", "Date: " + date + "Title" + title);
 
                     DatabaseManager databaseManager = new DatabaseManager(FacultyDashboard.this);
+                    int announcementFacultyId = databaseManager.getAnnouncementFacId(title, date);
                     String message = databaseManager.getAnnouncementMessage(title, date);
-
-                    if (message != null) {  // Updated line
-                        Intent intent = new Intent(FacultyDashboard.this, FacultyViewAnnouncement.class);
-                        intent.putExtra("title", title);
-                        intent.putExtra("date", date);
-                        intent.putExtra("message", message);
-                        startActivity(intent);
+                    if (message != null) {
+                        if (announcementFacultyId == loggedInFacultyId) {
+                            Intent intent = new Intent(FacultyDashboard.this, FacultyCreatedViewAnnouncement.class);
+                            intent.putExtra("title", title);
+                            intent.putExtra("date", date);
+                            intent.putExtra("message", message);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(FacultyDashboard.this, FacultyViewAnnouncement.class);
+                            intent.putExtra("title", title);
+                            intent.putExtra("date", date);
+                            intent.putExtra("message", message);
+                            startActivity(intent);
+                        }
                     } else {
                         Log.d("DebugTag", "No message found.");
                     }
                 }
             });
+
         }
 
 
@@ -113,6 +125,15 @@ public class FacultyDashboard extends AppCompatActivity {
             public void onClick(View view) {
                 Intent fac_marks_intent = new Intent(FacultyDashboard.this, FacultyMarksClass.class);
                 startActivity(fac_marks_intent);
+            }
+        });
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(FacultyDashboard.this, FacultyChatViewStudent.class);
+                startActivity(intent);
             }
         });
 

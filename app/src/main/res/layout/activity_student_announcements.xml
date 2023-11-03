@@ -22,5 +22,7 @@
 
             />
     </RelativeLayout>
+    <include layout="@layout/activity_chat_floating_button" />
+
 
 </RelativeLayout>

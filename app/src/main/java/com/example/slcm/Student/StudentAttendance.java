@@ -2,7 +2,10 @@ package com.example.slcm.Student;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +33,7 @@ public class StudentAttendance extends AppCompatActivity {
     String studentRegNo;
     DatabaseManager databaseManager;
     MyAdapter myAdapter;
+    int studentId;
     Spinner dropdown;
     RomanToNumber converter;
 
@@ -43,6 +48,7 @@ public class StudentAttendance extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
         studentRegNo = sharedPreferences.getString("LOGIN_USER", "");
+        studentId = sharedPreferences.getInt("STUDENT_ID", -1);
 
         databaseManager = new DatabaseManager(this);
 
@@ -58,6 +64,15 @@ public class StudentAttendance extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
+        DatabaseManager dbHelper = new DatabaseManager(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor nameCursor = db.rawQuery("SELECT c.Semester FROM StudentProfile s JOIN Class c ON c.ClassID = s.ClassID WHERE StudentID = ?", new String[]{String.valueOf(studentId)});
+        int semester = 2;
+        if (nameCursor.moveToFirst()) {
+            semester = nameCursor.getInt(nameCursor.getColumnIndexOrThrow("Semester"));
+        }
+        dropdown.setSelection(semester-1);
+
 
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -73,6 +88,7 @@ public class StudentAttendance extends AppCompatActivity {
     }
 
     private void loadSubjectsForSelectedSemester() {
+
         String selectedSemester = dropdown.getSelectedItem().toString();
         int selectedValue = converter.romanToNumber(selectedSemester);
         int regNo = Integer.parseInt(studentRegNo);
@@ -80,6 +96,15 @@ public class StudentAttendance extends AppCompatActivity {
 
         myAdapter = new MyAdapter(subjectsList);
         listView.setAdapter(myAdapter);
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(StudentAttendance.this, StudentChatViewFaculty.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

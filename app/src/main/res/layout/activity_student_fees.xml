@@ -19,8 +19,7 @@
             android:clickable="false"
             android:divider="@null"
             tools:listitem="@layout/activity_student_fees_list_item"
-
             />
     </RelativeLayout>
-
+    <include layout="@layout/activity_chat_floating_button" />
 </RelativeLayout>

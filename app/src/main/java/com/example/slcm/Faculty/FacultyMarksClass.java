@@ -84,11 +84,12 @@ public class FacultyMarksClass extends AppCompatActivity {
                 String className = parts[0];
                 String section = parts[1];
 
-                int selectedClassId = getClassIdFromCursor(className, section); // Get the class ID
+                int selectedClassId = getClassIdFromCursor(className, section);
 
                 Intent intent = new Intent(FacultyMarksClass.this, FacultyMarksType.class);
-                intent.putExtra("SELECTED_CLASS", selectedClassId); // Pass the class ID
+                intent.putExtra("SELECTED_CLASS", selectedClassId);
                 intent.putExtra("SELECTED_SECTION", section);
+                intent.putExtra("SELECTED_CLASSNAME", className);
                 intent.putExtra("FACULTY_ID", loggedInFacultyId);
                 startActivity(intent);
             });

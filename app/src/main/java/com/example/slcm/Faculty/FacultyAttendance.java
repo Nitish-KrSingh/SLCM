@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,9 @@ import com.example.slcm.Student.Student;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class FacultyAttendance extends AppCompatActivity {
 
@@ -38,13 +42,17 @@ public class FacultyAttendance extends AppCompatActivity {
         Button Submit_Attendance = findViewById(R.id.Fac_Submit_Att_Btn);
         Button all_Student_present = findViewById(R.id.all_present);
         Button all_Student_absent = findViewById(R.id.all_absent);
+        TextView details = findViewById(R.id.pagedetails);
 
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
+        String selectedClassName= getIntent().getStringExtra("SELECTED_CLASSNAME");
+        String selectedSubjectName= getIntent().getStringExtra("SELECTED_SUBJECTNAME");
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
         String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
         int selectedSubject = getIntent().getIntExtra("SELECTED_SUBJECT", -1);
-
+        String prevdet="Date: "+select_date_for_attendance+"\nClass: "+selectedClassName+"-"+selectedSection+"\nSubject: "+selectedSubjectName;
+        details.setText(prevdet);
         studentList = retrieveStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
         System.out.println(studentList);
         adapter = new CustomStudentAttendanceListAdapter(this, studentList);
@@ -70,41 +78,40 @@ public class FacultyAttendance extends AppCompatActivity {
         Submit_Attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> presentMap = adapter.GetPresentMap();
-                for (Student student : studentList) {
-                    Attendance attendance = new Attendance(student.getRollNumber(), selectedClass, selectedSubject, select_date_for_attendance, presentMap.get(student.getRollNumber()));
-                    databaseManager.AddAttendance(attendance);
-                }
 
-                Toast.makeText(FacultyAttendance.this, "Attendance submitted!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(FacultyAttendance.this, FacultyDashboard.class);
-                startActivity(intent);
-                finish();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FacultyAttendance.this);
+                alertDialogBuilder.setTitle("Confirm Attendance:");
+                alertDialogBuilder.setMessage("Submit the attendance taken?");
+
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Map<String, String> presentMap = adapter.GetPresentMap();
+                        for (Student student : studentList) {
+                            Attendance attendance = new Attendance(student.getRollNumber(), selectedClass, selectedSubject, select_date_for_attendance, presentMap.get(student.getRollNumber()));
+                            databaseManager.AddAttendance(attendance);
+                        }
+
+                        Toast.makeText(FacultyAttendance.this, "Attendance submitted!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(FacultyAttendance.this, FacultyDashboard.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
-
-//        retrieveStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
-     //   Cursor cursor = databaseManager.getStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
-
-//        all_Student_present.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (studentList.size() == 0) {
-//                    Toast.makeText(FacultyAttendance.this, "No student present.", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    for (Student student : studentList) {
-//
-//                        student.setAttendanceStatus(AttendanceStatus.PRESENT);
-//                    }
-//
-//
-//                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//        });
-
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

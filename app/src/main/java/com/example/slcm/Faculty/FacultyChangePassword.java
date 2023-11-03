@@ -3,6 +3,8 @@ package com.example.slcm.Faculty;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
@@ -30,14 +33,29 @@ public class FacultyChangePassword extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Change Password");
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-        loggedInUsername = sharedPreferences.getString("LOGIN_USER", "");
-        TextView facUsername = findViewById(R.id.Fac_Username);
         new_password = findViewById(R.id.Fac_New_Password_Edit);
         confirm_password = findViewById(R.id.Fac_Confirm_Password_Edit);
         change_submit_btn = findViewById(R.id.submit);
-        facUsername.setText(loggedInUsername);
+        int loggedInFacultyId = sharedPreferences.getInt("FACULTY_ID", -1);
+        DatabaseManager dbHelper = new DatabaseManager(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor nameCursor = db.rawQuery("SELECT Name FROM FacultyProfile WHERE FacultyID = ?",  new String[]{String.valueOf(loggedInFacultyId)});
+        String facultyName = "";
+        if (nameCursor.moveToFirst()) {
+            facultyName = nameCursor.getString(nameCursor.getColumnIndexOrThrow("Name"));
+        }
+        TextView facultyNameTextView = findViewById(R.id.profname);
+        facultyNameTextView.setText(facultyName);
         databaseManager = new DatabaseManager(this);
-
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(FacultyChangePassword.this, FacultyChatViewStudent.class);
+                startActivity(intent);
+            }
+        });
         change_submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,5 +86,8 @@ public class FacultyChangePassword extends AppCompatActivity {
                 }
             }
         });
+
     }
+
 }
+

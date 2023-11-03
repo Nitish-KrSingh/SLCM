@@ -4,12 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Faculty.FacultyAttendanceClass">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pagedetails"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        android:layout_centerHorizontal="true"
+        android:textSize="14dp">
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/pagedetails"
+        android:id="@+id/line"
+        android:background="@color/gray" />
     <RelativeLayout
+        android:layout_below="@id/pagedetails"
         android:id="@+id/Fac_Att_Class_Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp">
+        android:layout_marginTop="5dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="30dp">
 
         <TextView
             android:id="@+id/Fac_Att_Class_Title"
@@ -17,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
-            android:text="@string/Fac_Class"
+            android:text="Select Class:"
             android:textSize="18sp"
             android:textStyle="bold" />
 

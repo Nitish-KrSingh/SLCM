@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,8 +28,8 @@ public class FacultyAttendanceClass extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private int loggedInFacultyId;
     private int classNameIndex;
-    private int sectionIndex; // Declare sectionIndex as a class-level field
-    private Cursor cursor; // Declare cursor as a class-level field
+    private int sectionIndex;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,9 @@ public class FacultyAttendanceClass extends AppCompatActivity {
 
         String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
         Log.d("Date", "Att_Date: " + select_date_for_attendance);
-
+        TextView details = findViewById(R.id.pagedetails);
+        String prevdet="Selected Date: "+select_date_for_attendance;
+        details.setText(prevdet);
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
         loggedInFacultyId = sharedPreferences.getInt("FACULTY_ID", -1);
 
@@ -89,10 +92,11 @@ public class FacultyAttendanceClass extends AppCompatActivity {
                 String className = parts[0];
                 String section = parts[1];
 
-                int selectedClassId = getClassIdFromCursor(className, section); // Get the class ID
+                int selectedClassId = getClassIdFromCursor(className, section);
 
                 Intent intent = new Intent(FacultyAttendanceClass.this, FacultyAttendanceSubject.class);
-                intent.putExtra("SELECTED_CLASS", selectedClassId); // Pass the class ID
+                intent.putExtra("SELECTED_CLASS", selectedClassId);
+                intent.putExtra("SELECTED_CLASSNAME", className);
                 intent.putExtra("SELECTED_SECTION", section);
                 intent.putExtra("FACULTY_ID", loggedInFacultyId);
                 intent.putExtra("ATT_SELECTED_DATE", select_date_for_attendance);

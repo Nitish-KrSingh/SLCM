@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.R;
 import com.example.slcm.Student.StudentMenuHandler;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
@@ -36,6 +38,15 @@ public class FacultyViewAnnouncement extends AppCompatActivity {
             announcementMessage.setText(message);
         }
         getSupportActionBar().setTitle(title);
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(FacultyViewAnnouncement.this, FacultyChatViewStudent.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

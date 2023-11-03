@@ -1,13 +1,17 @@
 package com.example.slcm.Student;
 
 public class SubjectWithMarks {
-    private final int subjectId;
+    private float gpa= 0.0F;
+    private float cgpa=0.0F;
+    private int subjectId=0;
     private final String subjectName;
-    private final Double assignment1;
-    private final Double assignment2;
-    private final Double assignment3;
-    private final Double assignment4;
-    private final Double midterm;
+    private Double assignment1=0.0;
+    private Double assignment2=0.0;
+    private Double assignment3=0.0;
+    private Double assignment4=0.0;
+    private Double midterm=0.0;
+    private float credits= 0.0F;
+    private String grade= String.valueOf('A');
 
     public SubjectWithMarks(int subjectId, String subjectName, Double assignment1, Double assignment2, Double assignment3, Double assignment4, Double midterm) {
         this.subjectId = subjectId;
@@ -17,6 +21,15 @@ public class SubjectWithMarks {
         this.assignment3 = assignment3;
         this.assignment4 = assignment4;
         this.midterm = midterm;
+    }
+
+    public SubjectWithMarks(String subjectName, String grade, float credits, float gpa, float cgpa) {
+        this.subjectName = subjectName;
+        this.grade = grade;
+        this.credits= credits;
+        this.gpa= gpa;
+        this.cgpa= cgpa;
+
     }
 
     public int getSubjectId() {
@@ -45,5 +58,18 @@ public class SubjectWithMarks {
 
     public Double getMidterm() {
         return midterm;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+    public float getCredits() {
+        return credits;
+    }
+
+    public float getGPA() { return gpa;
+    }
+    public float getCGPA() {
+        return  cgpa;
     }
 }

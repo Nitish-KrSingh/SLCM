@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,12 +35,14 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_attendance_subject);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Attendance - Select Subject");
-
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
+        String selectedClassName = getIntent().getStringExtra("SELECTED_CLASSNAME");
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
         String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
-
+        TextView details = findViewById(R.id.pagedetails);
+        String prevdet="Selected Date: "+select_date_for_attendance+"\nClass: "+selectedClassName+"-"+selectedSection;
+        details.setText(prevdet);
         subjectListView = findViewById(R.id.subjectListView);
         subjectList = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, R.layout.activity_faculty_marks_list_item, R.id.listItemButton, subjectList);
@@ -74,11 +77,13 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Retrieve the selected subject ID from the cursor
                 int selectedSubjectId = getSubjectIdFromCursor(position);
-
+                String subjectName=getSubjectNameFromCursor(position);
                 // Rest of your code remains the same
                 Intent intent = new Intent(FacultyAttendanceSubject.this, FacultyAttendance.class);
                 intent.putExtra("SELECTED_CLASS", selectedClass);
                 intent.putExtra("SELECTED_SECTION", selectedSection);
+                intent.putExtra("SELECTED_CLASSNAME", selectedClassName);
+                intent.putExtra("SELECTED_SUBJECTNAME", subjectName);
                 intent.putExtra("SELECTED_SUBJECT", selectedSubjectId);
                 intent.putExtra("FACULTY_ID", facultyId);
                 intent.putExtra("ATT_SELECTED_DATE", select_date_for_attendance);
@@ -94,6 +99,16 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
                 }
                 // Return a default value or handle the error as needed
                 return -1;
+            }
+            private String getSubjectNameFromCursor(int position) {
+                if (cursor != null && cursor.moveToPosition(position)) {
+                    int subjectNameIndex = cursor.getColumnIndex("SubjectName");
+                    if (subjectNameIndex != -1) {
+                        return cursor.getString(subjectNameIndex);
+                    }
+                }
+                // Return a default value or handle the error as needed
+                return null;
             }
         });
     }

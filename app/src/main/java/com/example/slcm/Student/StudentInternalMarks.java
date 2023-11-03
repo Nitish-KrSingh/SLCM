@@ -1,7 +1,10 @@
 package com.example.slcm.Student;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -26,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 import java.util.Objects;
@@ -54,6 +58,15 @@ public class StudentInternalMarks extends AppCompatActivity {
         setupSpinner();
 
         loadSubjectsForSelectedSemester();
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(StudentInternalMarks.this, StudentChatViewFaculty.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupSpinner() {
@@ -63,6 +76,14 @@ public class StudentInternalMarks extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
+        DatabaseManager dbHelper = new DatabaseManager(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor nameCursor = db.rawQuery("SELECT c.Semester FROM StudentProfile s JOIN Class c ON c.ClassID = s.ClassID WHERE StudentID = ?", new String[]{String.valueOf(studentId)});
+        int semester = 2;
+        if (nameCursor.moveToFirst()) {
+            semester = nameCursor.getInt(nameCursor.getColumnIndexOrThrow("Semester"));
+        }
+        dropdown.setSelection(semester-1);
 
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

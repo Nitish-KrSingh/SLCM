@@ -47,6 +47,7 @@
             android:dividerHeight="20dp"
             tools:listitem="@layout/activity_student_attendance_list_item" />
     </LinearLayout>
+    <include layout="@layout/activity_chat_floating_button" />
 
 
-</LinearLayout>
+    </LinearLayout>

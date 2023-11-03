@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Student.StudentDashboard">
 
     <GridLayout
@@ -14,7 +15,6 @@
         android:columnCount="3"
         android:rowCount="2">
 
-        <!-- First Row -->
         <Button
             android:id="@+id/BtnAnnouncement"
             android:layout_width="0dp"
@@ -112,5 +112,6 @@
 
             />
     </RelativeLayout>
+    <include layout="@layout/activity_chat_floating_button" />
 
 </RelativeLayout>

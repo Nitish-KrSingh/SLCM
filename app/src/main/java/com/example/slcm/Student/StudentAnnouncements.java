@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -61,6 +62,15 @@ public class StudentAnnouncements extends AppCompatActivity {
                 } else {
                     Log.d("DebugTag", "No message found.");
                 }
+            }
+        });
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(StudentAnnouncements.this, StudentChatViewFaculty.class);
+                startActivity(intent);
             }
         });
 

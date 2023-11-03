@@ -11,33 +11,30 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Semester/ Year:    "
-            android:textSize="20dp"
+            android:text="@string/semester"
+            android:textSize="23dp"
             android:textStyle="bold" />
-
 
         <Spinner
             android:id="@+id/semester_select_spinner"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown" />
-
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -45,30 +42,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="GPA:  "
-            android:textSize="20dp"
+            android:text="GPA: "
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8.5"
-            android:textSize="20dp" />
+            android:id="@+id/gpa"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:text="CGPA: "
-            android:textSize="20dp"
+            android:text="CGPA:"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9.0"
-            android:textSize="20dp" />
-
+            android:id="@+id/cgpa"
+            android:textSize="18dp" />
 
     </LinearLayout>
 
@@ -78,8 +74,8 @@
         android:layout_marginTop="30dp"
         android:background="@color/light_gray"
         android:orientation="vertical"
-        android:padding="25dp">
-
+        android:padding="10dp"
+        android:paddingHorizontal="20dp">
         <RelativeLayout
 
             android:layout_width="match_parent"
@@ -91,7 +87,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:text="Subject"
-                android:textSize="18sp"
+                android:textColor="@color/blue"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -99,9 +97,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@+id/textViewCredits"
                 android:text="Grade"
-                android:textSize="18sp"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -109,162 +109,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
                 android:text="Credits"
-                android:textSize="18sp"
+                android:textColor="@color/blue"
+                android:layout_marginEnd="10dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
-
-        <RelativeLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:padding="15dp">
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:text="OOPS"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="8dp"
-                android:text="A"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
-                android:text="3.00"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp">
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:text="DA"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="8dp"
-                android:text="A"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
-                android:text="3.00"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp">
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:text="Java"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="8dp"
-                android:text="A"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
-                android:text="3.00"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp">
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:text="Web"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="8dp"
-                android:text="A"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
-                android:text="3.00"
-                android:textColor="@color/blue"
-                android:textSize="18sp" />
-
-        </RelativeLayout>
-
-
     </LinearLayout>
+    <ListView
+        android:id="@+id/listViewMarkSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:padding="10dp"
+        android:divider="@null"
+        android:background="@color/light_purple"
+        android:dividerHeight="20dp"/>
+    <include layout="@layout/activity_chat_floating_button" />
 </LinearLayout>

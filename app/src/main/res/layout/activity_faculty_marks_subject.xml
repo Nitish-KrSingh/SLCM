@@ -4,12 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Faculty.FacultyMarksSubject">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pagedetails"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:textSize="14dp">
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/pagedetails"
+        android:id="@+id/line"
+        android:background="@color/gray" />
     <RelativeLayout
         android:id="@+id/relative2"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp">
+        android:paddingBottom="30dp"
+        android:layout_below="@id/line"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp">
 
         <TextView
             android:id="@+id/txtselectMarksSubject"

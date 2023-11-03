@@ -37,12 +37,16 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "Password TEXT," +
                 "UserType TEXT," +
                 "Name TEXT," +
-                "Designation TEXT," +
-                "AcademicRole TEXT," +
-                "AreasOfInterest TEXT," +
                 "DOB DATE," +
                 "Age INTEGER," +
-                "Department TEXT);");
+                "PhoneNumber TEXT," +
+                "Gender TEXT," +
+                "Email TEXT," +
+                "Department TEXT,"+
+                "Designation TEXT," +
+                "AcademicRole TEXT," +
+                "AreasOfInterest TEXT);");
+
 
         db.execSQL("CREATE TABLE IF NOT EXISTS StudentProfile (" +
                 "StudentID INTEGER PRIMARY KEY," +
@@ -52,6 +56,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "Name TEXT," +
                 "DOB DATE," +
                 "Age INTEGER," +
+                "PhoneNumber TEXT," +
+                "Gender TEXT," +
+                "Email TEXT," +
                 "Semester INTEGER," +
                 "Department TEXT," +
                 "ClassID INTEGER," +
@@ -94,11 +101,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "ClassID INTEGER," +
                 "StudentID INTEGER," +
                 "SubjectID INTEGER," +
-                "Assignment1 FLOAT," +
-                "Assignment2 FLOAT," +
-                "Assignment3 FLOAT," +
-                "Assignment4 FLOAT," +
-                "Midterm FLOAT," +
+                "Assignment1 FLOAT DEFAULT 0.0," +
+                "Assignment2 FLOAT DEFAULT 0.0," +
+                "Assignment3 FLOAT DEFAULT 0.0," +
+                "Assignment4 FLOAT DEFAULT 0.0," +
+                "Midterm FLOAT DEFAULT 0.0," +
                 "TotalMarks FLOAT," +
                 "FOREIGN KEY (StudentID) REFERENCES StudentProfile(StudentID)," +
                 "FOREIGN KEY (ClassID) REFERENCES Class(ClassID)," +
@@ -121,6 +128,41 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 "StudentID INTEGER," +
                 "FOREIGN KEY (StudentID) REFERENCES StudentProfile(StudentID));");
 
+        db.execSQL("CREATE TABLE IF NOT EXISTS Messages (" +
+                "_id INTEGER PRIMARY KEY," +
+                "SenderID INTEGER," +
+                "SenderType TEXT," +
+                "ReceiverID INTEGER," +
+                "MessageText TEXT," +
+                "isRead INTEGER DEFAULT 0," +
+                "Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS SemesterGPA (" +
+                "SemesterGPAID INTEGER PRIMARY KEY," +
+                "GPA FLOAT," +
+                "CGPA FLOAT," +
+                "Semester INTEGER," +
+                "StudentID INTEGER," +
+                "ClassID INTEGER," +
+                "FOREIGN KEY (StudentID) REFERENCES StudentProfile(StudentID)," +
+                "FOREIGN KEY (ClassID) REFERENCES Class(ClassID)" +
+                ");");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS Marksheet (" +
+                "MarksheetID INTEGER PRIMARY KEY," +
+                "SubjectID INTEGER," +
+                "SubjectName TEXT," +
+                "Grade TEXT," +
+                "Credits FLOAT," +
+                "StudentID INTEGER," +
+                "ClassID INTEGER," +
+                "SemesterGPAID INTEGER," +
+                "FOREIGN KEY (StudentID) REFERENCES StudentProfile(StudentID)," +
+                "FOREIGN KEY (ClassID) REFERENCES Class(ClassID)," +
+                "FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)," +
+                "FOREIGN KEY (SemesterGPAID) REFERENCES SemesterGPA(SemesterGPAID)" +
+                ");");
+
 
         insertDummyData(db);
     }
@@ -139,6 +181,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         facultyValues1.put("Designation", "Assistant Professor");
         facultyValues1.put("DOB", "1985-01-01");
         facultyValues1.put("Age", 40);
+        facultyValues1.put("PhoneNumber", "9188881829");
+        facultyValues1.put("Gender", "Male");
+        facultyValues1.put("Email", "shameem@learner.manipal.edu");
         facultyValues1.put("Department", "Department of Data Science and Computer Applications");
         facultyValues1.put("AcademicRole", "Coordinator for department-level library activities");
         facultyValues1.put("AreasOfInterest", "Video Compression and Parallel Programming, Programming Languages (C, C++, Java), ERP, Cloud Computing, Software Engineering");
@@ -152,6 +197,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         facultyValues2.put("Designation", "Assistant Professor-Senior Scale");
         facultyValues2.put("DOB", "1985-05-15");
         facultyValues2.put("Age", 49);
+        facultyValues2.put("PhoneNumber", "9187771829");
+        facultyValues2.put("Gender", "Male");
+        facultyValues2.put("Email", "nigam@learner.manipal.edu");
         facultyValues2.put("Department", "Department of Data Science and Computer Applications");
         facultyValues2.put("AcademicRole", "ISO Co-coordinator");
         facultyValues2.put("AreasOfInterest", "Computer Networks, Information and Network Security, Data Mining");
@@ -165,6 +213,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         facultyValues3.put("Designation", "Associate Professor");
         facultyValues3.put("DOB", "1985-05-15");
         facultyValues3.put("Age", 45);
+        facultyValues3.put("PhoneNumber", "9122281829");
+        facultyValues3.put("Gender", "Male");
+        facultyValues3.put("Email", "dasharathraj@learner.manipal.edu");
         facultyValues3.put("Department", "Department of Data Science and Computer Applications");
         facultyValues3.put("AcademicRole", "Digital Coordinator, MIT");
         facultyValues3.put("AreasOfInterest", "AI/ML, Image Processing, Computer Vision, E-Business/E-Commerce, Enterprise Application, Software Life Cycle Management, Software Project Management and Strategic Management");
@@ -178,6 +229,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         facultyValues4.put("Designation", "Assistant Professor");
         facultyValues4.put("DOB", "1985-05-15");
         facultyValues4.put("Age", 40);
+        facultyValues4.put("PhoneNumber", "921381829");
+        facultyValues4.put("Gender", "Female");
+        facultyValues4.put("Email", "savitha@learner.manipal.edu");
         facultyValues4.put("Department", "Department of Data Science and Computer Applications");
         facultyValues4.put("AcademicRole", "Teaching Data Structures & Algorithms to BTech DSE");
         facultyValues4.put("AreasOfInterest", "Image Processing, Machine Learning, Deep learning, Cloud computing");
@@ -191,6 +245,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         facultyValues5.put("Designation", "Assistant Professor-Senior Scale");
         facultyValues5.put("DOB", "1985-05-15");
         facultyValues5.put("Age", 40);
+        facultyValues5.put("PhoneNumber", "9188441829");
+        facultyValues5.put("Gender", "Male");
+        facultyValues5.put("Email", "vinayak@learner.manipal.edu");
         facultyValues5.put("Department", "Department of Data Science and Computer Applications");
         facultyValues5.put("AcademicRole", "Assistant Professor - Senior Scale in the Department of Information and Communication Technology");
         facultyValues5.put("AreasOfInterest", "Database Management Systems, Image Processing and Network Security");
@@ -203,6 +260,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues1.put("Name", "Nibeel");
         studentValues1.put("DOB", "2001-01-01");
         studentValues1.put("Age", 23);
+        studentValues1.put("PhoneNumber", "9199911829");
+        facultyValues1.put("Gender", "Male");
+        studentValues1.put("Email", "nibeel@learner.manipal.edu");
         studentValues1.put("Semester", 3);
         studentValues1.put("Department", "Department of Data Science and Computer Applications");
         studentValues1.put("ClassID", 1);
@@ -215,6 +275,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues2.put("Name", "Noel");
         studentValues2.put("DOB", "2001-01-01");
         studentValues2.put("Age", 23);
+        studentValues2.put("PhoneNumber", "9181118829");
+        facultyValues2.put("Gender", "Male");
+        studentValues2.put("Email", "noel@learner.manipal.edu");
         studentValues2.put("Semester", 3);
         studentValues2.put("Department", "Department of Data Science and Computer Applications");
         studentValues2.put("ClassID", 1);
@@ -224,9 +287,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues4.put("RegistrationNumber", 220970003);
         studentValues4.put("Password", "12345");
         studentValues4.put("UserType", "Student");
-        studentValues4.put("Name", "Ritik");
+        studentValues4.put("Name", "Sanjana");
         studentValues4.put("DOB", "2001-01-01");
         studentValues4.put("Age", 23);
+        studentValues4.put("PhoneNumber", "9181113829");
+        facultyValues4.put("Gender", "Female");
+        studentValues4.put("Email", "sanjana@learner.manipal.edu");
         studentValues4.put("Semester", 3);
         studentValues4.put("Department", "Department of DataScience and Computer Applications");
         studentValues4.put("ClassID", 1);
@@ -239,6 +305,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues9.put("Name", "Misha");
         studentValues9.put("DOB", "2001-01-01");
         studentValues9.put("Age", 23);
+        studentValues9.put("PhoneNumber", "9199102120");
+        studentValues9.put("Gender", "Female");
+        studentValues9.put("Email", "misha@learner.manipal.edu");
         studentValues9.put("Semester", 3);
         studentValues9.put("Department", "Department of Data Science and Computer Applications");
         studentValues9.put("ClassID", 1);
@@ -251,70 +320,118 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues10.put("Name", "Nitish");
         studentValues10.put("DOB", "2001-01-01");
         studentValues10.put("Age", 23);
+        studentValues10.put("PhoneNumber", "9122918829");
+        studentValues10.put("Gender", "Male");
+        studentValues10.put("Email", "nitish@learner.manipal.edu");
         studentValues10.put("Semester", 3);
         studentValues10.put("Department", "Department of Data Science and Computer Applications");
         studentValues10.put("ClassID", 1);
         long studentId10 = db.insert("StudentProfile", null, studentValues10);
 
+        ContentValues studentValues5 = new ContentValues();
+        studentValues5.put("RegistrationNumber", 220970006);
+        studentValues5.put("Password", "12345");
+        studentValues5.put("UserType", "Student");
+        studentValues5.put("Name", "Divya");
+        studentValues5.put("DOB", "2001-01-01");
+        studentValues5.put("Age", 23);
+        studentValues5.put("PhoneNumber", "9110003829");
+        studentValues5.put("Gender", "Female");
+        studentValues5.put("Email", "divya@learner.manipal.edu");
+        studentValues5.put("Semester", 3);
+        studentValues5.put("Department", "Department of DataScience and Computer Applications");
+        studentValues5.put("ClassID", 1);
+        long studentId5 = db.insert("StudentProfile", null, studentValues4);
+
         ContentValues studentValues11 = new ContentValues();
-        studentValues11.put("RegistrationNumber", 220970006);
+        studentValues11.put("RegistrationNumber", 220970007);
         studentValues11.put("Password", "12345");
         studentValues11.put("UserType", "Student");
         studentValues11.put("Name", "Akshatha");
         studentValues11.put("DOB", "2001-01-01");
         studentValues11.put("Age", 23);
+        studentValues11.put("PhoneNumber", "9112123829");
+        studentValues11.put("Gender", "Female");
+        studentValues11.put("Email", "akshatha@learner.manipal.edu");
         studentValues11.put("Semester", 3);
         studentValues11.put("Department", "Department of Data Science and Computer Applications");
         studentValues11.put("ClassID", 2);
         long studentId11 = db.insert("StudentProfile", null, studentValues11);
 
         ContentValues studentValues12 = new ContentValues();
-        studentValues12.put("RegistrationNumber", 220970007);
+        studentValues12.put("RegistrationNumber", 220970008);
         studentValues12.put("Password", "12345");
         studentValues12.put("UserType", "Student");
         studentValues12.put("Name", "Shashikanta");
         studentValues12.put("DOB", "2001-01-01");
         studentValues12.put("Age", 23);
+        studentValues12.put("PhoneNumber", "9119923829");
+        studentValues12.put("Gender", "Male");
+        studentValues12.put("Email", "shashikanta@learner.manipal.edu");
         studentValues12.put("Semester", 3);
         studentValues12.put("Department", "Department of Data Science and Computer Applications");
         studentValues12.put("ClassID", 2);
         long studentId12 = db.insert("StudentProfile", null, studentValues12);
 
         ContentValues studentValues13 = new ContentValues();
-        studentValues13.put("RegistrationNumber", 220970008);
+        studentValues13.put("RegistrationNumber", 220970009);
         studentValues13.put("Password", "12345");
         studentValues13.put("UserType", "Student");
         studentValues13.put("Name", "Tanushree");
         studentValues13.put("DOB", "2001-01-01");
         studentValues13.put("Age", 23);
+        studentValues13.put("PhoneNumber", "9110001121");
+        studentValues13.put("Gender", "Female");
+        studentValues13.put("Email", "tanushree@learner.manipal.edu");
         studentValues13.put("Semester", 3);
         studentValues13.put("Department", "Department of Data Science and Computer Applications");
         studentValues13.put("ClassID", 2);
         long studentId13 = db.insert("StudentProfile", null, studentValues13);
 
         ContentValues studentValues14 = new ContentValues();
-        studentValues14.put("RegistrationNumber", 220970009);
+        studentValues14.put("RegistrationNumber", 220970010);
         studentValues14.put("Password", "12345");
         studentValues14.put("UserType", "Student");
         studentValues14.put("Name", "Shreya");
         studentValues14.put("DOB", "2001-01-01");
         studentValues14.put("Age", 23);
+        studentValues14.put("PhoneNumber", "9110192812");
+        studentValues14.put("Gender", "Female");
+        studentValues14.put("Email", "shreya@learner.manipal.edu");
         studentValues14.put("Semester", 3);
         studentValues14.put("Department", "Department of Data Science and Computer Applications");
         studentValues14.put("ClassID", 2);
         long studentId14 = db.insert("StudentProfile", null, studentValues14);
 
         ContentValues studentValues15 = new ContentValues();
-        studentValues15.put("RegistrationNumber", 220970010);
+        studentValues15.put("RegistrationNumber", 220970011);
         studentValues15.put("Password", "12345");
         studentValues15.put("UserType", "Student");
         studentValues15.put("Name", "Varshith");
         studentValues15.put("DOB", "2001-01-01");
         studentValues15.put("Age", 23);
+        studentValues15.put("PhoneNumber", "9110665746");
+        studentValues15.put("Gender", "Male");
+        studentValues15.put("Email", "varshith@learner.manipal.edu");
         studentValues15.put("Semester", 3);
         studentValues15.put("Department", "Department of Data Science and Computer Applications");
         studentValues15.put("ClassID", 2);
         long studentId15 = db.insert("StudentProfile", null, studentValues15);
+
+        ContentValues studentValues16 = new ContentValues();
+        studentValues16.put("RegistrationNumber", 220970012);
+        studentValues16.put("Password", "12345");
+        studentValues16.put("UserType", "Student");
+        studentValues16.put("Name", "Pooja");
+        studentValues16.put("DOB", "2001-01-01");
+        studentValues16.put("Age", 23);
+        studentValues16.put("PhoneNumber", "9111212389");
+        studentValues16.put("Gender", "Female");
+        studentValues16.put("Email", "pooja@learner.manipal.edu");
+        studentValues16.put("Semester", 3);
+        studentValues16.put("Department", "Department of Data Science and Computer Applications");
+        studentValues16.put("ClassID", 2);
+        long studentId16 = db.insert("StudentProfile", null, studentValues15);
 
 
         ContentValues subjectValues1 = new ContentValues();
@@ -397,17 +514,66 @@ public class DatabaseManager extends SQLiteOpenHelper {
         classValues2.put("Semester", 3);
         db.insert("Class", null, classValues2);
 
+        ContentValues semesterGPAValues = new ContentValues();
+        semesterGPAValues.put("GPA", 9.2);
+        semesterGPAValues.put("CGPA", 9.2);
+        semesterGPAValues.put("Semester", 3);
+        semesterGPAValues.put("StudentID", studentId9);
+        semesterGPAValues.put("ClassID", 1);
+        long semesterGPAId = db.insert("SemesterGPA", null, semesterGPAValues);
+
+        ContentValues marksheetValues1 = new ContentValues();
+        marksheetValues1.put("SubjectID", 1);
+        marksheetValues1.put("SubjectName", "Machine Learning");
+        marksheetValues1.put("Grade", "A+");
+        marksheetValues1.put("Credits", 3.0);
+        marksheetValues1.put("StudentID", studentId9);
+        marksheetValues1.put("ClassID", 1);
+        marksheetValues1.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues1);
+
+        ContentValues marksheetValues2 = new ContentValues();
+        marksheetValues2.put("SubjectID", 2);
+        marksheetValues2.put("SubjectName", "Cloud Computing");
+        marksheetValues2.put("Grade", "B");
+        marksheetValues2.put("Credits", 3.0);
+        marksheetValues2.put("StudentID", studentId9);
+        marksheetValues2.put("ClassID", 1);
+        marksheetValues2.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues2);
+
+        ContentValues marksheetValues4 = new ContentValues();
+        marksheetValues4.put("SubjectID", 4);
+        marksheetValues4.put("SubjectName", "Computer Networks");
+        marksheetValues4.put("Grade", "A+");
+        marksheetValues4.put("Credits", 3.0);
+        marksheetValues4.put("StudentID", studentId9);
+        marksheetValues4.put("ClassID", 1);
+        marksheetValues4.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues4);
+
+        ContentValues marksheetValues5 = new ContentValues();
+        marksheetValues5.put("SubjectID", 5);
+        marksheetValues5.put("SubjectName", "Human Resource Management");
+        marksheetValues5.put("Grade", "A");
+        marksheetValues5.put("Credits", 3.0);
+        marksheetValues5.put("StudentID", studentId9);
+        marksheetValues5.put("ClassID", 1);
+        marksheetValues5.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues5);
+
+
         ContentValues announcementValues1 = new ContentValues();
-        announcementValues1.put("Title", "Announcement 1");
-        announcementValues1.put("Message", "This is an important announcement for all students.");
-        announcementValues1.put("Date", "2023-09-18");
+        announcementValues1.put("Title", "New Student Orientation");
+        announcementValues1.put("Message", "Welcome to our incoming class! New student orientation will take place 31-08-2023. Get ready for a fun and informative introduction to campus life and resources.");
+        announcementValues1.put("Date", "2023-08-18");
         announcementValues1.put("FacultyID", 1);
         db.insert("Announcements", null, announcementValues1);
 
         ContentValues announcementValues2 = new ContentValues();
-        announcementValues2.put("Title", "Announcement 2");
-        announcementValues2.put("Message", "Another important announcement for students.");
-        announcementValues2.put("Date", "2023-10-10");
+        announcementValues2.put("Title", "Campus Wi-Fi Upgrades");
+        announcementValues2.put("Message", "We are enhancing our campus Wi-Fi network for better connectivity. Expect temporary disruptions in certain areas as we make these improvements over the next week.");
+        announcementValues2.put("Date", "2023-09-10");
         announcementValues2.put("FacultyID", 2);
         db.insert("Announcements", null, announcementValues2);
 
@@ -915,13 +1081,17 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return result > 0;
     }
 
-
     public Cursor getAnnouncement() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY AnnouncementID DESC";
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY Date DESC, AnnouncementID DESC";
         return db.rawQuery(sqlQuery, null);
     }
-
+    public Cursor getAnnouncementForFaculty(int loggedInFacultyId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT Title, Message, Date FROM Announcements WHERE FacultyId != ? ORDER BY Date DESC, AnnouncementID DESC";
+        String[] selectionArgs = {String.valueOf(loggedInFacultyId)};
+        return db.rawQuery(sqlQuery, selectionArgs);
+    }
     public String getAnnouncementMessage(String title, String date) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT Message FROM Announcements WHERE Title = ? AND Date = ?";
@@ -938,6 +1108,120 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return null;
     }
 
+    public String getCreatedAnnouncementMessage(String title, String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT Message FROM Announcements WHERE Title = ? AND Date = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{title, date});
+        int messageIndex = cursor.getColumnIndex("Message");
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                String message = cursor.getString(messageIndex);
+                cursor.close();
+                return message;
+            }
+            cursor.close();
+        }
+        return null;
+    }
+
+    public Cursor getFacultyCreatedAnnouncement(int loggedInFacultyId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"Title", "Message", "Date"};
+        String selection = "FacultyID = ?";
+        String[] selectionArgs = {String.valueOf(loggedInFacultyId)};
+        String sortOrder = "Date DESC, AnnouncementID DESC";
+        return db.query("Announcements", columns, selection, selectionArgs, null, null, sortOrder);
+    }
+
+    public int getAnnouncementIdFaculty(int facultyId, String title) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String announcementQuery = "SELECT AnnouncementID FROM Announcements WHERE FacultyID = ? AND Title = ?";
+        Cursor announcementCursor = db.rawQuery(announcementQuery, new String[]{String.valueOf(facultyId), title});
+        int updateIdIndex = announcementCursor.getColumnIndex("AnnouncementID");
+
+        if (announcementCursor.moveToFirst()) {
+            int announcementID = announcementCursor.getInt(updateIdIndex);
+            announcementCursor.close();
+            return announcementID;
+        } else {
+            announcementCursor.close();
+            return -1;
+        }
+    }
+    public int getAnnouncementFacId(String title, String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int facultyId = -1;
+
+        if (db != null) {
+            String[] projection = { "FacultyId" };
+            String selection = "Title = ? AND Date = ?";
+            String[] selectionArgs = { title, date };
+
+            Cursor cursor = db.query("Announcements", projection, selection, selectionArgs, null, null, null);
+            int facultyIdIndex = cursor.getColumnIndex("FacultyID");
+            if (cursor.moveToFirst()) {
+                facultyId = cursor.getInt(facultyIdIndex);
+                cursor.close();
+            }
+
+            db.close();
+        }
+
+        return facultyId;
+    }
+
+
+
+
+
+    public Cursor updatingFacultyAnnouncement(int getAnnouncementId, String title, String message) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues announcementValues = new ContentValues();
+        SimpleDateFormat pcDateFormat = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yyyy-MM-dd"), Locale.getDefault());
+        Date date = new Date();
+        String formattedDate = pcDateFormat.format(date);
+        announcementValues.put("Title", title);
+        announcementValues.put("Message", message);
+        announcementValues.put("Date", formattedDate);
+
+        String whereClause = "AnnouncementID = ?";
+        String[] whereArgs = {String.valueOf(getAnnouncementId)};
+
+        int result = db.update("Announcements", announcementValues, whereClause, whereArgs);
+
+        if (result > 0) {
+            Log.d("UpdateAnnouncement", "Update successful");
+        } else {
+            Log.e("UpdateAnnouncement", "Update failed");
+        }
+
+        String sortOrder = "Date DESC"; // Sort by date in descending order
+
+        Cursor cursor = db.query("Announcements", null, whereClause, whereArgs, null, null, sortOrder);
+
+        return cursor;
+    }
+
+
+
+    public boolean deletingFacultyAnnouncement(int getAnnouncementId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = "AnnouncementID = ?";
+        String[] whereArgs = {String.valueOf(getAnnouncementId)};
+
+        int result = db.delete("Announcements", whereClause, whereArgs);
+
+        if (result > 0) {
+            Log.d("DeleteAnnouncement", "Deletion successful");
+        } else {
+            Log.e("DeleteAnnouncement", "Deletion failed");
+        }
+
+        return result > 0;
+    }
+
+
 
     /*FEES FUNCTIONS*/
     public Cursor getFees(int studentId) {
@@ -947,6 +1231,146 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return db.rawQuery(sqlQuery, selectionArgs);
     }
 
+    /*CHAT*/
+    public Cursor getStudentClass(int studentId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sqlQuery = "SELECT StudentProfile.ClassID, ClassName, StudentProfile.Name AS StudentName FROM StudentProfile, Class WHERE StudentID = ? AND StudentProfile.ClassID = Class.ClassID";
+        String[] selectionArgs = {String.valueOf(studentId)};
+        return db.rawQuery(sqlQuery, selectionArgs);
+    }
+
+    public Cursor getFacultyList(int classId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Log.d("DebugTag", "ClassID: " + classId);
+
+        String query = "SELECT DISTINCT f.Name AS FacultyName, f.FacultyID " +
+                "FROM FacultyProfile f " +
+                "INNER JOIN ClassAssignment ca ON f.FacultyID = ca.FacultyID " +
+                "WHERE ca.ClassID = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(classId)});
+
+        if (cursor != null) {
+            return cursor;
+        } else {
+            return null;
+        }
+    }
+    // Function to insert a chat message into the database
+    public long insertChatMessage(int senderId, int receiverId, String messageText, String storedUserType) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("SenderID", senderId);
+        values.put("ReceiverID", receiverId);
+        values.put("MessageText", messageText);
+        values.put("SenderType", storedUserType);
+        values.put("IsRead", 0);
+        return db.insert("Messages", null, values);
+    }
+
+    public Cursor getChatMessages(int senderId, int receiverId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM Messages WHERE (SenderID = ? AND ReceiverID = ?) OR (SenderID = ? AND ReceiverID = ?) ORDER BY Timestamp ASC";
+        String[] selectionArgs = {String.valueOf(senderId), String.valueOf(receiverId), String.valueOf(receiverId), String.valueOf(senderId)};
+        return db.rawQuery(query, selectionArgs);
+    }
+    public Cursor getStudentsWhoMessagedFaculty(int facultyId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT DISTINCT sp.Name as StudentName , sp.StudentID, f.Name AS FacultyName " +
+                "FROM StudentProfile sp " +
+                "JOIN Messages m ON sp.StudentID = m.SenderID " +
+                "LEFT JOIN FacultyProfile f ON m.ReceiverID = f.FacultyID " +
+                "WHERE m.ReceiverID = ?";
+
+        String[] selectionArgs = {String.valueOf(facultyId)};
+        return db.rawQuery(query, selectionArgs);
+    }
+    public void markMessagesAsRead(int studentId, int facultyId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("IsRead", 1);
+        String selection = "(SenderID = ? AND ReceiverID = ?) OR (SenderID = ? AND ReceiverID = ?)";
+        String[] selectionArgs = {String.valueOf(studentId), String.valueOf(facultyId), String.valueOf(facultyId), String.valueOf(studentId)};
+        int rowsUpdated = db.update("Messages", values, selection, selectionArgs);
+
+        if (rowsUpdated > 0) {
+            Log.d("DatabaseManager", "Marked " + rowsUpdated + " messages as read");
+        } else {
+            Log.d("DatabaseManager", "No messages were marked as read");
+        }
+    }
+
+    public int getUnreadMessageCountForFaculty(int facultyId, int studentId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT COUNT(*) FROM Messages WHERE SenderID = ? AND ReceiverID = ? AND IsRead = 0 AND SenderType = 'Faculty'";
+        String[] selectionArgs = { String.valueOf(facultyId), String.valueOf(studentId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int unreadMessageCount = 0;
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                unreadMessageCount = cursor.getInt(0);
+            }
+            cursor.close();
+        }
+
+        return unreadMessageCount;
+    }
+    public int getUnreadMessageCountForStudent(int studentId, int facultyId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT COUNT(*) FROM Messages WHERE SenderID = ? AND ReceiverID = ? AND IsRead = 0 AND SenderType = 'Student'";
+        String[] selectionArgs = { String.valueOf(studentId), String.valueOf(facultyId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int unreadMessageCount = 0;
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                unreadMessageCount = cursor.getInt(0);
+            }
+            cursor.close();
+        }
+
+        return unreadMessageCount;
+    }
+
+    public List<SubjectWithMarks> getMarksheetForStudent(int studentId, int semester) {
+        List<SubjectWithMarks> marksheetList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT m.SubjectName, m.Grade, m.Credits, sg.GPA, sg.CGPA " +
+                "FROM Marksheet m " +
+                "INNER JOIN SemesterGPA sg ON m.SemesterGPAID = sg.SemesterGPAID " +
+                "WHERE m.StudentID = ? AND sg.Semester = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(studentId), String.valueOf(semester)});
+        Log.d("Debug", "Student: " + studentId);
+        Log.d("Debug", "Semester: " + semester);
+        if (cursor != null && cursor.moveToFirst()) {
+            int subjectNameIndex = cursor.getColumnIndex("SubjectName");
+            int gradeIndex = cursor.getColumnIndex("Grade");
+          int creditsIndex = cursor.getColumnIndex("Credits");
+          int gpaIndex = cursor.getColumnIndex("GPA");
+          int cgpaIndex = cursor.getColumnIndex("CGPA");
+            do {
+                String subjectName = cursor.getString(subjectNameIndex);
+                String grade = cursor.getString(gradeIndex);
+                float credits = cursor.getFloat(creditsIndex);
+                float gpa = cursor.getFloat(gpaIndex);
+                float cgpa = cursor.getFloat(cgpaIndex);
+
+                SubjectWithMarks subjectWithMarks = new SubjectWithMarks(subjectName, grade, credits, gpa, cgpa);
+                marksheetList.add(subjectWithMarks);
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return marksheetList;
+    }
 
 }
 

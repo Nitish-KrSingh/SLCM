@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,9 @@ import com.example.slcm.Student.Student;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class FacultyMarks extends AppCompatActivity {
 
@@ -38,10 +42,15 @@ public class FacultyMarks extends AppCompatActivity {
         getSupportActionBar().setTitle("Enter Marks");
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
+        String selectedClassName= getIntent().getStringExtra("SELECTED_CLASSNAME");
         String selectedDate = getIntent().getStringExtra("SELECTED_DATE");
+        String selectedSubjectName= getIntent().getStringExtra("SELECTED_SUBJECTNAME");
         String selectedAssignment = getIntent().getStringExtra("ASSIGNMENT_TYPE");
         int selectedSubject = getIntent().getIntExtra("SELECTED_SUBJECT", -1);
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
+        TextView details = findViewById(R.id.pagedetails);
+        String prevdet="Date: "+selectedDate+"\nClass: "+selectedClassName+"-"+selectedSection+"\nAssignment: "+selectedAssignment+"\nSubject: "+selectedSubjectName;
+        details.setText(prevdet);
         listView = findViewById(R.id.students);
         studentList = new ArrayList<>();
         adapter = new CustomStudentEnterMarksListAdapter(this, studentList, selectedAssignment);
@@ -51,7 +60,28 @@ public class FacultyMarks extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveMarks(selectedSubject, selectedDate, selectedClass, selectedAssignment);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FacultyMarks.this);
+                alertDialogBuilder.setTitle("Confirm Marks");
+                alertDialogBuilder.setMessage("Submit the marks entered?");
+
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        saveMarks(selectedSubject, selectedDate, selectedClass, selectedAssignment);
+                        dialog.dismiss();
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
     }

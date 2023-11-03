@@ -32,7 +32,15 @@ public class FacultyLogin extends AppCompatActivity {
         forgotp = findViewById(R.id.Faculty_Forgot_Password);
         fac_username = findViewById(R.id.Fac_Username_Edit);
         fac_password = findViewById(R.id.Fac_Password_Edit);
-
+        SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
+        String storedUserName = sharedPreferences.getString("LOGIN_USER", "");
+        String storedUserType = sharedPreferences.getString("LOGIN_TYPE", "");
+        if(storedUserType.equals("Faculty")) {
+            fac_username.setText(storedUserName);
+        }
+        else{
+            fac_username.setText("");
+        }
 
         DatabaseManager databaseManager = new DatabaseManager(getApplicationContext());
         student_login_page.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +75,7 @@ public class FacultyLogin extends AppCompatActivity {
                     if (checkCredentials) {
                         int facultyId = databaseManager.getFacultyId(fac_userid, fac_pass);
                         if (facultyId != -1) {
+
                             Toast.makeText(FacultyLogin.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
                             SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
                             sharedPreferences.edit().putString("LOGIN_USER", fac_userid).apply();

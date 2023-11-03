@@ -3,6 +3,8 @@ package com.example.slcm.Student;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,9 +14,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.slcm.DatabaseManager;
 import com.example.slcm.Faculty.FacultyMenuHandler;
 import com.example.slcm.R;
 import com.example.slcm.StudentLogin;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Objects;
 
@@ -36,8 +40,19 @@ public class StudentProfileDashboard extends AppCompatActivity {
         Button fac_change_pass = findViewById(R.id.ProfileChangePassword);
         Button fac_logout = findViewById(R.id.ProfileLogout);
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-        String loggedInRegNo = sharedPreferences.getString("LOGIN_USER", "");
-        regNo.setText(loggedInRegNo);
+        int studentId = sharedPreferences.getInt("STUDENT_ID", -1);
+        DatabaseManager dbHelper = new DatabaseManager(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor nameCursor = db.rawQuery("SELECT Name, RegistrationNumber FROM StudentProfile WHERE StudentID = ?",  new String[]{String.valueOf(studentId)});
+        String studentName = "", studentregno="";
+        if (nameCursor.moveToFirst()) {
+            studentName = nameCursor.getString(nameCursor.getColumnIndexOrThrow("Name"));
+            studentregno= nameCursor.getString(nameCursor.getColumnIndexOrThrow("RegistrationNumber"));
+        }
+        TextView studentNameTextView = findViewById(R.id.studname);
+        TextView studentRegno = findViewById(R.id.studregnno);
+        studentNameTextView.setText(studentName);
+        studentRegno.setText(studentregno);
         fac_view_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +73,15 @@ public class StudentProfileDashboard extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
                 sharedPreferences.edit().putString("LOGIN_USER", "").apply();
                 openActivity(StudentProfileDashboard.this, StudentLogin.class);
+            }
+        });
+        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
+        fabMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event to open the message activity.
+                Intent intent = new Intent(StudentProfileDashboard.this, StudentChatViewFaculty.class);
+                startActivity(intent);
             }
         });
     }

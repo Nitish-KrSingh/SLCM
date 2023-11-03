@@ -8,15 +8,15 @@
         android:id="@+id/Fac_Marks_Class_Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp">
-
+        android:padding="30dp"
+     >
         <TextView
             android:id="@+id/Fac_Marks_Class_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
-            android:text="@string/Fac_Class"
+            android:text="Select Class:"
             android:textSize="18sp"
             android:textStyle="bold" />
 
