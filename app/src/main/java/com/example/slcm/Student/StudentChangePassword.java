@@ -42,8 +42,13 @@ public class StudentChangePassword extends AppCompatActivity {
         studentConfirmPassword = findViewById(R.id.Confirm_Password_Edit);
         studentChangeSubmitBtn = findViewById(R.id.submit);
         int studentId = sharedPreferences.getInt("STUDENT_ID", -1);
+<<<<<<< HEAD
         databaseManager = new DatabaseManager(this);
         SQLiteDatabase db = databaseManager.getReadableDatabase();
+=======
+        DatabaseManager dbHelper = new DatabaseManager(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+>>>>>>> d398dcf (Completed integration with some additions)
         Cursor nameCursor = db.rawQuery("SELECT Name, RegistrationNumber FROM StudentProfile WHERE StudentID = ?",  new String[]{String.valueOf(studentId)});
         String studentName = "", studentregno="";
         if (nameCursor.moveToFirst()) {

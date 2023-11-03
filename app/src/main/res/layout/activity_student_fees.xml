@@ -36,5 +36,5 @@
             android:src="@drawable/message"
             android:contentDescription="Chat" />
     </RelativeLayout>
-
+    <include layout="@layout/activity_chat_floating_button" />
 </RelativeLayout>

@@ -1,7 +1,10 @@
 package com.example.slcm;
 
 import android.content.Context;
+<<<<<<< HEAD
 import android.content.Intent;
+=======
+>>>>>>> d398dcf (Completed integration with some additions)
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,9 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.ChatAdapter;
 import com.example.slcm.DatabaseManager;
+<<<<<<< HEAD
 import com.example.slcm.Faculty.FacultyChatViewStudent;
 import com.example.slcm.R;
 import com.example.slcm.Student.StudentChatViewFaculty;
+=======
+import com.example.slcm.R;
+>>>>>>> d398dcf (Completed integration with some additions)
 import com.example.slcm.Student.StudentMenuHandler;
 
 import java.util.Objects;
@@ -78,15 +85,19 @@ public class StudentChat extends AppCompatActivity {
         });
 
     }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> d398dcf (Completed integration with some additions)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.student_menu, menu);
         return true;
     }
+<<<<<<< HEAD
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {// Handle the Up button click here
@@ -109,6 +120,14 @@ public class StudentChat extends AppCompatActivity {
         }
         finish();
     }
+=======
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        StudentMenuHandler.handleMenuAction(item, this);
+        return super.onOptionsItemSelected(item);
+    }
+>>>>>>> d398dcf (Completed integration with some additions)
 
     private void retrieveAndDisplayChatMessages() {
         Cursor cursor = databaseManager.getChatMessages(senderId, receiverId);

@@ -31,6 +31,7 @@
             android:spinnerMode="dropdown" />
     </LinearLayout>
 
+<<<<<<< HEAD
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
@@ -59,3 +60,17 @@
         android:contentDescription="Chat" />
 
 </RelativeLayout>
+=======
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:layout_margin="15dp"
+            android:divider="@null"
+            android:dividerHeight="20dp"
+            tools:listitem="@layout/activity_student_internalmarks_subject_list_item" />
+    <include layout="@layout/activity_chat_floating_button" />
+</LinearLayout>
+>>>>>>> d398dcf (Completed integration with some additions)

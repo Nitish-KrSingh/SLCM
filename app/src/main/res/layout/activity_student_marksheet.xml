@@ -13,7 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+<<<<<<< HEAD
         android:id="@+id/semesterlayout"
+=======
+>>>>>>> d398dcf (Completed integration with some additions)
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -80,7 +83,10 @@
         android:background="@color/light_gray"
         android:orientation="vertical"
         android:padding="10dp"
+<<<<<<< HEAD
         android:id="@+id/titleslayout"
+=======
+>>>>>>> d398dcf (Completed integration with some additions)
         android:paddingHorizontal="20dp">
         <RelativeLayout
 
@@ -123,6 +129,7 @@
 
         </RelativeLayout>
     </LinearLayout>
+<<<<<<< HEAD
 
         <ListView
             android:layout_below="@id/titleslayout"
@@ -149,3 +156,16 @@
         android:src="@drawable/message"
         android:contentDescription="Chat" />
 </RelativeLayout>
+=======
+    <ListView
+        android:id="@+id/listViewMarkSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:padding="10dp"
+        android:divider="@null"
+        android:background="@color/light_purple"
+        android:dividerHeight="20dp"/>
+    <include layout="@layout/activity_chat_floating_button" />
+</LinearLayout>
+>>>>>>> d398dcf (Completed integration with some additions)

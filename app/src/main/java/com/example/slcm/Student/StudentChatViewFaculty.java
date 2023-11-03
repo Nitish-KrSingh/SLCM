@@ -51,11 +51,17 @@ public class StudentChatViewFaculty extends AppCompatActivity {
                 String[] parts = facultyItem.split(" \\(");
                 if (parts.length >= 2) {
                     TextView textView = view.findViewById(R.id.textViewFacultyName);
+<<<<<<< HEAD
                     if (textView != null) {
                         int unreadMessageCount = Integer.parseInt(parts[1].replaceAll("[^0-9]", ""));
                         if (unreadMessageCount > 0) {
                             textView.setBackgroundColor(getResources().getColor(R.color.red));
                         }
+=======
+                    int unreadMessageCount = Integer.parseInt(parts[1].replaceAll("[^0-9]", ""));
+                    if (unreadMessageCount > 0) {
+                        textView.setBackgroundColor(getResources().getColor(R.color.red));
+>>>>>>> d398dcf (Completed integration with some additions)
                     }
                 }
 
@@ -75,7 +81,10 @@ public class StudentChatViewFaculty extends AppCompatActivity {
                 intent.putExtra("FacName", selectedFacultyName);
                 intent.putExtra("FacId", selectedFacultyId);
                 intent.putExtra("StudName", studName);
+<<<<<<< HEAD
                 intent.putExtra("UserType", "Student");
+=======
+>>>>>>> d398dcf (Completed integration with some additions)
                 startActivity(intent);
             }
 
@@ -139,6 +148,10 @@ public class StudentChatViewFaculty extends AppCompatActivity {
                     int classId = cursor.getInt(classIndex);
                     studName = cursor.getString(studIndex);
                     cursor2 = databaseManager.getFacultyList(classId);
+<<<<<<< HEAD
+=======
+
+>>>>>>> d398dcf (Completed integration with some additions)
                     if (cursor2 != null) {
                         if (cursor2.moveToFirst()) {
                             int facultyIndex = cursor2.getColumnIndex("FacultyName");
@@ -148,7 +161,16 @@ public class StudentChatViewFaculty extends AppCompatActivity {
                                     String facultyName = cursor2.getString(facultyIndex);
                                     int facultyId = cursor2.getInt(facultyIDIndex);
                                     int unreadMessageCount = databaseManager.getUnreadMessageCountForFaculty(facultyId, studentId);
+<<<<<<< HEAD
                                     facultyList.add(facultyName + " (" + unreadMessageCount + " unread)");
+=======
+                                    if(unreadMessageCount>0) {
+                                        facultyList.add(facultyName + " (" + unreadMessageCount + " unread)");
+                                    }
+                                    else{
+                                        facultyList.add(facultyName);
+                                    }
+>>>>>>> d398dcf (Completed integration with some additions)
                                     Log.d("DebugTag", "Added faculty: " + facultyName + ", ID: " + facultyId);
                                     adapter.notifyDataSetChanged();
                                 } while (cursor2.moveToNext());
