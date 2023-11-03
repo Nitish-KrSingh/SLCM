@@ -60,7 +60,6 @@ public class FacultyMarks extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
                 // Validate marks for all students before showing the dialog
                 boolean allMarksValid = true;
 
@@ -108,30 +107,6 @@ public class FacultyMarks extends AppCompatActivity {
                 } else {
                     Toast.makeText(FacultyMarks.this, "Please enter valid marks for all students.", Toast.LENGTH_SHORT).show();
                 }
-=======
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FacultyMarks.this);
-                alertDialogBuilder.setTitle("Confirm Marks");
-                alertDialogBuilder.setMessage("Submit the marks entered?");
-
-                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        saveMarks(selectedSubject, selectedDate, selectedClass, selectedAssignment);
-                        dialog.dismiss();
-                    }
-                });
-
-                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
->>>>>>> d398dcf (Completed integration with some additions)
             }
         });
 

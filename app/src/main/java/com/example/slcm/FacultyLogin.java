@@ -33,18 +33,6 @@ public class FacultyLogin extends AppCompatActivity {
         fac_username = findViewById(R.id.Fac_Username_Edit);
         fac_password = findViewById(R.id.Fac_Password_Edit);
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-<<<<<<< HEAD
-=======
-        String storedUserName = sharedPreferences.getString("LOGIN_USER", "");
-        String storedUserType = sharedPreferences.getString("LOGIN_TYPE", "");
-        if(storedUserType.equals("Faculty")) {
-            fac_username.setText(storedUserName);
-        }
-        else{
-            fac_username.setText("");
-        }
->>>>>>> d398dcf (Completed integration with some additions)
-
         DatabaseManager databaseManager = new DatabaseManager(getApplicationContext());
         student_login_page.setOnClickListener(new View.OnClickListener() {
             @Override

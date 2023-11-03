@@ -6,11 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.MenuItem;
-
-<<<<<<< HEAD
-
-=======
->>>>>>> d398dcf (Completed integration with some additions)
 import com.example.slcm.FacultyLogin;
 import com.example.slcm.R;
 import com.example.slcm.StudentLogin;
@@ -37,11 +32,8 @@ public class StudentMenuHandler {
         } else if (id == R.id.menu_fees) {
             openActivity(context, StudentFees.class);
         } else if (id == R.id.menu_logout) {
-<<<<<<< HEAD
             SharedPreferences sharedPreferences = context.getSharedPreferences("login_state", Context.MODE_PRIVATE);
             sharedPreferences.edit().putString("LOGIN_USER", "").apply();
-=======
->>>>>>> d398dcf (Completed integration with some additions)
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
             alertDialogBuilder.setTitle("Logout");
             alertDialogBuilder.setMessage("Are you sure you want to logout?");
@@ -60,10 +52,6 @@ public class StudentMenuHandler {
             });
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
-<<<<<<< HEAD
-
-=======
->>>>>>> d398dcf (Completed integration with some additions)
         }
     }
 

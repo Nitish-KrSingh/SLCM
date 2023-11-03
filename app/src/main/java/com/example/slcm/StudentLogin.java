@@ -32,18 +32,6 @@ public class StudentLogin extends AppCompatActivity {
         forgotp = findViewById(R.id.Forgot_Password);
         registrationNumberEditText = findViewById(R.id.Registration_No_Edit);
         passwordEditText = findViewById(R.id.Password_Edit);
-        SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-<<<<<<< HEAD
-=======
-        String storedRegistrationNumber = sharedPreferences.getString("LOGIN_USER", "");
-        String storedUserType = sharedPreferences.getString("LOGIN_TYPE", "");
-        if(storedUserType.equals("Student")) {
-            registrationNumberEditText.setText(storedRegistrationNumber);
-        }
-        else{
-            registrationNumberEditText.setText("");
-        }
->>>>>>> d398dcf (Completed integration with some additions)
         DatabaseManager databaseManager = new DatabaseManager(getApplicationContext());
         faculty_login_page.setOnClickListener(new View.OnClickListener() {
             @Override

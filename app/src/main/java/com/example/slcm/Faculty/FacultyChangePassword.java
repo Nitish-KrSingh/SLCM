@@ -36,7 +36,6 @@ public class FacultyChangePassword extends AppCompatActivity {
         new_password = findViewById(R.id.Fac_New_Password_Edit);
         confirm_password = findViewById(R.id.Fac_Confirm_Password_Edit);
         change_submit_btn = findViewById(R.id.submit);
-<<<<<<< HEAD
         loggedInUsername = sharedPreferences.getString("LOGIN_USER", "");
         int loggedInFacultyId = sharedPreferences.getInt("FACULTY_ID", -1);
         databaseManager = new DatabaseManager(this);
@@ -48,19 +47,7 @@ public class FacultyChangePassword extends AppCompatActivity {
         }
         TextView facultyNameTextView = findViewById(R.id.profname);
         facultyNameTextView.setText(facultyName);
-=======
-        int loggedInFacultyId = sharedPreferences.getInt("FACULTY_ID", -1);
-        DatabaseManager dbHelper = new DatabaseManager(this);
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor nameCursor = db.rawQuery("SELECT Name FROM FacultyProfile WHERE FacultyID = ?",  new String[]{String.valueOf(loggedInFacultyId)});
-        String facultyName = "";
-        if (nameCursor.moveToFirst()) {
-            facultyName = nameCursor.getString(nameCursor.getColumnIndexOrThrow("Name"));
-        }
-        TextView facultyNameTextView = findViewById(R.id.profname);
-        facultyNameTextView.setText(facultyName);
-        databaseManager = new DatabaseManager(this);
->>>>>>> d398dcf (Completed integration with some additions)
+
         FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
         fabMessage.setOnClickListener(new View.OnClickListener() {
             @Override

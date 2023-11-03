@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto"
-=======
->>>>>>> d398dcf (Completed integration with some additions)
     tools:context=".Faculty.FacultyProfile">
 
     <RelativeLayout
@@ -48,11 +45,7 @@
 
     </RelativeLayout>
 
-<<<<<<< HEAD
     <RelativeLayout
-=======
-    <LinearLayout
->>>>>>> d398dcf (Completed integration with some additions)
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -62,7 +55,6 @@
         <ListView
             android:id="@+id/studentDetailsListView"
             android:layout_width="match_parent"
-<<<<<<< HEAD
             android:layout_height="match_parent"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="1dp"
@@ -83,15 +75,4 @@
             android:contentDescription="Chat" />
 
     </RelativeLayout>
-
-=======
-            android:layout_height="wrap_content"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="1dp"
-            tools:listitem="@layout/activity_faculty_profile_list_item"/>
-    </LinearLayout>
-
-
-    <include layout="@layout/activity_chat_floating_button" />
->>>>>>> d398dcf (Completed integration with some additions)
 </RelativeLayout>

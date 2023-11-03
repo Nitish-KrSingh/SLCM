@@ -22,12 +22,9 @@ public class FacultyMenuHandler extends AppCompatActivity {
         if (id == R.id.fac_menu_profile) {
             openActivity(context, FacultyProfileDashboard.class);
         }
-<<<<<<< HEAD
         else if (id == R.id.fac_menu_chat) {
             openActivity(context, FacultyChatViewStudent.class);
         }
-=======
->>>>>>> d398dcf (Completed integration with some additions)
         else if (id == R.id.fac_menu_create_announcements) {
             openActivity(context, FacultyCreateAnnouncement.class);
         } else if (id == R.id.fac_menu_view_announcements) {
@@ -39,11 +36,8 @@ public class FacultyMenuHandler extends AppCompatActivity {
         } else if (id == R.id.fac_menu_internal_marks) {
             openActivity(context, FacultyMarksClass.class);
         } else if (id == R.id.fac_menu_logout) {
-<<<<<<< HEAD
             SharedPreferences sharedPreferences = context.getSharedPreferences("login_state", Context.MODE_PRIVATE);
             sharedPreferences.edit().putString("LOGIN_USER", "").apply();
-=======
->>>>>>> d398dcf (Completed integration with some additions)
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
             alertDialogBuilder.setTitle("Logout");
             alertDialogBuilder.setMessage("Are you sure you want to logout?");

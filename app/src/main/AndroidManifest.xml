@@ -77,8 +77,12 @@
             android:name=".StudentChat"
             android:exported="false"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             />
+=======
+            android:parentActivityName=".Student.StudentChatViewFaculty" />
+>>>>>>> d398dcf (Completed integration with some additions)
 =======
             android:parentActivityName=".Student.StudentChatViewFaculty" />
 >>>>>>> d398dcf (Completed integration with some additions)
