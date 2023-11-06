@@ -31,7 +31,6 @@ public class FacultyMarks extends AppCompatActivity {
     private ListView listView;
     private ArrayList<Student> studentList;
     private CustomStudentEnterMarksListAdapter adapter;
-    private TextView intentheading;
     private int studentID;
 
     @Override

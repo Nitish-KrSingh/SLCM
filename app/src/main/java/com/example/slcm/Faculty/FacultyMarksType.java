@@ -29,7 +29,7 @@ public class FacultyMarksType extends AppCompatActivity {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
     private RadioGroup assessmentTypes;
     private TextView maxMarks;
-    private TextView marksDate,intentheading;
+    private TextView marksDate;
     private String selectedAssignmentType = "Assignment1"; // Default assessment type
 
     @Override
@@ -41,12 +41,6 @@ public class FacultyMarksType extends AppCompatActivity {
 
         assessmentTypes = findViewById(R.id.assessRadioGroup);
         maxMarks = findViewById(R.id.maxMarksText);
-        intentheading = findViewById(R.id.intentheading);
-        Intent i=getIntent();
-        String classname=i.getStringExtra("selected_class");
-        String section=i.getStringExtra("SELECTED_SECTION");
-        intentheading.setText("Selecting: "+classname+"-"+section);
-
         maxMarks.setText("");
         ImageButton marksCalendarButton = findViewById(R.id.marksCalendarButton);
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
@@ -92,7 +86,6 @@ public class FacultyMarksType extends AppCompatActivity {
             public void onClick(View view) {
                 if (validateInput()) {
                     Intent intent = new Intent(FacultyMarksType.this, FacultyMarksSubject.class);
-                    //intent.putExtra("SELECTED_CLASS", selectedClass);
                     intent.putExtra("SELECTED_CLASS", selectedClass);
                     intent.putExtra("SELECTED_SECTION", selectedSection);
                     intent.putExtra("SELECTED_CLASSNAME", selectedClassName);

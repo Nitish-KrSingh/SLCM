@@ -30,7 +30,6 @@ public class FacultyAttendance extends AppCompatActivity {
 
     private ArrayList<Student> studentList;
     private CustomStudentAttendanceListAdapter adapter;
-    private TextView intentheading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -28,7 +28,6 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private Cursor cursor; // Declare cursor as a class-level variable
     private int subjectIDIndex;
-    private TextView intentheading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
