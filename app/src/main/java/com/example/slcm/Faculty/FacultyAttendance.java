@@ -54,9 +54,8 @@ public class FacultyAttendance extends AppCompatActivity {
         details.setText(prevdet);
 
         studentList = retrieveStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
-        System.out.println(studentList);
+       // System.out.println(studentList);
         adapter = new CustomStudentAttendanceListAdapter(this, studentList);
-
         listView.setAdapter(adapter);
 
         all_Student_present.setOnClickListener(new View.OnClickListener() {
@@ -144,14 +143,13 @@ public class FacultyAttendance extends AppCompatActivity {
                         result.add(student);
                         Log.d("ClassGet", "Name: " + studentName + " Registration Number: " + registrationNumber);
                     } while (cursor.moveToNext());
-                   adapter.notifyDataSetChanged();
+
                 } else {
                     Log.d("DebugTag1", "Cursor is empty.");
                 }
             } else {
                 Log.e("CursorError", "Columns 'StudentName' and 'RegistrationNumber' not found in cursor.");
             }
-            cursor.close();
             return result;
         } else {
             Log.d("DebugTag2", "Cursor is empty.");
@@ -159,8 +157,5 @@ public class FacultyAttendance extends AppCompatActivity {
             return new ArrayList<Student>();
 
         }
-
     }
-
-
 }

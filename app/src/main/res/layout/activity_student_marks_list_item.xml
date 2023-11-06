@@ -27,6 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:textAlignment="center"
-        android:background="@color/green" />
+        android:background="@color/red" />
 
 </RelativeLayout>

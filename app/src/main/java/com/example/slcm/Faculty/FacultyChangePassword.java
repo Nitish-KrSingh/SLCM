@@ -49,15 +49,6 @@ public class FacultyChangePassword extends AppCompatActivity {
         }
         TextView facultyNameTextView = findViewById(R.id.profname);
         facultyNameTextView.setText(facultyName);
-        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
-        fabMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Handle the click event to open the message activity.
-                Intent intent = new Intent(FacultyChangePassword.this, FacultyChatViewStudent.class);
-                startActivity(intent);
-            }
-        });
         change_submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

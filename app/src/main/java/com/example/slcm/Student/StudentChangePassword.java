@@ -84,15 +84,7 @@ public class StudentChangePassword extends AppCompatActivity {
                 }
             }
         });
-        FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
-        fabMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Handle the click event to open the message activity.
-                Intent intent = new Intent(StudentChangePassword.this, StudentChatViewFaculty.class);
-                startActivity(intent);
-            }
-        });
+       
     }
 
     @Override

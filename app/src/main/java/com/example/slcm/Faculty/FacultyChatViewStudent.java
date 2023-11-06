@@ -35,17 +35,17 @@ public class FacultyChatViewStudent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_announcements);
+        setContentView(R.layout.activity_chat);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Your Messages");
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
         facultyId = sharedPreferences.getInt("FACULTY_ID", -1);
-        ListView studentListView = findViewById(R.id.announcement_ListView);
+        ListView studentListView = findViewById(R.id.chat_ListView);
         studentList = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, R.layout.activity_student_chat_faculty_list_item, R.id.textViewFacultyName, studentList){
        @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
+           View view = super.getView(position, convertView, parent);
                 String studentItem = getItem(position);
                 String[] parts = studentItem.split(" \\(");
                 if (parts.length >= 2) {
@@ -53,6 +53,9 @@ public class FacultyChatViewStudent extends AppCompatActivity {
                     int unreadMessageCount = Integer.parseInt(parts[1].replaceAll("[^0-9]", ""));
                     if (unreadMessageCount > 0) {
                         textView.setBackgroundColor(getResources().getColor(R.color.red));
+                    }
+                    else{
+                        textView.setBackgroundColor(getResources().getColor(R.color.light_purple));
                     }
                 }
 
@@ -140,6 +143,8 @@ public class FacultyChatViewStudent extends AppCompatActivity {
                     int unreadMessageCount = databaseManager.getUnreadMessageCountForStudent(studentID, facultyId);
                     studentList.add(studentName + " (" + unreadMessageCount + " unread)");
                     Log.d("DebugTag", "Added student: " + studentName);
+                    Log.d("DebugTag", "Fac id: " + facultyId);
+                    Log.d("DebugTag", "Unread " + unreadMessageCount);
                     if(unreadMessageCount>0){noMessagesFound = false;}
                     adapter.notifyDataSetChanged();
                 } while (cursor.moveToNext());
@@ -150,7 +155,7 @@ public class FacultyChatViewStudent extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
         else {
-            Toast.makeText(this, "No Messages found.", Toast.LENGTH_SHORT).show();
+
             Log.d("DebugTag", "Cursor is null.");
         }
     }

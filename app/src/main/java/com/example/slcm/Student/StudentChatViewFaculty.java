@@ -36,12 +36,12 @@ public class StudentChatViewFaculty extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_announcements);
+        setContentView(R.layout.activity_chat);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Your Messages");
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
         studentId = sharedPreferences.getInt("STUDENT_ID", -1);
-        ListView faculty_ListView = findViewById(R.id.announcement_ListView);
+        ListView faculty_ListView = findViewById(R.id.chat_ListView);
         facultyList = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, R.layout.activity_student_chat_faculty_list_item, R.id.textViewFacultyName, facultyList) {
             @Override

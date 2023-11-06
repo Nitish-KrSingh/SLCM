@@ -98,7 +98,7 @@ public class FacultyDashboard extends AppCompatActivity {
         fac_announcement_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent fac_announcement_intent = new Intent(FacultyDashboard.this, FacultyCreateAnnouncement.class);
+                Intent fac_announcement_intent = new Intent(FacultyDashboard.this, FacultyAnnouncements.class);
                 startActivity(fac_announcement_intent);
             }
         });

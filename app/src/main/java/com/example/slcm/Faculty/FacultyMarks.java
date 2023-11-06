@@ -200,7 +200,7 @@ public class FacultyMarks extends AppCompatActivity {
         }
 
         if (allMarksValid) {
-            Toast.makeText(this, selectedAssignment + " marks submitted successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, selectedSubject+" - "+selectedAssignment + " marks submitted successfully!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(FacultyMarks.this, FacultyDashboard.class);
             startActivity(intent);
         } else {

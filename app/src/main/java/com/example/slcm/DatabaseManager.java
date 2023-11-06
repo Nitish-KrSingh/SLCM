@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class DatabaseManager extends SQLiteOpenHelper {
 
@@ -1070,22 +1071,25 @@ public class DatabaseManager extends SQLiteOpenHelper {
         ContentValues announcementValues = new ContentValues();
         announcementValues.put("Title", title);
         announcementValues.put("Message", message);
-        SimpleDateFormat pcDateFormat = new SimpleDateFormat(DateFormat.getBestDateTimePattern(Locale.getDefault(), "yyyy-MM-dd"), Locale.getDefault());
-        Date date = new Date();
-        String formattedDate = pcDateFormat.format(date);
 
-        announcementValues.put("Date", String.format(formattedDate));
+        // Store the date as a string in "yyyy-MM-dd" format
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String formattedDate = dateFormat.format(new Date());
+        announcementValues.put("Date", formattedDate);
+
         announcementValues.put("FacultyID", loggedInFacultyId);
 
         long result = db.insert("Announcements", null, announcementValues);
         return result > 0;
     }
 
+
     public Cursor getAnnouncement() {
         SQLiteDatabase db = this.getReadableDatabase();
         String sqlQuery = "SELECT Title, Message, Date FROM Announcements ORDER BY Date DESC, AnnouncementID DESC";
         return db.rawQuery(sqlQuery, null);
     }
+
     public Cursor getAnnouncementForFaculty(int loggedInFacultyId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String sqlQuery = "SELECT Title, Message, Date FROM Announcements WHERE FacultyId != ? ORDER BY Date DESC, AnnouncementID DESC";
@@ -1257,7 +1261,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         }
     }
     // Function to insert a chat message into the database
-    public long insertChatMessage(int senderId, int receiverId, String messageText, String storedUserType) {
+    public void insertChatMessage(int senderId, int receiverId, String messageText, String storedUserType) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("SenderID", senderId);
@@ -1265,8 +1269,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         values.put("MessageText", messageText);
         values.put("SenderType", storedUserType);
         values.put("IsRead", 0);
-        return db.insert("Messages", null, values);
+        SimpleDateFormat kolkataFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        kolkataFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+        String kolkataTime = kolkataFormat.format(new Date());
+        values.put("Timestamp", kolkataTime);
+        db.insert("Messages", null, values);
     }
+
 
     public Cursor getChatMessages(int senderId, int receiverId) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -1334,7 +1343,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
             }
             cursor.close();
         }
-
         return unreadMessageCount;
     }
 
