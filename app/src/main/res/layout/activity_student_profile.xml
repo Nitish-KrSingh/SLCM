@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Faculty.FacultyProfile">
 
     <RelativeLayout
@@ -44,7 +45,7 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -54,12 +55,25 @@
         <ListView
             android:id="@+id/studentDetailsListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="1dp"
             tools:listitem="@layout/activity_faculty_profile_list_item"/>
-    </LinearLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/studentDetailsListView"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            app:shapeAppearance="@style/Widget.AppCompat.Button.Small"
+            android:backgroundTint="@android:color/white"
+            app:borderWidth="@dimen/cardview_compat_inset_shadow"
+            android:src="@drawable/message"
+            android:contentDescription="Chat" />
 
-    <include layout="@layout/activity_chat_floating_button" />
+    </RelativeLayout>
+
 </RelativeLayout>

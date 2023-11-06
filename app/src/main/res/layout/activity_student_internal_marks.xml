@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
     tools:context=".Student.StudentInternalMarks">
 
-
     <LinearLayout
+        android:id="@+id/spinner_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <TextView
@@ -29,18 +29,33 @@
             android:layout_marginStart="20dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown" />
-
     </LinearLayout>
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:clickable="true"
-            android:layout_margin="15dp"
-            android:divider="@null"
-            android:dividerHeight="20dp"
-            tools:listitem="@layout/activity_student_internalmarks_subject_list_item" />
-    <include layout="@layout/activity_chat_floating_button" />
-</LinearLayout>
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/spinner_layout"
+        android:layout_marginTop="10dp"
+        android:layout_margin="15dp"
+        android:clickable="true"
+        android:divider="@null"
+        android:dividerHeight="20dp"
+        tools:listitem="@layout/activity_student_internalmarks_subject_list_item" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/listView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        app:shapeAppearance="@style/Widget.AppCompat.Button.Small"
+        android:backgroundTint="@android:color/white"
+        app:borderWidth="@dimen/cardview_compat_inset_shadow"
+        android:src="@drawable/message"
+        android:contentDescription="Chat" />
+
+</RelativeLayout>

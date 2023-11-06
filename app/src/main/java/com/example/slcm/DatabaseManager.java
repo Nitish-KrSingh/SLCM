@@ -341,7 +341,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues5.put("Semester", 3);
         studentValues5.put("Department", "Department of DataScience and Computer Applications");
         studentValues5.put("ClassID", 1);
-        long studentId5 = db.insert("StudentProfile", null, studentValues4);
+        long studentId5 = db.insert("StudentProfile", null, studentValues5);
 
         ContentValues studentValues11 = new ContentValues();
         studentValues11.put("RegistrationNumber", 220970007);
@@ -431,7 +431,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         studentValues16.put("Semester", 3);
         studentValues16.put("Department", "Department of Data Science and Computer Applications");
         studentValues16.put("ClassID", 2);
-        long studentId16 = db.insert("StudentProfile", null, studentValues15);
+        long studentId16 = db.insert("StudentProfile", null, studentValues16);
 
 
         ContentValues subjectValues1 = new ContentValues();

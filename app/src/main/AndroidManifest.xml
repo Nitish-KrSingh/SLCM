@@ -76,7 +76,8 @@
         <activity
             android:name=".StudentChat"
             android:exported="false"
-            android:parentActivityName=".Student.StudentChatViewFaculty" />
+
+            />
         <!-- Faculty -->
         <activity
             android:name=".FacultyLogin"

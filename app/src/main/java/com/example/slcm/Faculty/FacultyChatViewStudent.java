@@ -73,6 +73,7 @@ public class FacultyChatViewStudent extends AppCompatActivity {
                 intent.putExtra("StudName", selectedStudentName);
                 intent.putExtra("FacName", fname);
                 intent.putExtra("StudId", selectedStudentId);
+                intent.putExtra("UserType", "Faculty");
                 startActivity(intent);
             }
             private int getStudIdFromCursor(int position) {
@@ -123,36 +124,32 @@ public class FacultyChatViewStudent extends AppCompatActivity {
     private void retrieveStudentsWhoMessagedFaculty() {
         databaseManager = new DatabaseManager(this);
         cursor = databaseManager.getStudentsWhoMessagedFaculty(facultyId);
-        if (cursor != null) {
+        if (cursor != null && cursor.moveToFirst()) {
             int studentNameIndex = cursor.getColumnIndex("StudentName");
             int studentIDIndex = cursor.getColumnIndex("StudentID");
             int FacnameIndex = cursor.getColumnIndex("FacultyName");
 
-            if (studentNameIndex == -1) {
+            if (studentIDIndex==-1||studentNameIndex == -1 ) {
                 Log.e("CursorError", "StudentName column not found in cursor");
             } else {
-                boolean noMessagesFound = true; // Flag to track if no messages are found
-                while (cursor.moveToNext()) {
+                boolean noMessagesFound = true;
+                do {
                     String studentName = cursor.getString(studentNameIndex);
                     int studentID = cursor.getInt(studentIDIndex);
                     String FacName = cursor.getString(FacnameIndex);
                     int unreadMessageCount = databaseManager.getUnreadMessageCountForStudent(studentID, facultyId);
-                    if(unreadMessageCount>0) {
-                        studentList.add(studentName + " (" + unreadMessageCount + " unread)");
-                    }
-                    else{
-                        studentList.add(studentName);
-                    }
+                    studentList.add(studentName + " (" + unreadMessageCount + " unread)");
                     Log.d("DebugTag", "Added student: " + studentName);
-                    noMessagesFound = false;
+                    if(unreadMessageCount>0){noMessagesFound = false;}
                     adapter.notifyDataSetChanged();
-                }
-                adapter.notifyDataSetChanged();
+                } while (cursor.moveToNext());
                 if (noMessagesFound) {
-                    Toast.makeText(this, "No Messages found.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "No New Messages.", Toast.LENGTH_SHORT).show();
                 }
             }
-        } else {
+            adapter.notifyDataSetChanged();
+        }
+        else {
             Toast.makeText(this, "No Messages found.", Toast.LENGTH_SHORT).show();
             Log.d("DebugTag", "Cursor is null.");
         }

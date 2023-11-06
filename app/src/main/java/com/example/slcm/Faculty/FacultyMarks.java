@@ -60,30 +60,56 @@ public class FacultyMarks extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Validate marks for all students before showing the dialog
+                boolean allMarksValid = true;
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FacultyMarks.this);
-                alertDialogBuilder.setTitle("Confirm Marks");
-                alertDialogBuilder.setMessage("Submit the marks entered?");
+                for (int i = 0; i < adapter.getCount(); i++) {
+                    Student student = (Student) adapter.getItem(i);
+                    View itemView = listView.getChildAt(i);
+                    EditText marksEditText = itemView.findViewById(R.id.editTextMarks);
+                    String marksText = marksEditText.getText().toString();
 
-                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        saveMarks(selectedSubject, selectedDate, selectedClass, selectedAssignment);
-                        dialog.dismiss();
+                    if (TextUtils.isEmpty(marksText)) {
+                        allMarksValid = false;
+                        break; // Break the loop if any marks are missing
+                    } else {
+                        float marks = Float.parseFloat(marksText);
+
+                        if (!isValidMarks(marks, selectedAssignment)) {
+                            allMarksValid = false;
+                            break; // Break the loop if any marks are invalid
+                        }
                     }
-                });
+                }
 
-                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                if (allMarksValid) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FacultyMarks.this);
+                    alertDialogBuilder.setTitle("Confirm Marks");
+                    alertDialogBuilder.setMessage("Submit the marks entered?");
 
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                    alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            saveMarks(selectedSubject, selectedDate, selectedClass, selectedAssignment);
+                            dialog.dismiss();
+                        }
+                    });
+
+                    alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                } else {
+                    Toast.makeText(FacultyMarks.this, "Please enter valid marks for all students.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
     }
 
     @Override

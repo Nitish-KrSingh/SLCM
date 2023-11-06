@@ -59,6 +59,7 @@
     <string name="message">Message:</string>
     <string name="enter_announcement_title">Enter announcement title</string>
     <string name="ann_title">Title:</string>
+    <string name="chat">Chat</string>
 
 
     <string-array name="semesters">

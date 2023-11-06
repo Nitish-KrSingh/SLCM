@@ -55,20 +55,31 @@ public class CustomStudentEnterMarksListAdapter extends BaseAdapter {
 
         textViewName.setText(student.getName());
         textViewRollNumber.setText(student.getRollNumber());
-        if (TextUtils.isEmpty(editTextMarks.getText())) {
-            editTextMarks.setBackgroundResource(R.color.red);
-        } else {
-            float marks = Float.parseFloat(editTextMarks.getText().toString());
-            if (!isValidMarks(marks, selectedAssignmentType)) {
-                editTextMarks.setBackgroundResource(R.color.red);
-                Toast.makeText(context, "Invalid marks for " + selectedAssignmentType, Toast.LENGTH_SHORT).show();
-            } else {
-                editTextMarks.setBackgroundResource(R.color.green);
+        editTextMarks.setBackgroundResource(R.color.red);
+
+        editTextMarks.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    EditText marksEditText = (EditText) v;
+                    if (TextUtils.isEmpty(marksEditText.getText())) {
+                        marksEditText.setBackgroundResource(R.color.red);
+                    } else {
+                        float marks = Float.parseFloat(marksEditText.getText().toString());
+                        if (!isValidMarks(marks, selectedAssignmentType)) {
+                            marksEditText.setBackgroundResource(R.color.red);
+                            Toast.makeText(context, "Invalid marks for " + textViewRollNumber, Toast.LENGTH_SHORT).show();
+                        } else {
+                            marksEditText.setBackgroundResource(R.color.green);
+                        }
+                    }
+                }
             }
-        }
+        });
 
         return convertView;
     }
+
 
     private boolean isValidMarks(float marks, String assignmentType) {
         if ("Midterm".equals(assignmentType)) {

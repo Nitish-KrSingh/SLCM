@@ -9,6 +9,9 @@
         android:id="@+id/menu_profile"
         android:title="@string/profile" />
     <item
+        android:id="@+id/menu_chat"
+        android:title="@string/chat" />
+    <item
         android:id="@+id/menu_announcements"
         android:title="@string/announcements" />
     <item

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".Student.StudentMarksheet">
@@ -12,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:id="@+id/semesterlayout"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -36,7 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@id/semesterlayout"
+        android:id="@+id/gpalayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,9 +76,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_below="@id/gpalayout"
         android:background="@color/light_gray"
         android:orientation="vertical"
         android:padding="10dp"
+        android:id="@+id/titleslayout"
         android:paddingHorizontal="20dp">
         <RelativeLayout
 
@@ -117,14 +123,29 @@
 
         </RelativeLayout>
     </LinearLayout>
-    <ListView
-        android:id="@+id/listViewMarkSheet"
-        android:layout_width="match_parent"
+
+        <ListView
+            android:layout_below="@id/titleslayout"
+            android:id="@+id/listViewMarkSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="10dp"
+            android:divider="@null"
+            android:background="@color/light_purple"
+            android:dividerHeight="20dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMessage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:padding="10dp"
-        android:divider="@null"
-        android:background="@color/light_purple"
-        android:dividerHeight="20dp"/>
-    <include layout="@layout/activity_chat_floating_button" />
-</LinearLayout>
+        android:layout_above="@id/listViewMarkSheet"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        app:shapeAppearance="@style/Widget.AppCompat.Button.Small"
+        android:backgroundTint="@android:color/white"
+        app:borderWidth="@dimen/cardview_compat_inset_shadow"
+        android:src="@drawable/message"
+        android:contentDescription="Chat" />
+</RelativeLayout>

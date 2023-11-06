@@ -4,6 +4,9 @@
         android:id="@+id/fac_menu_profile"
         android:title="@string/profile" />
     <item
+        android:id="@+id/fac_menu_chat"
+        android:title="@string/chat" />
+    <item
         android:id="@+id/fac_menu_create_announcements"
         android:title="@string/fac_create_announcement" />
     <item

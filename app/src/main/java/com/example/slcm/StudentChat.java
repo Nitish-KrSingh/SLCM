@@ -1,6 +1,7 @@
 package com.example.slcm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.slcm.ChatAdapter;
 import com.example.slcm.DatabaseManager;
+import com.example.slcm.Faculty.FacultyChatViewStudent;
 import com.example.slcm.R;
+import com.example.slcm.Student.StudentChatViewFaculty;
 import com.example.slcm.Student.StudentMenuHandler;
 
 import java.util.Objects;
@@ -75,16 +78,36 @@ public class StudentChat extends AppCompatActivity {
         });
 
     }
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.student_menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        StudentMenuHandler.handleMenuAction(item, this);
+        if (item.getItemId() == android.R.id.home) {// Handle the Up button click here
+            onBackPressed(); // This will mimic the default back button behavior
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        String userType = getIntent().getStringExtra("UserType");
+        Log.d("Back", "Going back");
+        if ("Faculty".equals(userType)) {
+            Intent intent = new Intent(this, FacultyChatViewStudent.class);
+            startActivity(intent);
+        } else if ("Student".equals(userType)) {
+            Intent intent = new Intent(this, StudentChatViewFaculty.class);
+            startActivity(intent);
+        }
+        finish();
     }
 
     private void retrieveAndDisplayChatMessages() {

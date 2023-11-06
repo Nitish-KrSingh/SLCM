@@ -33,14 +33,6 @@ public class StudentLogin extends AppCompatActivity {
         registrationNumberEditText = findViewById(R.id.Registration_No_Edit);
         passwordEditText = findViewById(R.id.Password_Edit);
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
-        String storedRegistrationNumber = sharedPreferences.getString("LOGIN_USER", "");
-        String storedUserType = sharedPreferences.getString("LOGIN_TYPE", "");
-        if(storedUserType.equals("Student")) {
-            registrationNumberEditText.setText(storedRegistrationNumber);
-        }
-        else{
-            registrationNumberEditText.setText("");
-        }
         DatabaseManager databaseManager = new DatabaseManager(getApplicationContext());
         faculty_login_page.setOnClickListener(new View.OnClickListener() {
             @Override
