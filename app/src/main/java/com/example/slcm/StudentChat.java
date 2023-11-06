@@ -1,24 +1,19 @@
 package com.example.slcm;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.slcm.ChatAdapter;
-import com.example.slcm.DatabaseManager;
 import com.example.slcm.Faculty.FacultyChatViewStudent;
-import com.example.slcm.R;
 import com.example.slcm.Student.StudentChatViewFaculty;
-import com.example.slcm.Student.StudentMenuHandler;
 
 import java.util.Objects;
 
@@ -78,8 +73,7 @@ public class StudentChat extends AppCompatActivity {
         });
 
     }
-    
-
+  
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         String userType = getIntent().getStringExtra("UserType");
@@ -113,6 +107,7 @@ public class StudentChat extends AppCompatActivity {
         }
         finish();
     }
+
 
     private void retrieveAndDisplayChatMessages() {
         Cursor cursor = databaseManager.getChatMessages(senderId, receiverId);

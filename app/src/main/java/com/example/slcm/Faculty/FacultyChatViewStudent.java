@@ -74,6 +74,7 @@ public class FacultyChatViewStudent extends AppCompatActivity {
                 intent.putExtra("FacName", fname);
                 intent.putExtra("StudId", selectedStudentId);
                 intent.putExtra("UserType", "Faculty");
+
                 startActivity(intent);
             }
             private int getStudIdFromCursor(int position) {
@@ -128,7 +129,6 @@ public class FacultyChatViewStudent extends AppCompatActivity {
             int studentNameIndex = cursor.getColumnIndex("StudentName");
             int studentIDIndex = cursor.getColumnIndex("StudentID");
             int FacnameIndex = cursor.getColumnIndex("FacultyName");
-
             if (studentIDIndex==-1||studentNameIndex == -1 ) {
                 Log.e("CursorError", "StudentName column not found in cursor");
             } else {

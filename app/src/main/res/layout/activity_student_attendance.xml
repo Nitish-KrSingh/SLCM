@@ -62,7 +62,4 @@
             android:src="@drawable/message"
             android:contentDescription="Chat" />
     </RelativeLayout>
-
-
-
-    </LinearLayout>
+</LinearLayout>

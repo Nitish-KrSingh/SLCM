@@ -36,5 +36,4 @@
             android:src="@drawable/message"
             android:contentDescription="Chat" />
     </RelativeLayout>
-
 </RelativeLayout>

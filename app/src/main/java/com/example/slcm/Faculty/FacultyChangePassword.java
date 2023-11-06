@@ -49,6 +49,7 @@ public class FacultyChangePassword extends AppCompatActivity {
         }
         TextView facultyNameTextView = findViewById(R.id.profname);
         facultyNameTextView.setText(facultyName);
+
         FloatingActionButton fabMessage = findViewById(R.id.fabMessage);
         fabMessage.setOnClickListener(new View.OnClickListener() {
             @Override

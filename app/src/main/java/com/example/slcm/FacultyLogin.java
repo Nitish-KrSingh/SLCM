@@ -32,7 +32,6 @@ public class FacultyLogin extends AppCompatActivity {
         forgotp = findViewById(R.id.Faculty_Forgot_Password);
         fac_username = findViewById(R.id.Fac_Username_Edit);
         fac_password = findViewById(R.id.Fac_Password_Edit);
-
         DatabaseManager databaseManager = new DatabaseManager(getApplicationContext());
         student_login_page.setOnClickListener(new View.OnClickListener() {
             @Override

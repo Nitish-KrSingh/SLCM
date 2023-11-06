@@ -51,6 +51,7 @@ public class StudentChatViewFaculty extends AppCompatActivity {
                 String[] parts = facultyItem.split(" \\(");
                 if (parts.length >= 2) {
                     TextView textView = view.findViewById(R.id.textViewFacultyName);
+
                     if (textView != null) {
                         int unreadMessageCount = Integer.parseInt(parts[1].replaceAll("[^0-9]", ""));
                         if (unreadMessageCount > 0) {

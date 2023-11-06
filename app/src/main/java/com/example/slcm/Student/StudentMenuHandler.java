@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.MenuItem;
-
-
 import com.example.slcm.FacultyLogin;
 import com.example.slcm.R;
 import com.example.slcm.StudentLogin;
@@ -54,7 +52,6 @@ public class StudentMenuHandler {
             });
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
-
         }
     }
 
