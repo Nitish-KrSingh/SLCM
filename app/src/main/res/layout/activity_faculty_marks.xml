@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="20dp"
+        android:layout_below="@+id/intentheading"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/dark_green"
         android:text="@string/fac_submit"

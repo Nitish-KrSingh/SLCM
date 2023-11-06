@@ -51,11 +51,7 @@ public class FacultyMarksType extends AppCompatActivity {
         ImageButton marksCalendarButton = findViewById(R.id.marksCalendarButton);
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
-        String selectedClassName = getIntent().getStringExtra("SELECTED_CLASSNAME");
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
-        TextView details = findViewById(R.id.pagedetails);
-        String prevdet="Selected Class: "+selectedClassName+"-"+selectedSection;
-        details.setText(prevdet);
         marksDate = findViewById(R.id.marksDateTextView);
         updateDate(selectedDate);
         marksCalendarButton.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +62,8 @@ public class FacultyMarksType extends AppCompatActivity {
         });
 
         Button nextButton = findViewById(R.id.nextBtn);
+
+        // Set an initial value based on the default assessment type (Midterm in this case)
         setMaxMarksForAssessmentType(selectedAssignmentType);
         assessmentTypes.check(R.id.internalAssignment1);
         assessmentTypes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -83,6 +81,8 @@ public class FacultyMarksType extends AppCompatActivity {
                 } else if (id == R.id.internalAssignment4) {
                     selectedAssignmentType = "Assignment4";
                 }
+
+                // Update the max marks TextView when the assessment type changes
                 setMaxMarksForAssessmentType(selectedAssignmentType);
             }
         });
@@ -95,7 +95,6 @@ public class FacultyMarksType extends AppCompatActivity {
                     //intent.putExtra("SELECTED_CLASS", selectedClass);
                     intent.putExtra("SELECTED_CLASS", selectedClass);
                     intent.putExtra("SELECTED_SECTION", selectedSection);
-                    intent.putExtra("SELECTED_CLASSNAME", selectedClassName);
                     String formattedDate = dateFormat.format(selectedDate.getTime());
                     intent.putExtra("SELECTED_DATE", formattedDate);
                     intent.putExtra("ASSIGNMENT_TYPE", selectedAssignmentType);

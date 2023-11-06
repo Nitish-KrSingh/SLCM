@@ -28,6 +28,7 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private Cursor cursor; // Declare cursor as a class-level variable
     private int subjectIDIndex;
+    private TextView intentheading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
                 intent.putExtra("SELECTED_CLASSNAME", selectedClassName);
                 intent.putExtra("SELECTED_SUBJECTNAME", subjectName);
                 intent.putExtra("SELECTED_SUBJECT", selectedSubjectId);
+                intent.putExtra("SUBJECT", text);
                 intent.putExtra("FACULTY_ID", facultyId);
                 intent.putExtra("ATT_SELECTED_DATE", select_date_for_attendance);
                 startActivity(intent);

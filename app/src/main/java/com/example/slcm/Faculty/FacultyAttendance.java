@@ -30,14 +30,14 @@ public class FacultyAttendance extends AppCompatActivity {
 
     private ArrayList<Student> studentList;
     private CustomStudentAttendanceListAdapter adapter;
-
+    private TextView intentheading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_attendance);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Enter Attendance");
-
+        intentheading = findViewById(R.id.intentheading);
         ListView listView = findViewById(R.id.Fac_Stud_Att_List);
         Button Submit_Attendance = findViewById(R.id.Fac_Submit_Att_Btn);
         Button all_Student_present = findViewById(R.id.all_present);
@@ -51,8 +51,10 @@ public class FacultyAttendance extends AppCompatActivity {
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
         String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
         int selectedSubject = getIntent().getIntExtra("SELECTED_SUBJECT", -1);
+
         String prevdet="Date: "+select_date_for_attendance+"\nClass: "+selectedClassName+"-"+selectedSection+"\nSubject: "+selectedSubjectName;
         details.setText(prevdet);
+
         studentList = retrieveStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
         System.out.println(studentList);
         adapter = new CustomStudentAttendanceListAdapter(this, studentList);
@@ -144,7 +146,7 @@ public class FacultyAttendance extends AppCompatActivity {
                         result.add(student);
                         Log.d("ClassGet", "Name: " + studentName + " Registration Number: " + registrationNumber);
                     } while (cursor.moveToNext());
-//                    adapter.notifyDataSetChanged();
+                   adapter.notifyDataSetChanged();
                 } else {
                     Log.d("DebugTag1", "Cursor is empty.");
                 }
