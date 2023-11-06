@@ -86,7 +86,6 @@ public class FacultyAttendanceSubject extends AppCompatActivity {
                 intent.putExtra("SELECTED_CLASSNAME", selectedClassName);
                 intent.putExtra("SELECTED_SUBJECTNAME", subjectName);
                 intent.putExtra("SELECTED_SUBJECT", selectedSubjectId);
-                intent.putExtra("SUBJECT", text);
                 intent.putExtra("FACULTY_ID", facultyId);
                 intent.putExtra("ATT_SELECTED_DATE", select_date_for_attendance);
                 startActivity(intent);

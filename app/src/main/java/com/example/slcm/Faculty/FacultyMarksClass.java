@@ -72,7 +72,6 @@ public class FacultyMarksClass extends AppCompatActivity {
                     } else {
                         Log.d("DebugTag", "Cursor is empty.");
                     }
-                    // Do not close the cursor here.
                 }
             } else {
                 Log.d("DebugTag", "Cursor is null.");
@@ -106,7 +105,7 @@ public class FacultyMarksClass extends AppCompatActivity {
                 }
             } while (cursor.moveToNext());
         }
-        return -1; // Return a default value or handle the error as needed
+        return -1;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

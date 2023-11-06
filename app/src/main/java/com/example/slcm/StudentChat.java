@@ -78,13 +78,17 @@ public class StudentChat extends AppCompatActivity {
         });
 
     }
-
-
-
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.student_menu, menu);
+        String userType = getIntent().getStringExtra("UserType");
+        Log.d("Back", "Going back");
+        if ("Faculty".equals(userType)) {
+            getMenuInflater().inflate(R.menu.faculty_menu, menu);
+        } else if ("Student".equals(userType)) {
+            getMenuInflater().inflate(R.menu.student_menu, menu);
+        }
         return true;
     }
     @Override

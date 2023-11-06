@@ -37,7 +37,6 @@ public class FacultyAttendance extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_attendance);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Enter Attendance");
-        intentheading = findViewById(R.id.intentheading);
         ListView listView = findViewById(R.id.Fac_Stud_Att_List);
         Button Submit_Attendance = findViewById(R.id.Fac_Submit_Att_Btn);
         Button all_Student_present = findViewById(R.id.all_present);

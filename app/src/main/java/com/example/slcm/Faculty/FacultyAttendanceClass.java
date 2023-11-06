@@ -36,9 +36,7 @@ public class FacultyAttendanceClass extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_attendance_class);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Attendance - Select Class");
-        intentheading = findViewById(R.id.intentheading);
         String select_date_for_attendance = getIntent().getStringExtra("ATT_SELECTED_DATE");
-        intentheading.setText("Selected: "+ select_date_for_attendance);
         Log.d("Date", "Att_Date: " + select_date_for_attendance);
         TextView details = findViewById(R.id.pagedetails);
         String prevdet="Selected Date: "+select_date_for_attendance;

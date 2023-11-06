@@ -38,12 +38,6 @@ public class FacultyMarksSubject extends AppCompatActivity {
         setContentView(R.layout.activity_faculty_marks_subject);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Marks - Select Subject");
-        intentheading = findViewById(R.id.intentheading);
-        Intent i=getIntent();
-        String section=i.getStringExtra("SELECTED_SECTION");
-        String assignmentType=i.getStringExtra("ASSIGNMENT_TYPE");
-        intentheading.setText("Selecting: MCA "+"-"+section+","+assignmentType);
-
         int selectedClass = getIntent().getIntExtra("SELECTED_CLASS", -1);
         String selectedSection = getIntent().getStringExtra("SELECTED_SECTION");
         String selectedClassName = getIntent().getStringExtra("SELECTED_CLASSNAME");

@@ -138,7 +138,6 @@ public class FacultyMarksType extends AppCompatActivity {
             marks = 30;
             maxMarks.setText(String.format("%d", marks));
         } else {
-            marks = 5;
             maxMarks.setText(String.format("%d", marks));
         }
 
