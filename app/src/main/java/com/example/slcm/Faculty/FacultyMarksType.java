@@ -30,7 +30,8 @@ public class FacultyMarksType extends AppCompatActivity {
     private RadioGroup assessmentTypes;
     private TextView maxMarks;
     private TextView marksDate;
-    private String selectedAssignmentType = "Assignment1"; // Default assessment type
+    private String selectedAssignmentType = "Assignment1";
+    private int marks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class FacultyMarksType extends AppCompatActivity {
                     intent.putExtra("SELECTED_CLASSNAME", selectedClassName);
                     String formattedDate = dateFormat.format(selectedDate.getTime());
                     intent.putExtra("SELECTED_DATE", formattedDate);
+                    intent.putExtra("MAX_MARKS", marks);
                     intent.putExtra("ASSIGNMENT_TYPE", selectedAssignmentType);
                     intent.putExtra("FACULTY_ID", facultyId);
                     Log.d("DateGet", "Retrieving subjects for faculty: " + facultyId + "class" + selectedClass + "section" + selectedSection + "date" + formattedDate + "ass type" + selectedAssignmentType);
@@ -126,7 +128,7 @@ public class FacultyMarksType extends AppCompatActivity {
     }
 
     private void setMaxMarksForAssessmentType(String assessmentType) {
-        int marks = 5;
+        marks = 5;
         if ("Midterm".equals(assessmentType)) {
             marks = 30;
             maxMarks.setText(String.format("%d", marks));

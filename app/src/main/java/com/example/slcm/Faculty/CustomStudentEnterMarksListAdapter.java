@@ -19,11 +19,13 @@ public class CustomStudentEnterMarksListAdapter extends BaseAdapter {
     private final Context context;
     private final ArrayList<Student> students;
     private final String selectedAssignmentType;
+    private int maxmarks;
 
-    public CustomStudentEnterMarksListAdapter(Context context, ArrayList<Student> students, String selectedAssignmentType) {
+    public CustomStudentEnterMarksListAdapter(Context context, ArrayList<Student> students, String selectedAssignmentType, int maxmarks) {
         this.context = context;
         this.students = students;
         this.selectedAssignmentType = selectedAssignmentType;
+        this.maxmarks=maxmarks;
     }
 
     @Override
@@ -62,7 +64,7 @@ public class CustomStudentEnterMarksListAdapter extends BaseAdapter {
             float marks = Float.parseFloat(editTextMarks.getText().toString());
             if (!isValidMarks(marks, selectedAssignmentType)) {
                 editTextMarks.setBackgroundResource(R.color.red);
-                Toast.makeText(context, "Invalid marks for " + student.getRollNumber(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Invalid marks (max. marks: "+maxmarks+") for " + student.getName()+":"+student.getRollNumber(), Toast.LENGTH_SHORT).show();
             } else {
                 editTextMarks.setBackgroundResource(R.color.green);
             }

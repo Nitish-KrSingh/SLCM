@@ -42,9 +42,10 @@ public class FacultyMarksSubject extends AppCompatActivity {
         String selectedClassName = getIntent().getStringExtra("SELECTED_CLASSNAME");
         String selectedDate = getIntent().getStringExtra("SELECTED_DATE");
         selectedAssignment = getIntent().getStringExtra("ASSIGNMENT_TYPE");
+        int maxmarks = getIntent().getIntExtra("MAX_MARKS", -1);
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
         TextView details = findViewById(R.id.pagedetails);
-        String prevdet="Selected Date: "+selectedDate+"\nClass: "+selectedClassName+"-"+selectedSection+", Assignment: "+selectedAssignment;
+        String prevdet="Selected Date: "+selectedDate+"\nClass: "+selectedClassName+"-"+selectedSection+", Assignment: "+selectedAssignment+" ("+maxmarks+" marks)";
         details.setText(prevdet);
         subjectListView = findViewById(R.id.subjectListView);
         subjectList = new ArrayList<>();
@@ -94,6 +95,7 @@ public class FacultyMarksSubject extends AppCompatActivity {
                     intent.putExtra("SELECTED_CLASSNAME", selectedClassName);
                     intent.putExtra("SELECTED_DATE", selectedDate);
                     intent.putExtra("SELECTED_SUBJECTNAME", subjectName);
+                    intent.putExtra("MAX_MARKS", maxmarks);
                     intent.putExtra("ASSIGNMENT_TYPE", selectedAssignment);
                     intent.putExtra("FACULTY_ID", facultyId);
                     startActivity(intent);

@@ -31,7 +31,7 @@ public class FacultyMarks extends AppCompatActivity {
     private ListView listView;
     private ArrayList<Student> studentList;
     private CustomStudentEnterMarksListAdapter adapter;
-    private int studentID;
+    private int studentID, maxmarks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +45,21 @@ public class FacultyMarks extends AppCompatActivity {
         String selectedDate = getIntent().getStringExtra("SELECTED_DATE");
         String selectedSubjectName= getIntent().getStringExtra("SELECTED_SUBJECTNAME");
         String selectedAssignment = getIntent().getStringExtra("ASSIGNMENT_TYPE");
+        maxmarks = getIntent().getIntExtra("MAX_MARKS", -1);
         int selectedSubject = getIntent().getIntExtra("SELECTED_SUBJECT", -1);
         int facultyId = getIntent().getIntExtra("FACULTY_ID", -1);
         TextView details = findViewById(R.id.pagedetails);
-        String prevdet="Date: "+selectedDate+"\nClass: "+selectedClassName+"-"+selectedSection+"\nAssignment: "+selectedAssignment+"\nSubject: "+selectedSubjectName;
+        String prevdet="Date: "+selectedDate+"\nClass: "+selectedClassName+"-"+selectedSection+"\nAssignment: "+selectedAssignment+" ("+maxmarks+" marks)"+"\nSubject: "+selectedSubjectName;
         details.setText(prevdet);
         listView = findViewById(R.id.students);
         studentList = new ArrayList<>();
-        adapter = new CustomStudentEnterMarksListAdapter(this, studentList, selectedAssignment);
+        adapter = new CustomStudentEnterMarksListAdapter(this, studentList, selectedAssignment, maxmarks);
         listView.setAdapter(adapter);
         retrieveStudentsForFacultyMarks(facultyId, selectedClass, selectedSection, selectedSubject);
         Button submitBtn = findViewById(R.id.submit);
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Validate marks for all students before showing the dialog
                 boolean allMarksValid = true;
 
                 for (int i = 0; i < adapter.getCount(); i++) {
@@ -70,13 +70,13 @@ public class FacultyMarks extends AppCompatActivity {
 
                     if (TextUtils.isEmpty(marksText)) {
                         allMarksValid = false;
-                        break; // Break the loop if any marks are missing
+                        break;
                     } else {
                         float marks = Float.parseFloat(marksText);
 
                         if (!isValidMarks(marks, selectedAssignment)) {
                             allMarksValid = false;
-                            break; // Break the loop if any marks are invalid
+                            break;
                         }
                     }
                 }
@@ -191,7 +191,7 @@ public class FacultyMarks extends AppCompatActivity {
                         allMarksValid = false;
                     }
                 } else {
-                    Toast.makeText(this, "Invalid marks for " + selectedAssignment, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Invalid marks for " + selectedAssignment+" ("+maxmarks+")", Toast.LENGTH_SHORT).show();
                     allMarksValid = false;
                 }
             } else {
