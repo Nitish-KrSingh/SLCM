@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
+        android:layout_marginTop="15dp"
         android:columnCount="3"
         android:rowCount="2">
 
