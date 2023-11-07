@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.slcm.ChatAdapter;
 import com.example.slcm.DatabaseManager;
 import com.example.slcm.Faculty.FacultyChatViewStudent;
+import com.example.slcm.Faculty.FacultyMenuHandler;
 import com.example.slcm.R;
 import com.example.slcm.Student.StudentChatViewFaculty;
 import com.example.slcm.Student.StudentMenuHandler;
@@ -93,9 +94,16 @@ public class StudentChat extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {// Handle the Up button click here
-            onBackPressed(); // This will mimic the default back button behavior
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
             return true;
+        }
+        String userType = getIntent().getStringExtra("UserType");
+        Log.d("Back", "Going back");
+        if ("Faculty".equals(userType)) {
+            FacultyMenuHandler.handleMenuAction(item, this);
+        } else if ("Student".equals(userType)) {
+            StudentMenuHandler.handleMenuAction(item, this);
         }
         return super.onOptionsItemSelected(item);
     }
