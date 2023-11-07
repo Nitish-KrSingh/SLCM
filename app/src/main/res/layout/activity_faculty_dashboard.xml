@@ -4,14 +4,24 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Faculty.FacultyDashboard">
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/name"
+    android:textColor="@color/blue"
+    android:textSize="20dp"
+    android:layout_marginTop="15dp"
+    android:layout_centerHorizontal="true"
+    >
+</TextView>
     <GridLayout
+        android:layout_below="@+id/name"
         android:id="@+id/topButtonsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:columnOrderPreserved="false"
@@ -84,7 +94,7 @@
         android:layout_marginTop="30dp"
         android:text="Announcements"
         android:textColor="@color/black"
-        android:textSize="22dp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
     <RelativeLayout

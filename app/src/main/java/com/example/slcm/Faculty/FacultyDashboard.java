@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,7 @@ import java.util.Objects;
 public class FacultyDashboard extends AppCompatActivity {
 
     Button fac_announcement_btn, fac_timetable_btn, fac_attendance_btn, fac_marks_btn;
+    TextView name;
 
     private ArrayList<String> faculty_dashboard_announcement_List;
     private ArrayAdapter<String> adapter;
@@ -42,12 +45,12 @@ public class FacultyDashboard extends AppCompatActivity {
         getSupportActionBar().setTitle("Faculty Dashboard");
 
         fac_announcement_btn = findViewById(R.id.btnAnnouncement);
+        name = findViewById(R.id.name);
         fac_timetable_btn = findViewById(R.id.btnTimeTable);
         fac_attendance_btn = findViewById(R.id.btnAttendance);
         fac_marks_btn = findViewById(R.id.btnMarks);
         SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
         int loggedInFacultyId = sharedPreferences.getInt("FACULTY_ID", -1); // Get the FacultyID
-
         if (loggedInFacultyId == -1) {
             Log.d("DebugTag", "loggedInFacultyId is invalid.");
             Toast.makeText(this, "Faculty ID not found.", Toast.LENGTH_SHORT).show();
@@ -55,6 +58,14 @@ public class FacultyDashboard extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
+                DatabaseManager databaseManager= new DatabaseManager(this);
+                SQLiteDatabase db = databaseManager.getReadableDatabase();
+                Cursor nameCursor = db.rawQuery("SELECT Name FROM FacultyProfile WHERE FacultyID = ?",  new String[]{String.valueOf(loggedInFacultyId)});
+                String facultyName = "";
+                if (nameCursor.moveToFirst()) {
+                    facultyName = nameCursor.getString(nameCursor.getColumnIndexOrThrow("Name"));
+                }
+                name.setText("Hello "+facultyName+"!");
             ListView faculty_dashboard_announcement_ListView = findViewById(R.id.fac_dashboard_announcement_ListView);
             faculty_dashboard_announcement_List = new ArrayList<>();
             adapter = new ArrayAdapter<String>(this, R.layout.activity_faculty_announcement_list_item, R.id.listItemButton, faculty_dashboard_announcement_List);

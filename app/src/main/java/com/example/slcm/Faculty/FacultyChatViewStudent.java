@@ -155,7 +155,7 @@ public class FacultyChatViewStudent extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
         else {
-
+            Toast.makeText(this, "No Messages found.", Toast.LENGTH_SHORT).show();
             Log.d("DebugTag", "Cursor is null.");
         }
     }

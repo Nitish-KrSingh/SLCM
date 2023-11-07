@@ -1,7 +1,10 @@
 package com.example.slcm.Student;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +45,17 @@ public class StudentDashboard extends AppCompatActivity {
         stud_mark_sheet_btn = findViewById(R.id.BtnMarkSheet);
         stud_internal_mark_btn = findViewById(R.id.BtnInternalMarks);
         stud_fees_btn = findViewById(R.id.BtnFees);
-
+        TextView name = findViewById(R.id.name);
+        SharedPreferences sharedPreferences = getSharedPreferences("login_state", Context.MODE_PRIVATE);
+        int loggedInStudentId = sharedPreferences.getInt("STUDENT_ID", -1);
+        DatabaseManager dbHelper = new DatabaseManager(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor nameCursor = db.rawQuery("SELECT Name FROM StudentProfile WHERE StudentID = ?",  new String[]{String.valueOf(loggedInStudentId)});
+        String studentName = "";
+        if (nameCursor.moveToFirst()) {
+            studentName = nameCursor.getString(nameCursor.getColumnIndexOrThrow("Name"));
+        }
+       name.setText("Hello "+studentName+"!");
         ListView student_dashboard_announcement_ListView = findViewById(R.id.ann_ListView);
         student_dashboard_announcement_List = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, R.layout.activity_faculty_announcement_list_item, R.id.listItemButton, student_dashboard_announcement_List);
