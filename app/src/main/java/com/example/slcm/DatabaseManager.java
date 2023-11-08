@@ -616,6 +616,114 @@ public class DatabaseManager extends SQLiteOpenHelper {
         feesValues5.put("Purpose", "Hostel");
         feesValues5.put("StudentID", studentId10);
         db.insert("Fees", null, feesValues5);
+        ContentValues feesValues9 = new ContentValues();
+        feesValues9.put("DatePaid", "2023-07-01");
+        feesValues9.put("Amount", 186000.0);
+        feesValues9.put("Purpose", "Course ");
+        feesValues9.put("StudentID", studentId15);
+        db.insert("Fees", null, feesValues9);
+
+        ContentValues feesValues10 = new ContentValues();
+        feesValues10.put("DatePaid", "2023-07-02");
+        feesValues10.put("Amount", 86000.0);
+        feesValues10.put("Purpose", "Hostel ");
+        feesValues10.put("StudentID", studentId15);
+        db.insert("Fees", null, feesValues10);
+
+        ContentValues marksheetValues10 = new ContentValues();
+        marksheetValues10.put("SubjectID", 15);
+        marksheetValues10.put("SubjectName", "Machine Learning");
+        marksheetValues10.put("Grade", "A+");
+        marksheetValues10.put("Credits", 4.4);
+        marksheetValues10.put("StudentID", studentId15);
+        marksheetValues10.put("ClassID", 2);
+        marksheetValues10.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues10);
+        ContentValues marksheetValues12 = new ContentValues();
+        marksheetValues12.put("SubjectID", 15);
+        marksheetValues12.put("SubjectName", "Cloud Computing");
+        marksheetValues12.put("Grade", "B");
+        marksheetValues12.put("Credits", 3.0);
+        marksheetValues12.put("StudentID", studentId15);
+        marksheetValues12.put("ClassID", 2);
+        marksheetValues12.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues12);
+
+
+        ContentValues marksheetValues14 = new ContentValues();
+        marksheetValues14.put("SubjectID", 15);
+        marksheetValues14.put("SubjectName", "Computer Networks");
+        marksheetValues14.put("Grade", "A+");
+        marksheetValues14.put("Credits", 3.0);
+        marksheetValues14.put("StudentID", studentId15);
+        marksheetValues14.put("ClassID", 2);
+        marksheetValues14.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues14);
+
+        ContentValues marksheetValues15 = new ContentValues();
+        marksheetValues15.put("SubjectID", 15);
+        marksheetValues15.put("SubjectName", "Human Resource Management");
+        marksheetValues15.put("Grade", "A");
+        marksheetValues15.put("Credits", 3.0);
+        marksheetValues15.put("StudentID", studentId15);
+        marksheetValues15.put("ClassID", 2);
+        marksheetValues15.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues15);
+        ContentValues marksheetValues20 = new ContentValues();
+        marksheetValues20.put("SubjectID", 14);
+        marksheetValues20.put("SubjectName", "Machine Learning");
+        marksheetValues20.put("Grade", "A+");
+        marksheetValues20.put("Credits", 4.4);
+        marksheetValues20.put("StudentID", studentId14);
+        marksheetValues20.put("ClassID", 2);
+        marksheetValues20.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues20);
+
+
+        ContentValues marksheetValues21 = new ContentValues();
+        marksheetValues21.put("SubjectID", 14);
+        marksheetValues21.put("SubjectName", "Cloud Computing");
+        marksheetValues21.put("Grade", "B");
+        marksheetValues21.put("Credits", 3.0);
+        marksheetValues21.put("StudentID", studentId14);
+        marksheetValues21.put("ClassID", 2);
+        marksheetValues21.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues21);
+
+
+        ContentValues marksheetValues24 = new ContentValues();
+        marksheetValues24.put("SubjectID", 14);
+        marksheetValues24.put("SubjectName", "Computer Networks");
+        marksheetValues24.put("Grade", "A+");
+        marksheetValues24.put("Credits", 3.0);
+        marksheetValues24.put("StudentID", studentId14);
+        marksheetValues24.put("ClassID", 2);
+        marksheetValues24.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues24);
+
+        ContentValues marksheetValues25 = new ContentValues();
+        marksheetValues25.put("SubjectID", 14);
+        marksheetValues25.put("SubjectName", "Human Resource Management");
+        marksheetValues25.put("Grade", "A");
+        marksheetValues25.put("Credits", 3.0);
+        marksheetValues25.put("StudentID", studentId14);
+        marksheetValues25.put("ClassID", 2);
+        marksheetValues25.put("SemesterGPAID", semesterGPAId);
+        db.insert("Marksheet", null, marksheetValues25);
+
+        ContentValues feesValues17 = new ContentValues();
+        feesValues17.put("DatePaid", "2023-07-01");
+        feesValues17.put("Amount", 186000.0);
+        feesValues17.put("Purpose", "Course ");
+        feesValues17.put("StudentID", studentId14);
+        db.insert("Fees", null, feesValues17);
+
+        ContentValues feesValues18 = new ContentValues();
+        feesValues18.put("DatePaid", "2023-07-02");
+        feesValues18.put("Amount", 86000.0);
+        feesValues18.put("Purpose", "Hostel ");
+        feesValues18.put("StudentID", studentId14);
+        db.insert("Fees", null, feesValues18);
     }
 
     /*LOGIN FUNCTIONS*/
